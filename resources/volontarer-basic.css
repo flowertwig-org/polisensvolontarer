@@ -133,6 +133,11 @@ label .icon {
 
 main form {
     background-color: #0970b8;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+main label {
+    margin: 15px;
 }
 main input[type=text],
 main input[type=password] {
