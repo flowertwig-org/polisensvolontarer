@@ -138,7 +138,7 @@ main form {
     padding: 15px;
 }
 main label,
-main input[type=submit], {
+main input[type=submit] {
     margin-bottom: 5px;
     display:block;
     width: 100%;
