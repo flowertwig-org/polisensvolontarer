@@ -15,35 +15,31 @@
         </a>
         <input type="checkbox" id="menu" class="toggable" />
         <menu class="toggle-area">
-            <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
+            <a href="#">Tillgängliga uppdrag</a>
             <a href="#">Smått och gott</a>
             <a href="#">Kontakta oss</a>
             <br />
             <a href="/">Logga ut</a>
         </menu>
         <div class="icons">
-            <a href="/restricted/messages/">
-                <div class="icon icon-message">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         width="30px" height="30px" viewBox="0 0 60.731 60.731" style="fill:#fff;enable-background:new 0 0 60.731 60.731;"
-                         xml:space="preserve">
+            <div class="icon icon-message">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     width="30px" height="30px" viewBox="0 0 60.731 60.731" style="fill:#fff;enable-background:new 0 0 60.731 60.731;"
+                     xml:space="preserve">
 <g>
-                    <g>
-                    <g>
-                    <polygon points="15.454,1.752 15.454,35.541 40.879,35.541 52.62,48.719 52.62,35.541 60.731,35.541 60.731,1.752" />
-
+                <g>
+                <g>
+                <polygon points="15.454,1.752 15.454,35.541 40.879,35.541 52.62,48.719 52.62,35.541 60.731,35.541 60.731,1.752" />
         </g>
-                    <g>
-                    <polygon points="37.654,38.769 12.221,38.769 12.221,18.769 0,18.769 0,47.697 6.954,47.697 6.954,58.979 17.002,47.697 38.769,47.697 38.769,40.023" />
-
+                <g>
+                <polygon points="37.654,38.769 12.221,38.769 12.221,18.769 0,18.769 0,47.697 6.954,47.697 6.954,58.979 17.002,47.697 38.769,47.697 38.769,40.023" />
         </g>
     </g>
 </g>
 
                 </svg>
-                    <div class="icon-message-nof">2</div>
-                </div>
-            </a>
+                <div class="icon-message-nof">2</div>
+            </div>
             <div class="icon icon-login">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      width="30px" height="30px" viewBox="0 0 428.974 428.975" style="fill:#fff;enable-background:new 0 0 428.974 428.975;"
@@ -90,27 +86,46 @@
         </div>
     </header>
     <main>
-        <h1>Välkommen!</h1>
-        <p>
-            Här kan du hitta uppdrag, ändra inställningar och komma i kontakt med dina samordnare.
-        </p>
+        <h1>Tillgängliga uppdrag!</h1>
 
-        <h2>Dina uppdrag (2)</h2>
+        <form>
+            <label>
+                <b>Du har för närvarande följande aktiva filtreringar:</b>
+            <ul>
+                <li>Dölj uppdrag som inträffar på vardagar mellan 01-16.</li>
+                <li>Dölj uppdrag som är mellan föjande datum:
+                <ul>
+                    <li>20 - 31 december 2017</li>
+                    </ul>
+                </li>
+                <li>Dölj uppdrag som är i:
+                <ul>
+                    <li>Botkyrka</li>
+                    <li>Haninge-Nynäshamn</li>
+                    <li>Huddinge</li>
+                    <li>Täby</li>
+                    </ul>
+                </li>
+                </ul>
+            </label>
+            <input type="submit" value="ändra dina filtrerings val" />
+        </form>
+
+        <h2>Uttagen att medverka på (2)</h2>
         <p style="
     border-bottom: solid 1px #000;
     padding-bottom: 10px;
 ">
             <b><a href="#">WAS - We Are Stockholm!</a></b><br />
-            <span style="font-size:small">2017-08-18 kl 17:20-23:30 * Övrigt</span>
+            <span style="font-size:small">2017-08-18 kl 17:20-23:30 * Övrigt</span><br />
         </p>
         <p style="
     border-bottom: solid 1px #000;
     padding-bottom: 10px;
 ">
             <b><a href="#">Synlighets insats publika platser Söderm</a></b><br />
-            <span style="font-size:small">2017-08-22 kl 18-22 * Kvällsvandring</span>
+            <span style="font-size:small">2017-08-22 kl 18-22 * Kvällsvandring</span><br/>
         </p>
-
     </main>
     <footer>
         <div class="logo">Polisens Volontärer</div>
