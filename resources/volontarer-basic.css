@@ -58,3 +58,8 @@ footer {
     color: #fff;
     text-align: center;
 }
+footer .logo {
+    font-weight: bolder;
+    font-size:2em;
+    padding: 40px 10px;
+}
