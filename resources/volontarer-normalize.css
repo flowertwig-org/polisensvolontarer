@@ -193,6 +193,7 @@ html {
     font-size: 100%;
     font-family: Open Sans, Arial, Helvetica, Sans-serif;
     color: #222;
+    background-color: #000;
 }
 
 * {
@@ -296,26 +297,7 @@ h6 {
 
 /* Links
    ========================================================================== */
-a {
-    color: #222;
-    transition: all .3s;
-}
 
-    a:hover {
-        color: #222;
-    }
-
-    a:visited {
-        color: #666;
-    }
-
-        a:visited:hover {
-            color: #222;
-        }
-
-    a:active {
-        color: #280680;
-    }
 
 /* Figures & other elements
    ========================================================================== */
