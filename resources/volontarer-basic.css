@@ -130,3 +130,13 @@ label .icon {
 #menu:focus ~ .icons .icon-menu .icon-focus-ring {
     display: block;
 }
+
+main form {
+    background-color: #0970b8;
+}
+main input[type=text],
+main input[type=password] {
+    margin: 15px;
+    border-radius: 5px;
+    border: none;
+}
