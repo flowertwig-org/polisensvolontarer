@@ -34,12 +34,8 @@ header {
         display: inline-block;
         margin-left: 8px;
     }
-
-menu {
-    display: none;
-    margin: 0 15px;
-    padding: 15px;
-    border-top: solid #fff 1px;
+header .icons svg {
+	fill: #fff;
 }
 
     menu a {
@@ -47,7 +43,7 @@ menu {
     }
 
 main {
-    margin: 5px 10px;
+    margin: 5px 15px;
     background-color: #fff;
     color: #000;
 }
@@ -62,4 +58,24 @@ footer .logo {
     font-weight: bolder;
     font-size:2em;
     padding: 40px 10px;
+}
+
+.toggable {
+    position: absolute;
+    left: -10000px;
+}
+.toggle-area {
+    display: none;
+}
+.toggable:checked + .toggle-area {
+    display: block;
+
+}
+label .icon {
+    cursor: pointer;
+}
+
+#menu:active ~ .icons .icon-menu svg,
+#menu:focus ~ .icons .icon-menu svg {
+    fill: lightblue;
 }
