@@ -172,3 +172,9 @@ main input[type=password] {
     border: none;
     width: 100%;
 }
+
+/* Support for bigger screens*/
+main {
+    max-width: 800px;
+    margin:0 auto;
+}
