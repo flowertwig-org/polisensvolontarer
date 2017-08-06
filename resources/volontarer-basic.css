@@ -186,10 +186,13 @@ main input[type=password] {
     }
 }
 
-@supports (grid-area: header) {
-    .weekdays {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: auto;
+@media only screen and (min-width: 450px) {
+
+    @supports (grid-area: header) {
+        .weekdays {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: auto;
+        }
     }
 }
