@@ -190,7 +190,7 @@ main input[type=password] {
     display: none;
 }
 
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 600px) {
 
     @supports (grid-area: header) {
         .weekday-header {
@@ -199,6 +199,7 @@ main input[type=password] {
 
         .weekdays {
             display: grid;
+            grid-gap: 10px;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-template-rows: auto;
         }
