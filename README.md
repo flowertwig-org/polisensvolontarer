@@ -1,6 +1,17 @@
 # Polisens Volontärer
 Detta repo är till för att pitcha både förbättrad design och funktionalitet för webbplatsen http://volontar.polisen.se.
-Detta i förhoppning att något av det tas med för att skapa en bättre upplevelse för de volontärer som besöker webbplatsen.
+Detta i förhoppning att något av det tas med för att skapa en bättre upplevelse för de volontärer som besöker webbplatsen
+
+# Förbättringar / ändringar
+
+* webbplatsen är alltid över HTTPS (information är ej avlyssnad eller ändrad) 
+* webbplatsen är responsive (fungerar bra oavsett om man använder mobil eller dator) 
+* webbplatsen har en öppen del med information och länkar för de som är nyfikna på polisens volontärer
+* första som kommer upp när man är inloggad är de uppdrag man är inbokade på
+* meddelande/uppdatteringar del visar snabbt och tydligt vad som hänt sedan sist
+* "aktuella uppdrag" har ändrats till "tillgängliga uppdrag" för att förtydliga skillnad på uppdrag du är inbokad på och uppdrag du kan anmäla intresse till
+
+
 
 # VARNING/DISCLAIMER:
 Detta repo och dess webbplats är bara en enskild persons förslag. 
