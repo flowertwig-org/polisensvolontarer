@@ -13,7 +13,8 @@ Detta i förhoppning att något av det tas med för att skapa en bättre uppleve
 * tillgängliga uppdrag är grupperade per vecka (enklare att få en bra bild över när uppdraget är)
 * tillgängliga uppdrag visar upp en vecko vy (enklare att få en bra bild över när uppdraget är)
 * tillgängliga uppdrag visar 1 månad i taget
-* tillgängliga uppdrag kan filtreras (på tider, dagar, datum, uppdrags plats och uppdrags typ. Detta så det är enklare att hitta just de uppdrag man är intresserad av) 
+* tillgängliga uppdrag kan filtreras (på tider, dagar, datum, uppdrags plats och uppdrags typ. Detta så det är enklare att hitta just de uppdrag man är intresserad av)
+* filtreringen för tillgängliga uppdrag kan sparas och används då vid framtida sökningar på tillgängliga uppdrag
 * systemet är under open source vilket gör att volontärer KAN bidra med kod genom "pull requests" (förvaltare kan ta emot, granska och implementera förbättringar) 
 
 
