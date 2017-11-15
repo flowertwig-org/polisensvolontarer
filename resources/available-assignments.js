@@ -50,7 +50,7 @@
                     dayOfWeekName = 'Söndag';
                     break;
             }
-            console.log(item.date, dayOfWeekName, weekNumber, monthNumber);
+            console.log(item.date, dayOfWeekName, weekNumber, dayOfMonth, monthNumber);
         }
         console.log('got text', json);
         var output = document.querySelector('#output');
