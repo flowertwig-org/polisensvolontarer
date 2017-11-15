@@ -14,8 +14,6 @@
         credentials: 'include'
     });
     result.then(function (response) {
-        console.log('response', response);
-        console.log('header', response.headers.get('Content-Type'));
         return response.json();
     }).then(function (array) {
         var items = [];
@@ -106,8 +104,8 @@
             });
         }
         console.log('items', items);
-        var output = document.querySelector('#output');
-        output.innerHTML = (json);
+        //var output = document.querySelector('#output');
+        //output.innerHTML = (json);
         return items;
     }).then(function(item) {
         console.log(item);
