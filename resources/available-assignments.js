@@ -201,6 +201,7 @@
                         assignmentType.textContent = item.category;
                         dayContainer.style.borderBottom = 'solid 1px #000';
                         dayContainer.style.marginBottom = '10px';
+                        dayContainer.style.height = '0';
                     }else {
                         var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + weekDayIndex;
                         if (currentDayNumber >= 1 && currentDayNumber <= item.maxDaysInMonth) {
@@ -214,6 +215,7 @@
                         assignmentType.textContent = '';
                         dayContainer.style.borderBottom = '';
                         dayContainer.style.marginBottom = '';
+                        dayContainer.style.height = 'auto';
                     }
                 }
             }
