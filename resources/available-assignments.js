@@ -173,7 +173,7 @@
                         dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
                     }else {
                         var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + weekDayIndex;
-                        if (currentDayNumber >= 1 && currentDayNumber <= maxDaysInMonth) {
+                        if (currentDayNumber >= 1 && currentDayNumber <= item.maxDaysInMonth) {
                             dayHeader.textContent = currentDayNumber + "/" + item.monthNumber;
                         } else {
                             dayHeader.textContent = '';
