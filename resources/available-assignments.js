@@ -9,6 +9,28 @@
 (function () {
     'use strict';
 
+    function getMaxDaysInMonth(date) {
+        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1)  + '-' + 31);
+        if (tmpDate && tmpDate.getMonth() == date.getMonth()) {
+            return 31;
+        }
+
+        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1)  + '-' + 30);
+        if (tmpDate && tmpDate.getMonth() == date.getMonth()) {
+            return 30;
+        }
+
+        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1)  + '-' + 29);
+        if (tmpDate && tmpDate.getMonth() == date.getMonth()) {
+            return 29;
+        }
+
+        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1)  + '-' + 28);
+        if (tmpDate && tmpDate.getMonth() == date.getMonth()) {
+            return 28;
+        }
+    }
+
     var result = fetch('https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments', {
         method: 'GET',
         credentials: 'include'
@@ -24,6 +46,8 @@
             var dayOfMonth = date.getDate();
             var dayOfWeekNumber = date.getDay();
             var weekNumber = date.getWeekNumber();
+
+            var maxDaysInMonth = getMaxDaysInMonth(date);
 
             var dayOfWeekName = '';
             switch (dayOfWeekNumber) {
@@ -103,7 +127,8 @@
                 dayOfWeekName: dayOfWeekName,
                 assignmentName: item.name,
                 category: item.category,
-                area: item.area
+                area: item.area,
+                maxDaysInMonth: maxDaysInMonth
             });
         }
         return items;
@@ -148,7 +173,7 @@
                         dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
                     }else {
                         var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + weekDayIndex;
-                        if (currentDayNumber >= 1) {
+                        if (currentDayNumber >= 1 && currentDayNumber <= maxDaysInMonth) {
                             dayHeader.textContent = currentDayNumber + "/" + item.monthNumber;
                         } else {
                             dayHeader.textContent = '';
