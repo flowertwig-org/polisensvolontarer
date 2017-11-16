@@ -118,9 +118,9 @@
                 var monthHeader = template.content.querySelector(".month-header");
                 monthHeader.textContent = item.monthName;
               
-                var filterContainer = document.querySelector("#available-assignments-filter-container");
+                var main = document.querySelector("main");
                 var clone = document.importNode(template.content, true);
-                filterContainer.insertAdjacentElement('afterend', clone);
+                main.appendChild(clone);
             }
 
         }else {
