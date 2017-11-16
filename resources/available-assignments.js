@@ -115,7 +115,7 @@
                 const item = items[index];
 
                 var template = document.querySelector('#template-month');
-                var monthHeader = t.content.querySelector(".month-header");
+                var monthHeader = template.content.querySelector(".month-header");
                 monthHeader.textContent = item.monthName;
               
                 var filterContainer = document.querySelector("#available-assignments-filter-container");
