@@ -113,6 +113,7 @@
         if ('content' in document.createElement('template')) {
             var lastMonthName = false;
             var lastWeekNumber = false;
+            var main = document.querySelector("main");
             var templateMonth = document.querySelector('#template-month');
             var templateWeek = document.querySelector('#template-week');
             var weekIndex = 1;
@@ -164,8 +165,6 @@
                     }
                 }
               
-                var main = document.querySelector("main");
-
                 weekIndex++;
             }
             var cloneWeek = document.importNode(templateWeek.content, true);
