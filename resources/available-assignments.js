@@ -169,11 +169,20 @@
 
                 for (let weekDayIndex = 1; weekDayIndex <= 7; weekDayIndex++) {
                     var dayHeader = templateWeek.content.querySelector(".weekday-date" + weekDayIndex);
+                    var dayContainer = templateWeek.content.querySelector(".day-container" + weekDayIndex);
                     var assignmentName = templateWeek.content.querySelector(".day"  + weekDayIndex + "-assignment-name");
+                    var assignmentWhen = templateWeek.content.querySelector(".day"  + weekDayIndex + "-assignment-when");
+                    var assignmentArea = templateWeek.content.querySelector(".day"  + weekDayIndex + "-assignment-area");
+                    var assignmentType = templateWeek.content.querySelector(".day"  + weekDayIndex + "-assignment-type");
                     
                     if (item.dayOfWeekNumber == weekDayIndex) {
                         dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
                         assignmentName.textContent = item.assignmentName;
+                        assignmentWhen.textContent = '';
+                        assignmentArea.textContent = item.area;
+                        assignmentType.textContent = item.category;
+                        dayContainer.style.borderBottom = 'solid 1px #000';
+                        dayContainer.style.marginBottom = '10px';
                     }else {
                         var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + weekDayIndex;
                         if (currentDayNumber >= 1 && currentDayNumber <= item.maxDaysInMonth) {
@@ -181,7 +190,12 @@
                         } else {
                             dayHeader.textContent = '';
                         }
-                        assignmentName.textContent = '';                        
+                        assignmentName.textContent = '';
+                        assignmentWhen.textContent = '';
+                        assignmentArea.textContent = '';
+                        assignmentType.textContent = '';
+                        dayContainer.style.borderBottom = '';
+                        dayContainer.style.marginBottom = '';
                     }
                 }
 
