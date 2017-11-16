@@ -169,8 +169,11 @@
 
                 for (let weekDayIndex = 1; weekDayIndex <= 7; weekDayIndex++) {
                     var dayHeader = templateWeek.content.querySelector(".weekday-date" + weekDayIndex);
+                    var assignmentName = templateWeek.content.querySelector(".day"  + weekDayIndex + "-assignment-name");
+                    
                     if (item.dayOfWeekNumber == weekDayIndex) {
                         dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
+                        assignmentName.textContent = item.assignmentName;
                     }else {
                         var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + weekDayIndex;
                         if (currentDayNumber >= 1 && currentDayNumber <= item.maxDaysInMonth) {
@@ -178,6 +181,7 @@
                         } else {
                             dayHeader.textContent = '';
                         }
+                        assignmentName.textContent = '';                        
                     }
                 }
 
