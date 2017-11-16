@@ -217,6 +217,9 @@
                     }
                 }
             }
+
+            var cloneWeek = document.importNode(templateWeek.content, true);
+            main.appendChild(cloneWeek);
         } else {
             // TODO: Show warning message to user that it requires template support
         }
