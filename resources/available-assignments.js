@@ -103,27 +103,48 @@
                 area: item.area
             });
         }
-        console.log('items', items);
-        //var output = document.querySelector('#output');
-        //output.innerHTML = (json);
         return items;
     }).then(function(items) {
         console.log(items);
 
         if ('content' in document.createElement('template')) {
+            var lastMonthName = false;
+            var lastWeekNumber = false;
+            var templateMonth = document.querySelector('#template-month');
+            var templateWeek = document.querySelector('#template-week');
             for (let index = 0; index < items.length; index++) {
                 const item = items[index];
 
-                var template = document.querySelector('#template-month');
-                var monthHeader = template.content.querySelector(".month-header");
-                monthHeader.textContent = item.monthName;
+                if (lastMonthName != item.monthName) {
+                    if (lastMonthName) {
+                        var cloneMonth = document.importNode(templateMonth.content, true);
+                        main.appendChild(cloneMonth);
+
+                        lastMonthName = item.monthName;
+                    }
+                    var monthHeader = templateMonth.content.querySelector(".month-header");
+                    monthHeader.textContent = item.monthName;
+                }
+
+                if (lastWeekNumber != item.weekNumber) {
+                    if (lastWeekNumber) {
+                        var cloneWeek = document.importNode(templateWeek.content, true);
+                        main.appendChild(cloneWeek);
+
+                        lastWeekNumber = item.weekNumber;
+                    }
+                }
+
+                var weekHeader = templateWeek.content.querySelector(".week-header");
+                weekHeader.textContent = "Vecka " + item.weekNumber;
               
                 var main = document.querySelector("main");
-                var clone = document.importNode(template.content, true);
-                main.appendChild(clone);
             }
-
-        }else {
+            var clone = document.importNode(templateMonth.content, true);
+            main.appendChild(clone);
+            var cloneWeek = document.importNode(templateWeek.content, true);
+            main.appendChild(cloneWeek);
+        } else {
             // TODO: Show warning message to user that it requires template support
         }
 
