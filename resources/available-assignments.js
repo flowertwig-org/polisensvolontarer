@@ -55,9 +55,6 @@
                 case 1:
                     monthName = 'Januari';
                     break;
-                case 1:
-                    monthName = 'Januari';
-                    break;
                 case 2:
                     monthName = 'Februari';
                     break;
@@ -91,6 +88,10 @@
                 case 12:
                     monthName = 'December';
                     break;
+            }
+
+            if (dayOfWeekNumber == 0) {
+                dayOfWeekNumber = 7;
             }
 
             items.push({
@@ -151,7 +152,7 @@
                 var weekHeader = templateWeek.content.querySelector(".week-header");
                 weekHeader.textContent = "Vecka " + item.weekNumber;
 
-                for (let index = 0; index <= 6; index++) {
+                for (let index = 1; index <= 7; index++) {
                     var dayHeader = templateWeek.content.querySelector(".weekday-date" + index);
                     if (item.dayOfWeekNumber == index) {
                         dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
