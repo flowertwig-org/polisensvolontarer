@@ -94,7 +94,9 @@
             }
 
             items.push({
+                monthNumber: monthNumber,
                 monthName: monthName,
+                dayOfMonth: dayOfMonth,
                 weekNumber: weekNumber,
                 dayOfWeekNumber: dayOfWeekNumber,
                 dayOfWeekName: dayOfWeekName,
@@ -149,7 +151,7 @@
                 var weekHeader = templateWeek.content.querySelector(".week-header");
                 weekHeader.textContent = "Vecka " + item.weekNumber;
 
-                for (let index = 1; index < 7; index++){
+                for (let index = 0; index <= 6; index++){
                     var dayHeader = templateWeek.content.querySelector(".weekday-date" + index);
                     dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
 
