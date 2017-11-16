@@ -151,14 +151,17 @@
                 var weekHeader = templateWeek.content.querySelector(".week-header");
                 weekHeader.textContent = "Vecka " + item.weekNumber;
 
-                for (let index = 0; index <= 6; index++){
+                for (let index = 0; index <= 6; index++) {
                     var dayHeader = templateWeek.content.querySelector(".weekday-date" + index);
-                    dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
-
                     if (item.dayOfWeekNumber == index) {
-
+                        dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
                     }else {
-
+                        var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + index;
+                        if (currentDayNumber >= 1) {
+                            dayHeader.textContent = currentDayNumber + "/" + item.monthNumber;
+                        } else {
+                            dayHeader.textContent = '';
+                        }
                     }
                 }
               
