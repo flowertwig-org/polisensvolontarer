@@ -130,15 +130,6 @@
                     lastMonthName = item.monthName;
                 }
 
-                if (lastWeekNumber != item.weekNumber) {
-                    if (lastWeekNumber) {
-                        var cloneWeek = document.importNode(templateWeek.content, true);
-                        main.appendChild(cloneWeek);
-                    }
-                    lastWeekNumber = item.weekNumber;
-                    weekIndex++;
-                }
-
                 var weekContainer = templateWeek.content.querySelector(".week-container");
                 if (weekIndex % 2 == 0) {
                     weekContainer.style.padding = '5px 15px';
@@ -164,9 +155,16 @@
                         }
                     }
                 }
+
+                if (lastWeekNumber != item.weekNumber) {
+                    if (lastWeekNumber) {
+                        var cloneWeek = document.importNode(templateWeek.content, true);
+                        main.appendChild(cloneWeek);
+                    }
+                    lastWeekNumber = item.weekNumber;
+                    weekIndex++;
+                }
             }
-            var cloneWeek = document.importNode(templateWeek.content, true);
-            main.appendChild(cloneWeek);
         } else {
             // TODO: Show warning message to user that it requires template support
         }
