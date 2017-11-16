@@ -112,6 +112,8 @@
             var lastWeekNumber = false;
             var templateMonth = document.querySelector('#template-month');
             var templateWeek = document.querySelector('#template-week');
+            var weekIndex = 1;
+            var weekdayIndex = 1;
             for (let index = 0; index < items.length; index++) {
                 const item = items[index];
 
@@ -132,12 +134,35 @@
                         main.appendChild(cloneWeek);
                     }
                     lastWeekNumber = item.weekNumber;
+                    weekdayIndex = 1;
+                }
+
+                var weekContainer = templateWeek.content.querySelector(".week-container");
+                if (weekIndex % 2 == 0) {
+                    weekContainer.style.padding = '5px 15px';
+                    weekContainer.style.backgroundColor = 'lightblue';
+                }else {
+                    weekContainer.style.padding = '5px';
+                    weekContainer.style.backgroundColor = '';
                 }
 
                 var weekHeader = templateWeek.content.querySelector(".week-header");
                 weekHeader.textContent = "Vecka " + item.weekNumber;
+
+                for (let index = 1; index < 7; index++){
+                    var dayHeader = templateWeek.content.querySelector(".weekday-date" + index);
+                    dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
+
+                    if (item.dayOfWeekNumber == index) {
+
+                    }else {
+
+                    }
+                }
               
                 var main = document.querySelector("main");
+
+                weekIndex++;
             }
             var clone = document.importNode(templateMonth.content, true);
             main.appendChild(clone);
