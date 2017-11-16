@@ -146,6 +146,8 @@
                 const item = items[index];
 
                 if (lastMonthName != item.monthName) {
+                    // TODO: Add logic for when we are in same week but just changed month.
+                    
                     var monthHeader = templateMonth.content.querySelector(".month-header");
                     monthHeader.textContent = item.monthName;
 
@@ -153,6 +155,14 @@
                     main.appendChild(cloneMonth);
 
                     lastMonthName = item.monthName;
+                }
+                if (lastWeekNumber != item.weekNumber) {
+                    if (lastWeekNumber) {
+                        var cloneWeek = document.importNode(templateWeek.content, true);
+                        main.appendChild(cloneWeek);
+                    }
+                    lastWeekNumber = item.weekNumber;
+                    weekIndex++;
                 }
 
                 var weekContainer = templateWeek.content.querySelector(".week-container");
@@ -197,15 +207,6 @@
                         dayContainer.style.borderBottom = '';
                         dayContainer.style.marginBottom = '';
                     }
-                }
-
-                if (lastWeekNumber != item.weekNumber) {
-                    if (lastWeekNumber) {
-                        var cloneWeek = document.importNode(templateWeek.content, true);
-                        main.appendChild(cloneWeek);
-                    }
-                    lastWeekNumber = item.weekNumber;
-                    weekIndex++;
                 }
             }
         } else {
