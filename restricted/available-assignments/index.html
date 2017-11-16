@@ -87,7 +87,7 @@
     <main>
         <h1>Tillgängliga uppdrag!</h1>
 
-        <form>
+        <form id="available-assignments-filter-container">
             <label>
                 <b>Du har för närvarande följande aktiva filtreringar:</b>
                 <ul style="padding-left:15px">
@@ -214,6 +214,46 @@
         <br /><br />
         <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/robin-kylander" title="Robin Kylander">Robin Kylander</a><br /> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     </footer>
+
+    <template id="template-month">
+        <h2 class="month-header" style="text-align:center">Augusti</h2>
+        <div class="week-container" style="padding: 5px 15px;;background-color:lightblue;">
+            <h3 class="week-header">Vecka 33:</h3>
+            <div class="weekdays">
+                <b class="weekday-header weekday-header1">Måndag<br />14/8</b>
+                <b class="weekday-header weekday-header2">Tisdag<br />15/8</b>
+                <b class="weekday-header weekday-header3">Onsdag<br />16/8</b>
+                <b class="weekday-header weekday-header4">Torsdag<br />17/8</b>
+                <b class="weekday-header weekday-header5">Fredag<br/>18/8</b>
+                <b class="weekday-header weekday-header6">Lördag<br />19/8</b>
+                <b class="weekday-header weekday-header7">Söndag<br />20/8</b>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="day-container" style="
+                   border-bottom: solid 1px #000;
+                   margin-bottom: 10px;
+                   ">
+                    <b><a class="assignment-name" href="#">WAS - We Are Stockholm!</a></b><br />
+                    <span class="assignment-when" style="font-size:small">2017-08-18 kl 17:20-23:30</span> * <span class="assignment-type" style="font-size:small">Övrigt</span><br />
+                    <span class="assignment-area">Kista</span>
+                    <br /><br />
+                </div>
+                <div style="
+                   border-bottom: solid 1px #000;
+                   margin-bottom: 10px;
+                   ">
+                    <b><a href="#">WAS - We Are Stockholm!</a></b><br />
+                    <span style="font-size:small">2017-08-19 kl 16:00-22:30 * Övrigt</span><br />
+                    Kista
+                    <br /><br />
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </template>
+
     <script src="/resources/available-assignments.js" async></script>
 </body>
 </html>

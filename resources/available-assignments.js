@@ -107,8 +107,27 @@
         //var output = document.querySelector('#output');
         //output.innerHTML = (json);
         return items;
-    }).then(function(item) {
-        console.log(item);
+    }).then(function(items) {
+        console.log(items);
+
+        if ('content' in document.createElement('template')) {
+            for (let index = 0; index < items.length; index++) {
+                const item = items[index];
+
+                var template = document.querySelector('#template-month'),
+                var monthHeader = t.content.querySelector(".month-header");
+                monthHeader.textContent = item.monthName;
+              
+                var filterContainer = document.querySelector("#available-assignments-filter-container");
+                var clone = document.importNode(template.content, true);
+                filterContainer.insertAdjacentElement('afterend', clone);
+            }
+
+        }else {
+            // TODO: Show warning message to user that it requires template support
+        }
+
+
     }).catch(function (ex) {
         console.log('failed', ex);
     });
