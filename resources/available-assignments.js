@@ -122,12 +122,13 @@
                 const item = items[index];
 
                 if (lastMonthName != item.monthName) {
-                    var cloneMonth = document.importNode(templateMonth.content, true);
-                    main.appendChild(cloneMonth);
-                    lastMonthName = item.monthName;
-
                     var monthHeader = templateMonth.content.querySelector(".month-header");
                     monthHeader.textContent = item.monthName;
+
+                    var cloneMonth = document.importNode(templateMonth.content, true);
+                    main.appendChild(cloneMonth);
+
+                    lastMonthName = item.monthName;
                 }
 
                 if (lastWeekNumber != item.weekNumber) {
