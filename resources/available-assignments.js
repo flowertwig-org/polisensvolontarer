@@ -114,7 +114,7 @@
             for (let index = 0; index < items.length; index++) {
                 const item = items[index];
 
-                var template = document.querySelector('#template-month'),
+                var template = document.querySelector('#template-month');
                 var monthHeader = t.content.querySelector(".month-header");
                 monthHeader.textContent = item.monthName;
               
