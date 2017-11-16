@@ -121,10 +121,8 @@
                 const item = items[index];
 
                 if (lastMonthName != item.monthName) {
-                    if (lastMonthName) {
-                        var cloneMonth = document.importNode(templateMonth.content, true);
-                        main.appendChild(cloneMonth);
-                    }
+                    var cloneMonth = document.importNode(templateMonth.content, true);
+                    main.appendChild(cloneMonth);
                     lastMonthName = item.monthName;
 
                     var monthHeader = templateMonth.content.querySelector(".month-header");
@@ -170,8 +168,6 @@
 
                 weekIndex++;
             }
-            var clone = document.importNode(templateMonth.content, true);
-            main.appendChild(clone);
             var cloneWeek = document.importNode(templateWeek.content, true);
             main.appendChild(cloneWeek);
         } else {
