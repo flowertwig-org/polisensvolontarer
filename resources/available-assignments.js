@@ -117,7 +117,6 @@
             var templateMonth = document.querySelector('#template-month');
             var templateWeek = document.querySelector('#template-week');
             var weekIndex = 1;
-            var weekdayIndex = 1;
             for (let index = 0; index < items.length; index++) {
                 const item = items[index];
 
@@ -137,7 +136,7 @@
                         main.appendChild(cloneWeek);
                     }
                     lastWeekNumber = item.weekNumber;
-                    weekdayIndex = 1;
+                    weekIndex++;
                 }
 
                 var weekContainer = templateWeek.content.querySelector(".week-container");
@@ -152,12 +151,12 @@
                 var weekHeader = templateWeek.content.querySelector(".week-header");
                 weekHeader.textContent = "Vecka " + item.weekNumber;
 
-                for (let index = 1; index <= 7; index++) {
-                    var dayHeader = templateWeek.content.querySelector(".weekday-date" + index);
-                    if (item.dayOfWeekNumber == index) {
+                for (let weekDayIndex = 1; weekDayIndex <= 7; weekDayIndex++) {
+                    var dayHeader = templateWeek.content.querySelector(".weekday-date" + weekDayIndex);
+                    if (item.dayOfWeekNumber == weekDayIndex) {
                         dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
                     }else {
-                        var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + index;
+                        var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + weekDayIndex;
                         if (currentDayNumber >= 1) {
                             dayHeader.textContent = currentDayNumber + "/" + item.monthNumber;
                         } else {
@@ -165,8 +164,6 @@
                         }
                     }
                 }
-              
-                weekIndex++;
             }
             var cloneWeek = document.importNode(templateWeek.content, true);
             main.appendChild(cloneWeek);
