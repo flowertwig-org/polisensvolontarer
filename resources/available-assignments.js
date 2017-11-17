@@ -134,6 +134,9 @@
         return items;
     }).then(function(items) {
         console.log(items);
+        if (!items || !items.length) {
+            return items;
+        }
 
         if ('content' in document.createElement('template')) {
             var lastMonthName = false;
