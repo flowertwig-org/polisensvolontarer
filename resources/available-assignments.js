@@ -38,6 +38,8 @@
     result.then(function (response) {
         if (response.ok) {
             alert('OK');
+            var contentType = response.headers.get("content-type");
+            alert('contentType: ' + contentType);
             return response.json();
         }
     }).then(function (array) {
