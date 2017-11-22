@@ -38,9 +38,7 @@
     });
     result.then(function (response) {
         if (response.ok) {
-            alert('OK');
             var contentType = response.headers.get("content-type");
-            alert('contentType: ' + contentType);
             return response.json();
         }
     }).then(function (array) {
@@ -137,18 +135,11 @@
                 maxDaysInMonth: maxDaysInMonth
             });
         }
-        if (!items || !items.length) {
-            alert("items1 == empty");
-            return items;
-        }
-        alert("items1.length: " + items.length);
         return items;
     }).then(function(items) {
         if (!items || !items.length) {
-            alert("items2 == empty");
             return items;
         }
-        alert("items2.length: " + items.length);
         
         if ('content' in document.createElement('template')) {
             var lastMonthName = false;
@@ -243,7 +234,6 @@
 
 
     }).catch(function (ex) {
-        alert('error: ' + ex);
-        console.log('failed', ex);
+
     });
 })();
