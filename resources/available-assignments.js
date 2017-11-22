@@ -33,15 +33,14 @@
 
     var result = fetch('https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments', {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
+        mode: 'cors'
     });
     result.then(function (response) {
         if (response.ok) {
             alert('OK');
             var contentType = response.headers.get("content-type");
             alert('contentType: ' + contentType);
-            alert('body: ', response.body);
-            alert('text: ', response.text());
             return response.json();
         }
     }).then(function (array) {
