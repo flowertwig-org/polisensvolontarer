@@ -40,6 +40,8 @@
             alert('OK');
             var contentType = response.headers.get("content-type");
             alert('contentType: ' + contentType);
+            alert('body: ', response.body);
+            alert('text: ', response.text());
             return response.json();
         }
     }).then(function (array) {
