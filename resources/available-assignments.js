@@ -36,7 +36,10 @@
         credentials: 'include'
     });
     result.then(function (response) {
-        return response.json();
+        if (response.ok) {
+            alert('OK');
+            return response.json();
+        }
     }).then(function (array) {
         var items = [];
         for (var index = 0; index < array.length; index++) {
@@ -237,6 +240,7 @@
 
 
     }).catch(function (ex) {
+        alert('error: ' + ex);
         console.log('failed', ex);
     });
 })();
