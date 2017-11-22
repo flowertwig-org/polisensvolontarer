@@ -131,13 +131,18 @@
                 maxDaysInMonth: maxDaysInMonth
             });
         }
+        if (!items || !items.length) {
+            alert("items1 == empty");
+            return items;
+        }
+        alert("items1.length: " + items.length);
         return items;
     }).then(function(items) {
         if (!items || !items.length) {
-            alert("items == empty");
+            alert("items2 == empty");
             return items;
         }
-        alert("items.length: " + items.length);
+        alert("items2.length: " + items.length);
         
         if ('content' in document.createElement('template')) {
             var lastMonthName = false;
