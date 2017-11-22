@@ -133,11 +133,12 @@
         }
         return items;
     }).then(function(items) {
-        console.log(items);
         if (!items || !items.length) {
+            alert("items == empty");
             return items;
         }
-
+        alert("items.length: " + items.length);
+        
         if ('content' in document.createElement('template')) {
             var lastMonthName = false;
             var lastWeekNumber = false;
