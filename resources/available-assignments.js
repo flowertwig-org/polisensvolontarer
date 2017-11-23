@@ -138,6 +138,7 @@
         return items;
     }).then(function(items) {
         if (!items || !items.length) {
+            window.location.pathname = '/login/';
             return items;
         }
         
