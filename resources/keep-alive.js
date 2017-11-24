@@ -9,11 +9,6 @@
         });
         result.then(function (response) {
             if (response.ok) {
-
-                setTimeout(function () {
-                    makeKeepAliveCall();
-                }, 10000);
-
                 return response.json();
             }
         }).then(function(isAlive) {
