@@ -21,7 +21,8 @@
         });
     }
 
+    makeKeepAliveCall();
     setInterval(function () {
         makeKeepAliveCall();
-    }, 20000);
+    }, 40000);
 })();
