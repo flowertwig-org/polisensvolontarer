@@ -23,5 +23,5 @@
 
     setInterval(function () {
         makeKeepAliveCall();
-    }, 10000);
+    }, 20000);
 })();
