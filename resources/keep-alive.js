@@ -21,7 +21,7 @@
         });
     }
 
-    setTimeout(function () {
+    setInterval(function () {
         makeKeepAliveCall();
     }, 10000);
 })();
