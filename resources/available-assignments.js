@@ -38,8 +38,9 @@
     });
     result.then(function (response) {
         if (response.ok) {
-            var contentType = response.headers.get("content-type");
             return response.json();
+        }else {
+            window.location.pathname = '/login/';            
         }
     }).then(function (array) {
         var items = [];
