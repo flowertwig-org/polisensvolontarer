@@ -207,10 +207,10 @@
 
                             dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
 
-                            assignmentName.textContent = item.assignmentName;
+                            assignmentName.textContent = assignment.assignmentName;
                             assignmentWhen.textContent = '';
-                            assignmentArea.textContent = item.area;
-                            assignmentType.textContent = item.category;
+                            assignmentArea.textContent = assignment.area;
+                            assignmentType.textContent = assignment.category;
 
                             var cloneAssignment = document.importNode(templateAssignment.content, true);
                             dayContainer.appendChild(cloneAssignment);
@@ -219,9 +219,9 @@
                         dayContainer.style.marginBottom = '10px';
                         dayContainer.style.height = 'auto';
                     } else {
-                        var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + weekDayIndex;
-                        if (currentDayNumber >= 1 && currentDayNumber <= item.maxDaysInMonth) {
-                            dayHeader.textContent = currentDayNumber + "/" + item.monthNumber;
+                        var currentDayNumber = day.dayOfMonth - day.dayOfWeekNumber + weekDayIndex;
+                        if (currentDayNumber >= 1 && currentDayNumber <= day.maxDaysInMonth) {
+                            dayHeader.textContent = currentDayNumber + "/" + day.monthNumber;
                         } else {
                             dayHeader.textContent = '';
                         }
