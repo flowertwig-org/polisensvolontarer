@@ -207,3 +207,7 @@ main input[type=password] {
         }
     }
 }
+
+.day-container {
+    word-break: break-all;
+}

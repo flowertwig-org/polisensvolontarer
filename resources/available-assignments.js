@@ -215,8 +215,6 @@
                             var cloneAssignment = document.importNode(templateAssignment.content, true);
                             dayContainer.appendChild(cloneAssignment);
                         }
-                        dayContainer.style.borderBottom = 'solid 1px #000';
-                        dayContainer.style.marginBottom = '10px';
                         dayContainer.style.height = 'auto';
                     } else {
                         var currentDayNumber = day.dayOfMonth - day.dayOfWeekNumber + weekDayIndex;
@@ -225,8 +223,6 @@
                         } else {
                             dayHeader.textContent = '';
                         }
-                        dayContainer.style.borderBottom = '';
-                        dayContainer.style.marginBottom = '';
                         dayContainer.style.height = '0';
                     }
                 }
