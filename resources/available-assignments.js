@@ -225,10 +225,6 @@
                         } else {
                             dayHeader.textContent = '';
                         }
-                        assignmentName.textContent = '';
-                        assignmentWhen.textContent = '';
-                        assignmentArea.textContent = '';
-                        assignmentType.textContent = '';
                         dayContainer.style.borderBottom = '';
                         dayContainer.style.marginBottom = '';
                         dayContainer.style.height = '0';
@@ -244,6 +240,6 @@
 
 
     }).catch(function (ex) {
-
+        console.log(ex);
     });
 })();
