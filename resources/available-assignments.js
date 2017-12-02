@@ -58,7 +58,7 @@
                     || assignment.area == 'Haninge-Nynäshamn'
                     || assignment.area == 'Huddinge'
                     || assignment.area == 'Täby')
-                    || assignment.area == 'Skärholmen') {
+                || assignment.area == 'Skärholmen') {
                 indexesToRemove.push(assignmentIndex);
                 itemsMarkedAsRemove = true;
             }
@@ -252,20 +252,25 @@
                     var assignmentType = templateAssignment.content.querySelector(".assignment-type");
 
                     if (day.dayOfWeekNumber == weekDayIndex) {
-                        for (let assignmentIndex = 0; assignmentIndex < day.items.length; assignmentIndex++) {
-                            const assignment = day.items[assignmentIndex];
+                        if (day.items.length) {
+                            for (let assignmentIndex = 0; assignmentIndex < day.items.length; assignmentIndex++) {
+                                const assignment = day.items[assignmentIndex];
 
-                            dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
+                                dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
 
-                            assignmentName.textContent = assignment.name;
-                            assignmentWhen.textContent = '';
-                            assignmentArea.textContent = assignment.area;
-                            assignmentType.textContent = assignment.category;
+                                assignmentName.textContent = assignment.name;
+                                assignmentWhen.textContent = '';
+                                assignmentArea.textContent = assignment.area;
+                                assignmentType.textContent = assignment.category;
 
-                            var cloneAssignment = document.importNode(templateAssignment.content, true);
-                            dayContainer.appendChild(cloneAssignment);
+                                var cloneAssignment = document.importNode(templateAssignment.content, true);
+                                dayContainer.appendChild(cloneAssignment);
+                            }
+                            dayContainer.className = 'day-container day-container' + weekDayIndex;
+                        } else {
+                            dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
+
                         }
-                        dayContainer.className = 'day-container day-container' + weekDayIndex;
                     } else {
                         var currentDayNumber = day.dayOfMonth - day.dayOfWeekNumber + weekDayIndex;
                         if (currentDayNumber >= 1 && currentDayNumber <= day.maxDaysInMonth) {
@@ -273,7 +278,6 @@
                         } else {
                             dayHeader.textContent = '';
                         }
-                        dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
                     }
                 }
             }
