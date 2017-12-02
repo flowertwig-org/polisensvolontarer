@@ -130,11 +130,8 @@
                 weekNumber: weekNumber,
                 dayOfWeekNumber: dayOfWeekNumber,
                 dayOfWeekName: dayOfWeekName,
-                //assignmentName: item.name,
-                //category: item.category,
-                //area: item.area,
                 maxDaysInMonth: maxDaysInMonth,
-                items = array[index]
+                items: array[index]
             });
         }
         return dayGroups;
