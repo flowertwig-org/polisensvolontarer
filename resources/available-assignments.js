@@ -197,7 +197,9 @@
             var main = document.querySelector("main");
             var templateMonth = document.querySelector('#template-month');
             var templateWeek = document.querySelector('#template-week');
+            var cloneWeek = document.importNode(templateWeek.content, true);
             var templateAssignment = document.querySelector('#template-assignment');
+
             var weekIndex = 1;
             for (let index = 0; index < dayGroups.length; index++) {
                 const day = dayGroups[index];
@@ -206,8 +208,8 @@
                     // logic for when we are in same week but just changed month.
                     if (lastWeekNumber == day.weekNumber) {
                         if (lastWeekNumber) {
-                            var cloneWeek = document.importNode(templateWeek.content, true);
                             main.appendChild(cloneWeek);
+                            cloneWeek = document.importNode(templateWeek.content, true);
                         }
                         lastWeekNumber = day.weekNumber;
                         weekIndex++;
@@ -223,14 +225,16 @@
                 }
                 if (lastWeekNumber != day.weekNumber) {
                     if (lastWeekNumber) {
-                        var cloneWeek = document.importNode(templateWeek.content, true);
                         main.appendChild(cloneWeek);
+                        cloneWeek = document.importNode(templateWeek.content, true);
                     }
                     lastWeekNumber = day.weekNumber;
                     weekIndex++;
                 }
 
-                var weekContainer = templateWeek.content.querySelector(".week-container");
+                
+
+                var weekContainer = cloneWeek.querySelector(".week-container");
                 if (weekIndex % 2 == 0) {
                     weekContainer.style.padding = '5px 15px';
                     weekContainer.style.backgroundColor = 'lightblue';
@@ -239,12 +243,12 @@
                     weekContainer.style.backgroundColor = '';
                 }
 
-                var weekHeader = templateWeek.content.querySelector(".week-header");
+                var weekHeader = cloneWeek.querySelector(".week-header");
                 weekHeader.textContent = "Vecka " + day.weekNumber;
 
                 for (let weekDayIndex = 1; weekDayIndex <= 7; weekDayIndex++) {
-                    var dayHeader = templateWeek.content.querySelector(".weekday-date" + weekDayIndex);
-                    var dayContainer = templateWeek.content.querySelector(".day-container" + weekDayIndex);
+                    var dayHeader = cloneWeek.querySelector(".weekday-date" + weekDayIndex);
+                    var dayContainer = cloneWeek.querySelector(".day-container" + weekDayIndex);
 
                     var assignmentName = templateAssignment.content.querySelector(".assignment-name");
                     var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
@@ -266,9 +270,9 @@
                                 var cloneAssignment = document.importNode(templateAssignment.content, true);
                                 dayContainer.appendChild(cloneAssignment);
                             }
-                            dayContainer.className = 'day-container day-container' + weekDayIndex;
+                            //dayContainer.className = 'day-container day-container' + weekDayIndex;
                         } else {
-                            dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
+                            //dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
                         }
                     } else {
                         var currentDayNumber = day.dayOfMonth - day.dayOfWeekNumber + weekDayIndex;
@@ -277,12 +281,11 @@
                         } else {
                             dayHeader.textContent = '';
                         }
-                        dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
+                        //dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
                     }
                 }
             }
 
-            var cloneWeek = document.importNode(templateWeek.content, true);
             main.appendChild(cloneWeek);
         } else {
             // TODO: Show warning message to user that it requires template support
