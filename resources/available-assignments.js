@@ -1,31 +1,31 @@
-﻿Date.prototype.getWeekNumber = function(){
+﻿Date.prototype.getWeekNumber = function () {
     var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
     var dayNum = d.getUTCDay() || 7;
     d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-    var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-    return Math.ceil((((d - yearStart) / 86400000) + 1)/7)
-  };
+    var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7)
+};
 
 (function () {
     'use strict';
 
     function getMaxDaysInMonth(date) {
-        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1)  + '-' + 31);
+        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + 31);
         if (tmpDate && tmpDate.getMonth() == date.getMonth()) {
             return 31;
         }
 
-        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1)  + '-' + 30);
+        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + 30);
         if (tmpDate && tmpDate.getMonth() == date.getMonth()) {
             return 30;
         }
 
-        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1)  + '-' + 29);
+        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + 29);
         if (tmpDate && tmpDate.getMonth() == date.getMonth()) {
             return 29;
         }
 
-        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1)  + '-' + 28);
+        var tmpDate = new Date(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + 28);
         if (tmpDate && tmpDate.getMonth() == date.getMonth()) {
             return 28;
         }
@@ -39,13 +39,13 @@
     result.then(function (response) {
         if (response.ok) {
             return response.json();
-        }else {
-            window.location.pathname = '/login/';            
+        } else {
+            window.location.pathname = '/login/';
         }
     }).then(function (array) {
-        var items = [];
+        var dayGroups = [];
         for (var index = 0; index < array.length; index++) {
-            var item = array[index];
+            var item = array[index][0];
             var date = new Date(item.date);
             var monthNumber = date.getMonth() + 1;
             var dayOfMonth = date.getDate();
@@ -123,61 +123,63 @@
                 dayOfWeekNumber = 7;
             }
 
-            items.push({
+            dayGroups.push({
                 monthNumber: monthNumber,
                 monthName: monthName,
                 dayOfMonth: dayOfMonth,
                 weekNumber: weekNumber,
                 dayOfWeekNumber: dayOfWeekNumber,
                 dayOfWeekName: dayOfWeekName,
-                assignmentName: item.name,
-                category: item.category,
-                area: item.area,
-                maxDaysInMonth: maxDaysInMonth
+                //assignmentName: item.name,
+                //category: item.category,
+                //area: item.area,
+                maxDaysInMonth: maxDaysInMonth,
+                items = array[index]
             });
         }
-        return items;
-    }).then(function(items) {
-        if (!items || !items.length) {
+        return dayGroups;
+    }).then(function (dayGroups) {
+        if (!dayGroups || !dayGroups.length) {
             window.location.pathname = '/login/';
-            return items;
+            return dayGroups;
         }
-        
+
         if ('content' in document.createElement('template')) {
             var lastMonthName = false;
             var lastWeekNumber = false;
             var main = document.querySelector("main");
             var templateMonth = document.querySelector('#template-month');
             var templateWeek = document.querySelector('#template-week');
+            var templateAssignment = document.querySelector('#template-assignment');
             var weekIndex = 1;
-            for (let index = 0; index < items.length; index++) {
-                const item = items[index];
+            for (let index = 0; index < dayGroups.length; index++) {
+                const day = dayGroups[index];
 
-                if (lastMonthName != item.monthName) {
+                if (lastMonthName != day.monthName) {
                     // TODO: Add logic for when we are in same week but just changed month.
-                    if (lastWeekNumber == item.weekNumber) {
+                    if (lastWeekNumber == day.weekNumber) {
                         if (lastWeekNumber) {
                             var cloneWeek = document.importNode(templateWeek.content, true);
                             main.appendChild(cloneWeek);
                         }
-                        lastWeekNumber = item.weekNumber;
+                        lastWeekNumber = day.weekNumber;
                         weekIndex++;
                     }
-                        
+
                     var monthHeader = templateMonth.content.querySelector(".month-header");
-                    monthHeader.textContent = item.monthName;
+                    monthHeader.textContent = day.monthName;
 
                     var cloneMonth = document.importNode(templateMonth.content, true);
                     main.appendChild(cloneMonth);
 
-                    lastMonthName = item.monthName;
+                    lastMonthName = day.monthName;
                 }
-                if (lastWeekNumber != item.weekNumber) {
+                if (lastWeekNumber != day.weekNumber) {
                     if (lastWeekNumber) {
                         var cloneWeek = document.importNode(templateWeek.content, true);
                         main.appendChild(cloneWeek);
                     }
-                    lastWeekNumber = item.weekNumber;
+                    lastWeekNumber = day.weekNumber;
                     weekIndex++;
                 }
 
@@ -185,32 +187,41 @@
                 if (weekIndex % 2 == 0) {
                     weekContainer.style.padding = '5px 15px';
                     weekContainer.style.backgroundColor = 'lightblue';
-                }else {
+                } else {
                     weekContainer.style.padding = '5px';
                     weekContainer.style.backgroundColor = '';
                 }
 
                 var weekHeader = templateWeek.content.querySelector(".week-header");
-                weekHeader.textContent = "Vecka " + item.weekNumber;
+                weekHeader.textContent = "Vecka " + day.weekNumber;
 
                 for (let weekDayIndex = 1; weekDayIndex <= 7; weekDayIndex++) {
                     var dayHeader = templateWeek.content.querySelector(".weekday-date" + weekDayIndex);
                     var dayContainer = templateWeek.content.querySelector(".day-container" + weekDayIndex);
-                    var assignmentName = templateWeek.content.querySelector(".day"  + weekDayIndex + "-assignment-name");
-                    var assignmentWhen = templateWeek.content.querySelector(".day"  + weekDayIndex + "-assignment-when");
-                    var assignmentArea = templateWeek.content.querySelector(".day"  + weekDayIndex + "-assignment-area");
-                    var assignmentType = templateWeek.content.querySelector(".day"  + weekDayIndex + "-assignment-type");
-                    
-                    if (item.dayOfWeekNumber == weekDayIndex) {
-                        dayHeader.textContent = item.dayOfMonth + "/" + item.monthNumber;
-                        assignmentName.textContent = item.assignmentName;
-                        assignmentWhen.textContent = '';
-                        assignmentArea.textContent = item.area;
-                        assignmentType.textContent = item.category;
+
+                    var assignmentName = templateAssignment.content.querySelector(".day" + weekDayIndex + "-assignment-name");
+                    var assignmentWhen = templateAssignment.content.querySelector(".day" + weekDayIndex + "-assignment-when");
+                    var assignmentArea = templateAssignment.content.querySelector(".day" + weekDayIndex + "-assignment-area");
+                    var assignmentType = templateAssignment.content.querySelector(".day" + weekDayIndex + "-assignment-type");
+
+                    if (day.dayOfWeekNumber == weekDayIndex) {
+                        for (let assignmentIndex = 0; assignmentIndex < array.length; assignmentIndex++) {
+                            const assignment = day.items[assignmentIndex];
+
+                            dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
+
+                            assignmentName.textContent = item.assignmentName;
+                            assignmentWhen.textContent = '';
+                            assignmentArea.textContent = item.area;
+                            assignmentType.textContent = item.category;
+
+                            var cloneAssignment = document.importNode(templateAssignment.content, true);
+                            dayContainer.appendChild(cloneAssignment);
+                        }
                         dayContainer.style.borderBottom = 'solid 1px #000';
                         dayContainer.style.marginBottom = '10px';
                         dayContainer.style.height = 'auto';
-                    }else {
+                    } else {
                         var currentDayNumber = item.dayOfMonth - item.dayOfWeekNumber + weekDayIndex;
                         if (currentDayNumber >= 1 && currentDayNumber <= item.maxDaysInMonth) {
                             dayHeader.textContent = currentDayNumber + "/" + item.monthNumber;
