@@ -269,7 +269,6 @@
                             dayContainer.className = 'day-container day-container' + weekDayIndex;
                         } else {
                             dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
-
                         }
                     } else {
                         var currentDayNumber = day.dayOfMonth - day.dayOfWeekNumber + weekDayIndex;
@@ -278,6 +277,7 @@
                         } else {
                             dayHeader.textContent = '';
                         }
+                        dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
                     }
                 }
             }
