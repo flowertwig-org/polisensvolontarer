@@ -202,7 +202,7 @@
                     var assignmentType = templateAssignment.content.querySelector(".day" + weekDayIndex + "-assignment-type");
 
                     if (day.dayOfWeekNumber == weekDayIndex) {
-                        for (let assignmentIndex = 0; assignmentIndex < array.length; assignmentIndex++) {
+                        for (let assignmentIndex = 0; assignmentIndex < day.items.length; assignmentIndex++) {
                             const assignment = day.items[assignmentIndex];
 
                             dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
