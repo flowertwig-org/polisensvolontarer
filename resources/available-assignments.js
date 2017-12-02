@@ -151,9 +151,9 @@
             indexesToRemove.reverse();
 
             if (indexesToRemove) {
-                for (let removeIndex = 0; removeIndex < array.length; removeIndex++) {
+                for (let removeIndex = 0; removeIndex < indexesToRemove.length; removeIndex++) {
                     const indexToRemove = indexesToRemove[removeIndex];
-                    items.splice(indexToRemove, 1);
+                    items = items.splice(indexToRemove, 1);
                 }
             }
 
