@@ -196,10 +196,10 @@
                     var dayHeader = templateWeek.content.querySelector(".weekday-date" + weekDayIndex);
                     var dayContainer = templateWeek.content.querySelector(".day-container" + weekDayIndex);
 
-                    var assignmentName = templateAssignment.content.querySelector(".day" + weekDayIndex + "-assignment-name");
-                    var assignmentWhen = templateAssignment.content.querySelector(".day" + weekDayIndex + "-assignment-when");
-                    var assignmentArea = templateAssignment.content.querySelector(".day" + weekDayIndex + "-assignment-area");
-                    var assignmentType = templateAssignment.content.querySelector(".day" + weekDayIndex + "-assignment-type");
+                    var assignmentName = templateAssignment.content.querySelector(".assignment-name");
+                    var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
+                    var assignmentArea = templateAssignment.content.querySelector(".assignment-area");
+                    var assignmentType = templateAssignment.content.querySelector(".assignment-type");
 
                     if (day.dayOfWeekNumber == weekDayIndex) {
                         for (let assignmentIndex = 0; assignmentIndex < day.items.length; assignmentIndex++) {
