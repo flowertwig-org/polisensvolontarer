@@ -31,7 +31,7 @@
         }
     }
 
-    function filterItems(items) {
+    function filterItems(items, dayOfWeekNumber) {
         // filters out items that we are not interested in
 
         // TODO: Remove hardcoded values
@@ -166,7 +166,7 @@
                 dayOfWeekNumber = 7;
             }
 
-            items = filterItems(items);
+            items = filterItems(items, dayOfWeekNumber);
 
             const weHaveItemsToShowForDay = items.length > 0;
             if (weHaveItemsToShowForDay) {
