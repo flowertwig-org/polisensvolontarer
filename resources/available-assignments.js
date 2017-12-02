@@ -53,10 +53,12 @@
             }
 
             if (!itemsMarkedAsRemove
+                && assignment.category != 'Fortbildning'
                 && (assignment.area == 'Botkyrka'
                     || assignment.area == 'Haninge-Nynäshamn'
                     || assignment.area == 'Huddinge'
-                    || assignment.area == 'Täby')) {
+                    || assignment.area == 'Täby')
+                    || assignment.area == 'Skärholmen') {
                 indexesToRemove.push(assignmentIndex);
                 itemsMarkedAsRemove = true;
             }
