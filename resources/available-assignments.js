@@ -67,7 +67,7 @@
 
             for (let removeIndex = 0; removeIndex < indexesToRemove.length; removeIndex++) {
                 const indexToRemove = indexesToRemove[removeIndex];
-                items = items.slice(indexToRemove, 1);
+                items.splice(indexToRemove, 1);
             }
         }
         return items;
