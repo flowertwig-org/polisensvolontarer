@@ -153,7 +153,7 @@
             if (indexesToRemove) {
                 for (let removeIndex = 0; removeIndex < array.length; removeIndex++) {
                     const indexToRemove = indexesToRemove[removeIndex];
-                    items.removeAt(indexToRemove);
+                    items.splice(indexToRemove, 1);
                 }
             }
 
