@@ -203,7 +203,7 @@
                 const day = dayGroups[index];
 
                 if (lastMonthName != day.monthName) {
-                    // TODO: Add logic for when we are in same week but just changed month.
+                    // logic for when we are in same week but just changed month.
                     if (lastWeekNumber == day.weekNumber) {
                         if (lastWeekNumber) {
                             var cloneWeek = document.importNode(templateWeek.content, true);
@@ -265,7 +265,7 @@
                             var cloneAssignment = document.importNode(templateAssignment.content, true);
                             dayContainer.appendChild(cloneAssignment);
                         }
-                        //dayContainer.style.height = 'auto';
+                        dayContainer.className = 'day-container day-container' + weekDayIndex;
                     } else {
                         var currentDayNumber = day.dayOfMonth - day.dayOfWeekNumber + weekDayIndex;
                         if (currentDayNumber >= 1 && currentDayNumber <= day.maxDaysInMonth) {
@@ -273,7 +273,7 @@
                         } else {
                             dayHeader.textContent = '';
                         }
-                        //dayContainer.style.height = '0';
+                        dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
                     }
                 }
             }
