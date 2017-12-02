@@ -45,8 +45,9 @@
     }).then(function (array) {
         var dayGroups = [];
         for (var index = 0; index < array.length; index++) {
-            var item = array[index][0];
-            var date = new Date(item.date);
+            var firstItem = array[index][0];
+            var items = array[index];
+            var date = new Date(firstItem.date);
             var monthNumber = date.getMonth() + 1;
             var dayOfMonth = date.getDate();
             var dayOfWeekNumber = date.getDay();
@@ -123,16 +124,52 @@
                 dayOfWeekNumber = 7;
             }
 
-            dayGroups.push({
-                monthNumber: monthNumber,
-                monthName: monthName,
-                dayOfMonth: dayOfMonth,
-                weekNumber: weekNumber,
-                dayOfWeekNumber: dayOfWeekNumber,
-                dayOfWeekName: dayOfWeekName,
-                maxDaysInMonth: maxDaysInMonth,
-                items: array[index]
-            });
+
+            // TODO: filter out items that we are not interested in
+            var indexesToRemove = [];
+            for (let assignmentIndex = 0; assignmentIndex < items.length; assignmentIndex++) {
+                const assignment = items[assignmentIndex];
+
+                const isWeekend = dayOfWeekNumber >= 6;
+                if (!isWeekend) {
+                    if (assignment.category == 'Dagvandring') {
+                        indexesToRemove.push(assignmentIndex);
+                    }
+                    if (assignment.category == 'Pass / Reception') {
+                        indexesToRemove.push(assignmentIndex);
+                    }
+                }
+
+                if (assignment.area == 'Botkyrka'
+                || assignment.area == 'Haninge-Nynäshamn'
+                || assignment.area == 'Huddinge'
+                || assignment.area == 'Täby') {
+                    indexesToRemove.push(assignmentIndex);
+                }
+            }
+
+            indexesToRemove.reverse();
+
+            if (indexesToRemove) {
+                for (let removeIndex = 0; removeIndex < array.length; removeIndex++) {
+                    const indexToRemove = indexesToRemove[removeIndex];
+                    items.removeAt(indexToRemove);
+                }
+            }
+
+            const weHaveItemsToShowForDay = items.length > 0;
+            if (weHaveItemsToShowForDay) {
+                dayGroups.push({
+                    monthNumber: monthNumber,
+                    monthName: monthName,
+                    dayOfMonth: dayOfMonth,
+                    weekNumber: weekNumber,
+                    dayOfWeekNumber: dayOfWeekNumber,
+                    dayOfWeekName: dayOfWeekName,
+                    maxDaysInMonth: maxDaysInMonth,
+                    items: items
+                });
+            }
         }
         return dayGroups;
     }).then(function (dayGroups) {
