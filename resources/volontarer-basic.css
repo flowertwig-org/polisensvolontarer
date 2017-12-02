@@ -192,19 +192,9 @@ main input[type=password] {
 @media only screen and (min-width: 700px) {
     display: inherit;
 }    
-.weekday-header {
-    display: none;
-}
-
 @media only screen and (min-width: 700px) {
 
     @supports (grid-area: header) {
-        .weekday-header {
-            display: inherit;
-            text-align: center;
-            border-bottom: solid 1px #000;
-        }
-
         .weekdays {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
