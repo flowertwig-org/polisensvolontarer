@@ -130,30 +130,35 @@
             for (let assignmentIndex = 0; assignmentIndex < items.length; assignmentIndex++) {
                 const assignment = items[assignmentIndex];
 
+                var itemsMarkedAsRemove = false;
                 const isWeekend = dayOfWeekNumber >= 6;
                 if (!isWeekend) {
                     if (assignment.category == 'Dagvandring') {
                         indexesToRemove.push(assignmentIndex);
+                        itemsMarkedAsRemove = true;
                     }
                     if (assignment.category == 'Pass / Reception') {
                         indexesToRemove.push(assignmentIndex);
+                        itemsMarkedAsRemove = true;
                     }
                 }
 
-                if (assignment.area == 'Botkyrka'
+                if (!itemsMarkedAsRemove
+                && (assignment.area == 'Botkyrka'
                 || assignment.area == 'Haninge-Nynäshamn'
                 || assignment.area == 'Huddinge'
-                || assignment.area == 'Täby') {
+                || assignment.area == 'Täby')) {
                     indexesToRemove.push(assignmentIndex);
+                    itemsMarkedAsRemove = true;
                 }
             }
 
-            indexesToRemove.reverse();
+            if (indexesToRemove.length) {
+                indexesToRemove.reverse();
 
-            if (indexesToRemove) {
                 for (let removeIndex = 0; removeIndex < indexesToRemove.length; removeIndex++) {
                     const indexToRemove = indexesToRemove[removeIndex];
-                    items = items.splice(indexToRemove, 1);
+                    items = items.slice(indexToRemove, 1);
                 }
             }
 
