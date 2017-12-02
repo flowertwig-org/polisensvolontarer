@@ -207,7 +207,7 @@
 
                             dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
 
-                            assignmentName.textContent = assignment.assignmentName;
+                            assignmentName.textContent = assignment.name;
                             assignmentWhen.textContent = '';
                             assignmentArea.textContent = assignment.area;
                             assignmentType.textContent = assignment.category;
