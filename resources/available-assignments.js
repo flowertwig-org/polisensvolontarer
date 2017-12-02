@@ -31,6 +31,48 @@
         }
     }
 
+    function filterItems(items) {
+        // filters out items that we are not interested in
+
+        // TODO: Remove hardcoded values
+        var indexesToRemove = [];
+        for (let assignmentIndex = 0; assignmentIndex < items.length; assignmentIndex++) {
+            const assignment = items[assignmentIndex];
+
+            let itemsMarkedAsRemove = false;
+            const isWeekend = dayOfWeekNumber >= 6;
+            if (!isWeekend) {
+                if (assignment.category == 'Dagvandring') {
+                    indexesToRemove.push(assignmentIndex);
+                    itemsMarkedAsRemove = true;
+                }
+                if (assignment.category == 'Pass / Reception') {
+                    indexesToRemove.push(assignmentIndex);
+                    itemsMarkedAsRemove = true;
+                }
+            }
+
+            if (!itemsMarkedAsRemove
+                && (assignment.area == 'Botkyrka'
+                    || assignment.area == 'Haninge-Nynäshamn'
+                    || assignment.area == 'Huddinge'
+                    || assignment.area == 'Täby')) {
+                indexesToRemove.push(assignmentIndex);
+                itemsMarkedAsRemove = true;
+            }
+        }
+
+        if (indexesToRemove.length) {
+            indexesToRemove.reverse();
+
+            for (let removeIndex = 0; removeIndex < indexesToRemove.length; removeIndex++) {
+                const indexToRemove = indexesToRemove[removeIndex];
+                items = items.slice(indexToRemove, 1);
+            }
+        }
+        return items;
+    }
+
     var result = fetch('https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments', {
         method: 'GET',
         credentials: 'include',
@@ -124,43 +166,7 @@
                 dayOfWeekNumber = 7;
             }
 
-
-            // TODO: filter out items that we are not interested in
-            var indexesToRemove = [];
-            for (let assignmentIndex = 0; assignmentIndex < items.length; assignmentIndex++) {
-                const assignment = items[assignmentIndex];
-
-                var itemsMarkedAsRemove = false;
-                const isWeekend = dayOfWeekNumber >= 6;
-                if (!isWeekend) {
-                    if (assignment.category == 'Dagvandring') {
-                        indexesToRemove.push(assignmentIndex);
-                        itemsMarkedAsRemove = true;
-                    }
-                    if (assignment.category == 'Pass / Reception') {
-                        indexesToRemove.push(assignmentIndex);
-                        itemsMarkedAsRemove = true;
-                    }
-                }
-
-                if (!itemsMarkedAsRemove
-                && (assignment.area == 'Botkyrka'
-                || assignment.area == 'Haninge-Nynäshamn'
-                || assignment.area == 'Huddinge'
-                || assignment.area == 'Täby')) {
-                    indexesToRemove.push(assignmentIndex);
-                    itemsMarkedAsRemove = true;
-                }
-            }
-
-            if (indexesToRemove.length) {
-                indexesToRemove.reverse();
-
-                for (let removeIndex = 0; removeIndex < indexesToRemove.length; removeIndex++) {
-                    const indexToRemove = indexesToRemove[removeIndex];
-                    items = items.slice(indexToRemove, 1);
-                }
-            }
+            items = filterItems(items);
 
             const weHaveItemsToShowForDay = items.length > 0;
             if (weHaveItemsToShowForDay) {
