@@ -263,6 +263,7 @@
                                 dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
 
                                 assignmentName.textContent = assignment.name;
+                                assignmentName.href = "#" + assignment.link;
                                 assignmentWhen.textContent = '';
                                 assignmentArea.textContent = assignment.area;
                                 assignmentType.textContent = assignment.category;
