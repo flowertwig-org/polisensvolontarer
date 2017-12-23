@@ -263,7 +263,7 @@
                                 dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
 
                                 assignmentName.textContent = assignment.name;
-                                assignmentName.href = "https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments?test=" + assignment.id;
+                                assignmentName.href = "/restricted/assignment?key=" + assignment.id;
                                 assignmentWhen.textContent = '';
                                 assignmentArea.textContent = assignment.area;
                                 assignmentType.textContent = assignment.category;
