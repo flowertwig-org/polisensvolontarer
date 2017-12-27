@@ -9,8 +9,9 @@
     result.then(function (response) {
         if (response.ok) {
             return response.json();
-        } else {
-            window.location.pathname = '/login/';
+        // TODO: Re enable this part when code is working as it should again
+        //} else {
+        //    window.location.pathname = '/login/';
         }
     }).then(function (array) {
         var dayGroups = [];
