@@ -14,6 +14,8 @@
         //    window.location.pathname = '/login/';
         }
     }).then(function (array) {
+        console.log('result.then', array);
+        return;
         var dayGroups = [];
         for (var index = 0; index < array.length; index++) {
             var firstItem = array[index][0];
@@ -113,10 +115,10 @@
         }
         return dayGroups;
     }).then(function (dayGroups) {
-        if (!dayGroups || !dayGroups.length) {
-            window.location.pathname = '/login/';
-            return dayGroups;
-        }
+        //if (!dayGroups || !dayGroups.length) {
+        //    window.location.pathname = '/login/';
+        //    return dayGroups;
+        //}
 
         if ('content' in document.createElement('template')) {
             var lastMonthName = false;
