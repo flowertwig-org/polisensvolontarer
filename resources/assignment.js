@@ -41,7 +41,7 @@
             assignmentRequested.textContent = assignment.wantedNumberOfPeople;
 
             var assignmentCalendar = templateAssignment.content.querySelector(".assignment-calendar-google");
-            assignmentCalendar.href = "https://www.google.com/calendar/render?action=TEMPLATE&text=" + encodeURI(assignment.name) + "&dates=" + encodeURI(assignment.date) + "T224000Z/" + encodeURI(assignment.date) + "T221500Z&details=For+details,+link+here:+" + encodeURI(location.href) + "&location=&sf=true&output=xml"
+            assignmentCalendar.href = assignment.googleCalendarEventUrl; //"https://www.google.com/calendar/render?action=TEMPLATE&text=" + encodeURI(assignment.name) + "&dates=" + encodeURI(assignment.date) + "T224000Z/" + encodeURI(assignment.date) + "T221500Z&details=For+details,+link+here:+" + encodeURI(location.href) + "&location=&sf=true&output=xml"
 
             // https://www.google.com/calendar/render?action=TEMPLATE&text=Your+Event+Name&dates=20140127T224000Z/20140320T221500Z&details=For+details,+link+here:+http://www.example.com&location=Waldorf+Astoria,+301+Park+Ave+,+New+York,+NY+10022&sf=true&output=xml
 
