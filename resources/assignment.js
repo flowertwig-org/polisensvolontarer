@@ -34,7 +34,7 @@
             var assignmentType = templateAssignment.content.querySelector(".assignment-type");
             assignmentType.textContent = assignment.category;
             var assignmentDescription = templateAssignment.content.querySelector(".assignment-description");
-            assignmentDescription.textContent = assignment.description;
+            assignmentDescription.innerHTML = assignment.description;
 
             var cloneAssignment = document.importNode(templateAssignment.content, true);
             main.appendChild(cloneAssignment);
