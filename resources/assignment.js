@@ -35,6 +35,10 @@
             assignmentType.textContent = assignment.category;
             var assignmentDescription = templateAssignment.content.querySelector(".assignment-description");
             assignmentDescription.innerHTML = assignment.description;
+            var assignmentAdded = templateAssignment.content.querySelector(".assignment-added");
+            assignmentAdded.textContent = assignment.currentNumberOfPeople;
+            var assignmentRequested = templateAssignment.content.querySelector(".assignment-requested");
+            assignmentRequested.textContent = assignment.wantedNumberOfPeople;
 
             var cloneAssignment = document.importNode(templateAssignment.content, true);
             main.appendChild(cloneAssignment);
