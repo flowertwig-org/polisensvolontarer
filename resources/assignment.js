@@ -28,7 +28,7 @@
             var assignmentName = templateAssignment.content.querySelector(".assignment-name");
             assignmentName.textContent = assignment.name;
             var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
-            assignmentWhen.textContent = assignment.date;
+            assignmentWhen.textContent = assignment.time;
             var assignmentArea = templateAssignment.content.querySelector(".assignment-area");
             assignmentArea.textContent = assignment.area;
             var assignmentType = templateAssignment.content.querySelector(".assignment-type");
