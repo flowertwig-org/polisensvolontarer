@@ -40,6 +40,9 @@
             var assignmentRequested = templateAssignment.content.querySelector(".assignment-requested");
             assignmentRequested.textContent = assignment.wantedNumberOfPeople;
 
+            var assignmentContact = templateAssignment.content.querySelector(".assignment-contactinfo");
+            assignmentContact.innerHTML = assignment.contactInfo;
+
             var assignmentCalendar = templateAssignment.content.querySelector(".assignment-calendar-google");
             assignmentCalendar.href = assignment.googleCalendarEventUrl;
 
