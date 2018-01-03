@@ -40,7 +40,7 @@
             var assignmentRequested = templateAssignment.content.querySelector(".assignment-requested");
             assignmentRequested.textContent = assignment.wantedNumberOfPeople;
             var assignmentWhenAndWhere = templateAssignment.content.querySelector(".assignment-when-where");
-            assignmentWhenAndWhere.innerHTML = "<a target='_blank' href='https://www.google.se/maps/search/" + encodeURI(assignment.meetupPlace + ', sweden') + "'>" + assignment.meetupPlace + "</a> den " + assignment.meetupTime + ".";
+            assignmentWhenAndWhere.innerHTML = "<a target='_blank' href='https://www.google.se/maps/search/" + encodeURI(assignment.meetupPlace.replace('lokalpolisen', '') + ', sweden') + "'>" + assignment.meetupPlace + "</a> den " + assignment.meetupTime + ".";
 
             var assignmentContact = templateAssignment.content.querySelector(".assignment-contactinfo");
             assignmentContact.innerHTML = assignment.contactInfo;
