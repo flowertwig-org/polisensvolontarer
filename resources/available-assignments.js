@@ -206,6 +206,12 @@
 
                 if (lastMonthName != day.monthName) {
                     // logic for when we are in same week but just changed month.
+                    var monthHeader = templateMonth.content.querySelector(".month-header");
+                    monthHeader.textContent = day.monthName;
+
+                    var cloneMonth = document.importNode(templateMonth.content, true);
+                    main.appendChild(cloneMonth);
+
                     if (lastWeekNumber == day.weekNumber) {
                         if (lastWeekNumber) {
                             main.appendChild(cloneWeek);
@@ -214,12 +220,6 @@
                         lastWeekNumber = day.weekNumber;
                         weekIndex++;
                     }
-
-                    var monthHeader = templateMonth.content.querySelector(".month-header");
-                    monthHeader.textContent = day.monthName;
-
-                    var cloneMonth = document.importNode(templateMonth.content, true);
-                    main.appendChild(cloneMonth);
 
                     lastMonthName = day.monthName;
                 }
