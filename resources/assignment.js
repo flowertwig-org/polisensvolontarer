@@ -39,6 +39,8 @@
             assignmentAdded.textContent = assignment.currentNumberOfPeople;
             var assignmentRequested = templateAssignment.content.querySelector(".assignment-requested");
             assignmentRequested.textContent = assignment.wantedNumberOfPeople;
+            var assignmentWhenAndWhere = templateAssignment.content.querySelector(".assignment-when-where");
+            assignmentWhenAndWhere.innerHTML = "Tid: " + assignment.meetupTime + "<br>Plats: " + assignment.meetupPlace;
 
             var assignmentContact = templateAssignment.content.querySelector(".assignment-contactinfo");
             assignmentContact.innerHTML = assignment.contactInfo;
