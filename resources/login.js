@@ -12,8 +12,8 @@
             case 'page':
                 document.querySelector('#page').value = value;
                 break;
-            case 'query':
-                document.querySelector('#query').value = value;
+            case 'key':
+                document.querySelector('#query').value = '?' + keyValuePairs[index];
                 break;
         }
     }
