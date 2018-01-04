@@ -168,8 +168,7 @@
                 dayOfWeekNumber = 7;
             }
 
-            // TODO: Re add items filter
-            //items = filterItems(items, dayOfWeekNumber);
+            items = filterItems(items, dayOfWeekNumber);
 
             const weHaveItemsToShowForDay = items.length > 0;
             if (weHaveItemsToShowForDay) {
@@ -212,7 +211,6 @@
                             main.appendChild(cloneWeek);
                             cloneWeek = document.importNode(templateWeek.content, true);
                         }
-                        //lastWeekNumber = day.weekNumber;
                         weekIndex++;
                     }
 
@@ -222,7 +220,6 @@
                         main.appendChild(cloneWeek);
                         cloneWeek = document.importNode(templateWeek.content, true);
                     }
-                    //lastWeekNumber = day.weekNumber;
                     weekIndex++;
                 }
 
