@@ -216,12 +216,6 @@
                         weekIndex++;
                     }
 
-                    var monthHeader = templateMonth.content.querySelector(".month-header");
-                    monthHeader.textContent = day.monthName;
-                    var cloneMonth = document.importNode(templateMonth.content, true);
-                    main.appendChild(cloneMonth);                    
-
-                    lastMonthName = day.monthName;
                 }
                 if (lastWeekNumber != day.weekNumber) {
                     if (lastWeekNumber) {
@@ -232,7 +226,14 @@
                     weekIndex++;
                 }
 
-                
+                if (lastMonthName != day.monthName) {
+                    var monthHeader = templateMonth.content.querySelector(".month-header");
+                    monthHeader.textContent = day.monthName;
+                    var cloneMonth = document.importNode(templateMonth.content, true);
+                    main.appendChild(cloneMonth);                    
+
+                    lastMonthName = day.monthName;
+                }                
 
                 var weekContainer = cloneWeek.querySelector(".week-container");
                 if (weekIndex % 2 == 0) {
