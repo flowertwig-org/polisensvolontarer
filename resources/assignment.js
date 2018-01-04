@@ -11,11 +11,11 @@
             return response.json();
             // TODO: Re enable this part when code is working as it should again
         } else {
-            window.location.pathname = '/login/';
+            window.location.assign('/login/?page=assignment&' + window.location.substr(1));
         }
     }).then(function (assignment) {
         if (!assignment || !('id' in assignment)) {
-            window.location.pathname = '/login/';
+            window.location.assign('/login/?page=assignment&' + window.location.substr(1));
             return assignment;
         }
 

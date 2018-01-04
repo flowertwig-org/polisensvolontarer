@@ -54,8 +54,9 @@
             <a href="/kakor/">Läs mer om vad kakor är och vår användning av dessa</a>
         </p>
 
-        <!-- TODO: Change 'action' and 'method' when converting this from mockup -->
         <form id="login-form" action="https://polisens-volontarer-api.azurewebsites.net/api/login" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" id="page" name="page" value="" />
+            <input type="hidden" id="query" name="query" value="" />
             <label for="username">Användarnamn:</label>
             <input id="username" name="username" type="text" />
             <br />
@@ -63,7 +64,6 @@
             <input id="password" name="password" type="password" />
             <br />
             <input type="submit" value="Logga in" />
-
         </form>
 
     </main>
@@ -76,5 +76,7 @@
         <br /><br />
         <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/robin-kylander" title="Robin Kylander">Robin Kylander</a><br /> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     </footer>
+
+    <script src="/resources/login.js" async></script>
 </body>
 </html>

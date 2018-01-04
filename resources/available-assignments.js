@@ -146,7 +146,7 @@
         return areas;
     }
 
-    function createFilterInterface() {
+    function updateFilterInterface() {
 
         var container = document.querySelector('#filter-container');
 
@@ -187,6 +187,7 @@
         }else {
             clone = document.importNode(templateFilterNone.content, true);
         }
+        container.innerHTML = '';
         container.appendChild(clone);    
     }
 
@@ -199,7 +200,7 @@
         if (response.ok) {
             return response.json();
         } else {
-            window.location.pathname = '/login/';
+            window.location.assign('/login/');
         }
     }).then(function (array) {
         var dayGroups = [];
@@ -302,7 +303,7 @@
         return dayGroups;
     }).then(function (dayGroups) {
         if (!dayGroups || !dayGroups.length) {
-            window.location.pathname = '/login/';
+            window.location.assign('/login/');
             return dayGroups;
         }
 
@@ -311,7 +312,7 @@
             var lastWeekNumber = false;
             var main = document.querySelector("main");
 
-            createFilterInterface();
+            updateFilterInterface();
 
             var templateMonth = document.querySelector('#template-month');
             var templateWeek = document.querySelector('#template-week');
