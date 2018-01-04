@@ -99,6 +99,7 @@
             "Biträde vid utbildning /möte",
             "Brottsofferstöd",
             "Dagvandring",
+            "Figurantuppdrag",
             "Informationsinsats",
             "Kvällsvandring",
             "Pass / Reception",
