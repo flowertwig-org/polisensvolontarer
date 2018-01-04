@@ -168,7 +168,8 @@
                 dayOfWeekNumber = 7;
             }
 
-            items = filterItems(items, dayOfWeekNumber);
+            // TODO: Re add items filter
+            //items = filterItems(items, dayOfWeekNumber);
 
             const weHaveItemsToShowForDay = items.length > 0;
             if (weHaveItemsToShowForDay) {
