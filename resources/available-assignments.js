@@ -195,6 +195,12 @@
             var lastMonthName = false;
             var lastWeekNumber = false;
             var main = document.querySelector("main");
+
+            var templateFilterNone = document.querySelector('#filter-none');
+            var templateFilterChange = document.querySelector('#filter-change-options');
+            var templateFilterView = document.querySelector('#filter-view-options');
+
+
             var templateMonth = document.querySelector('#template-month');
             var templateWeek = document.querySelector('#template-week');
             var cloneWeek = document.importNode(templateWeek.content, true);

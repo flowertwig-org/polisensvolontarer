@@ -90,53 +90,8 @@
     <main>
         <h1>Tillgängliga uppdrag!</h1>
 
-        <form id="available-assignments-filter-container">
-            <label>
-                <b>Du har för närvarande följande aktiva filtreringar:</b>
-                <ul style="padding-left:15px">
-                    <li>Visa
-                        <strong>alltid</strong> följande uppdrags typer:
-                        <ul>
-                            <li>Fortbildning</li>
-                        </ul>
-                    </li>
-                    <li>Dölj uppdrag som inträffar på vardagar och är
-                        <ul>
-                            <li>Pass / Reception</li>
-                            <li>Dagvandring</li>
-                        </ul>
-                    </li>
-                    <!--
-                    <li>
-                        Dölj uppdrag som är mellan föjande datum
-                        <ul>
-                            <li>20 - 31 december 2017</li>
-                        </ul>
-                    </li>
-                    -->
-                    <li>
-                        Dölj uppdrag som är i
-                        <ul>
-                            <li>Botkyrka</li>
-                            <li>Haninge-Nynäshamn</li>
-                            <li>Huddinge</li>
-                            <li>Skärholmen</li>
-                            <li>Täby</li>
-                        </ul>
-                    </li>
-                    <!--
-                    <li>
-                        Dölj uppdrag utifrån min Google kalender
-                        <ul>
-                            <li>Dölj uppdrag som är samtidigt som aktiviteter i min Google Kalender</li>
-                            <li>Dölj uppdrag som är inom '1 timme' av aktiviteter i min Google Kalender</li>
-                        </ul>
-                    </li>
-                    -->
-                </ul>
-            </label>
-            <input type="submit" value="ändra dina filtrerings val" />
-        </form>
+        <div class="filter-container"></div>
+
     </main>
     <footer>
         <div class="logo">Polisens Volontärer</div>
@@ -153,6 +108,116 @@
         </div>
     </footer>
 
+    <template id="filter-none">
+            <form id="available-assignments-filter-container">
+                    Du har för närvarande inga aktiva filtreringar
+                    <input type="submit" value="Ange filtrerings val" />
+            </form>
+    </template>
+    <template id="filter-change-options">
+            <form id="available-assignments-filter-container">
+                    <label>
+                        <b>Du har för närvarande följande aktiva filtreringar:</b>
+                        <ul style="padding-left:15px">
+                            <li>Visa
+                                <strong>alltid</strong> följande uppdrags typer:
+                                <ul>
+                                    <li>Fortbildning</li>
+                                </ul>
+                            </li>
+                            <li>Visa
+                                    <strong>aldrig</strong> följande uppdrags typer:
+                                    <ul>
+                                        <li>Inga valda</li>
+                                    </ul>
+                                </li>
+                            <li>Dölj uppdrag som inträffar på vardagar och är
+                                <ul>
+                                    <li>Pass / Reception</li>
+                                    <li>Dagvandring</li>
+                                </ul>
+                            </li>
+                            <li>Dölj uppdrag som inträffar på helger och är
+                                    <ul>
+                                        <li>Inga valda</li>
+                                    </ul>
+                            </li>
+                            <li>
+                                Dölj uppdrag som är i
+                                <ul>
+                                    <li>Botkyrka</li>
+                                    <li>Haninge-Nynäshamn</li>
+                                    <li>Huddinge</li>
+                                    <li>Skärholmen</li>
+                                    <li>Täby</li>
+                                </ul>
+                            </li>
+                            <!--
+                            <li>
+                                Dölj uppdrag utifrån min Google kalender
+                                <ul>
+                                    <li>Dölj uppdrag som är samtidigt som aktiviteter i min Google Kalender</li>
+                                    <li>Dölj uppdrag som är inom '1 timme' av aktiviteter i min Google Kalender</li>
+                                </ul>
+                            </li>
+                            -->
+                        </ul>
+                    </label>
+                    <input type="submit" value="Spara filtrerings val" />
+                </form>        
+    </template>
+    <template id="filter-view-options">
+            <form id="available-assignments-filter-container">
+                    <label>
+                        <b>Du har för närvarande följande aktiva filtreringar:</b>
+                        <ul style="padding-left:15px">
+                            <li>Visa
+                                <strong>alltid</strong> följande uppdrags typer:
+                                <ul>
+                                    <li>Fortbildning</li>
+                                </ul>
+                            </li>
+                            <li>Visa
+                                    <strong>aldrig</strong> följande uppdrags typer:
+                                    <ul>
+                                        <li>Inga valda</li>
+                                    </ul>
+                                </li>
+                            <li>Dölj uppdrag som inträffar på vardagar och är
+                                <ul>
+                                    <li>Pass / Reception</li>
+                                    <li>Dagvandring</li>
+                                </ul>
+                            </li>
+                            <li>Dölj uppdrag som inträffar på helger och är
+                                    <ul>
+                                        <li>Inga valda</li>
+                                    </ul>
+                            </li>
+                            <li>
+                                Dölj uppdrag som är i
+                                <ul>
+                                    <li>Botkyrka</li>
+                                    <li>Haninge-Nynäshamn</li>
+                                    <li>Huddinge</li>
+                                    <li>Skärholmen</li>
+                                    <li>Täby</li>
+                                </ul>
+                            </li>
+                            <!--
+                            <li>
+                                Dölj uppdrag utifrån min Google kalender
+                                <ul>
+                                    <li>Dölj uppdrag som är samtidigt som aktiviteter i min Google Kalender</li>
+                                    <li>Dölj uppdrag som är inom '1 timme' av aktiviteter i min Google Kalender</li>
+                                </ul>
+                            </li>
+                            -->
+                        </ul>
+                    </label>
+                    <input type="submit" value="ändra dina filtrerings val" />
+                </form>        
+    </template>
     <template id="template-month">
         <h2 class="month-header" style="text-align:center">Augusti</h2>
     </template>
