@@ -75,6 +75,18 @@
         return items;
     }
 
+    function createFilterInterface() {
+
+        var container = document.querySelector('#filter-container');
+
+        var templateFilterNone = document.querySelector('#filter-none');
+        var templateFilterChange = document.querySelector('#filter-change-options');
+        var templateFilterView = document.querySelector('#filter-view-options');
+
+        var clone = document.importNode(templateFilterNone.content, true);
+        container.appendChild(clone);    
+    }
+
     var result = fetch('https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments', {
         method: 'GET',
         credentials: 'include',
@@ -196,10 +208,7 @@
             var lastWeekNumber = false;
             var main = document.querySelector("main");
 
-            var templateFilterNone = document.querySelector('#filter-none');
-            var templateFilterChange = document.querySelector('#filter-change-options');
-            var templateFilterView = document.querySelector('#filter-view-options');
-
+            createFilterInterface();
 
             var templateMonth = document.querySelector('#template-month');
             var templateWeek = document.querySelector('#template-week');
