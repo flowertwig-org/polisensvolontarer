@@ -12,7 +12,7 @@
             case 'page':
                 document.querySelector('#page').value = value;
                 break;
-                case 'query':
+            case 'query':
                 document.querySelector('#query').value = value;
                 break;
         }

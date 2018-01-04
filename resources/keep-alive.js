@@ -14,7 +14,17 @@
         }).then(function(isAlive) {
             if (!isAlive) {
                 // If we are not alive anymore, return to login page
-                window.location.pathname = '/login/';            
+                switch (location.pathname) {
+                    case '/restricted/assignment/':
+                        window.location.assign('/login/?page=assignment&' + window.location.substr(1));
+                        break;
+                    case '/restricted/available-assignments/':
+                        window.location.assign('/login/?page=available-assignments');
+                        break;
+                    default:
+                        window.location.assign('/login/');
+                        break;
+                }
             }
         }).catch(function (ex) {
 
