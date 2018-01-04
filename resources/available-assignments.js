@@ -75,6 +75,77 @@
         return items;
     }
 
+    function getSettingValue(key) {
+        var arr = document.cookie.split('; ');
+        for (let index = 0; index < arr.length; index++) {
+            const pair = arr[index];
+            var setting = pair.split('=');
+            var settingKey = setting[0];
+            var settingValue = setting[1];
+
+            if (key = settingKey) {
+                return settingValue;
+            }
+        }
+        return null;
+    }
+
+    function setSettingValue(key, value) {
+        document.cookie = key + "=" + value;
+    }
+
+    function getTypes() {
+        var types = [
+            "Biträde vid utbildning /möte",
+            "Brottsofferstöd",
+            "Dagvandring",
+            "Informationsinsats",
+            "Kvällsvandring",
+            "Pass / Reception",
+            "Volontärmöte",
+            "Övrigt"
+        ];     
+        return types;  
+    }
+
+    function getAreas() {
+        var areas =[
+            // City
+            "Norrmalm",
+            "Södermalm",
+
+            // Syd
+            "Farsta",
+            "Globen",
+            "Skärholmen",
+            "Botkyrka",
+            "Huddinge",
+            "Haninge-Nynäshamn",
+            "Nacka",
+            "Södertälje",
+
+            // Nord
+            "Järfälla",
+            "Sollentuna",
+            "Täby",
+            "Norrtälje",
+            "Solna",
+            "Rinkeby",
+            "Vällingby",
+
+            // Centrala uppdrag
+            "Operativa enheten",
+            "Nattknappen",
+
+            // Gotland
+            "Gotland",
+
+            // Gränspolisenheten
+            "Arlanda"
+        ];
+        return areas;
+    }
+
     function createFilterInterface() {
 
         var container = document.querySelector('#filter-container');
@@ -83,7 +154,39 @@
         var templateFilterChange = document.querySelector('#filter-change-options');
         var templateFilterView = document.querySelector('#filter-view-options');
 
-        var clone = document.importNode(templateFilterNone.content, true);
+        var hasFilter = false;
+
+        var pvAlwaysShowTypes = getSettingValue("FilterAlwaysShowTypes");
+        if (pvAlwaysShowTypes) {
+            hasFilter = true;
+        }
+
+        var pvNeverShowTypes = getSettingValue("FilterNeverShowTypes");
+        if (pvNeverShowTypes) {
+            hasFilter = true;
+        }
+
+        var pvWorkDayTypes = getSettingValue("FilterHideWorkDayTypes")
+        if (pvWorkDayTypes){
+            hasFilter = true;
+        }
+
+        var pvWeekendTypes = getSettingValue("FilterHideWeekendTypes");
+        if (pvWeekendTypes) {
+            hasFilter = true;
+        }
+
+        var pvNeverShowAreas = getSettingValue("FilterNeverShowAreas");
+        if (pvNeverShowAreas) {
+            hasFilter = true;
+        }
+
+        var clone = null;
+        if (hasFilter) {
+            clone = document.importNode(templateFilterView.content, true);
+        }else {
+            clone = document.importNode(templateFilterNone.content, true);
+        }
         container.appendChild(clone);    
     }
 
