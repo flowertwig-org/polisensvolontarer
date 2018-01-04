@@ -16,7 +16,7 @@
                 // If we are not alive anymore, return to login page
                 switch (location.pathname) {
                     case '/restricted/assignment/':
-                        window.location.assign('/login/?page=assignment&' + window.location.substr(1));
+                        window.location.assign('/login/?page=assignment&' + window.location.search.substr(1));
                         break;
                     case '/restricted/available-assignments/':
                         window.location.assign('/login/?page=available-assignments');
