@@ -83,7 +83,7 @@
             var settingKey = setting[0];
             var settingValue = setting[1];
 
-            if (key = settingKey) {
+            if (key == settingKey) {
                 return settingValue;
             }
         }
