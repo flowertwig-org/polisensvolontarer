@@ -212,7 +212,7 @@
                             main.appendChild(cloneWeek);
                             cloneWeek = document.importNode(templateWeek.content, true);
                         }
-                        lastWeekNumber = day.weekNumber;
+                        //lastWeekNumber = day.weekNumber;
                         weekIndex++;
                     }
 
@@ -222,10 +222,14 @@
                         main.appendChild(cloneWeek);
                         cloneWeek = document.importNode(templateWeek.content, true);
                     }
-                    lastWeekNumber = day.weekNumber;
+                    //lastWeekNumber = day.weekNumber;
                     weekIndex++;
                 }
 
+                if (lastWeekNumber != day.weekNumber) {
+                    lastWeekNumber = day.weekNumber;
+                }
+                
                 if (lastMonthName != day.monthName) {
                     var monthHeader = templateMonth.content.querySelector(".month-header");
                     monthHeader.textContent = day.monthName;
