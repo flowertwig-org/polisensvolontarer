@@ -220,3 +220,14 @@ main input[type=password] {
 .day-container {
     word-break: break-all;
 }
+
+@media only screen and (min-width: 850px) {
+    @supports (grid-area: header) {
+        .available-assignments-filter-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            grid-gap: 10px;
+        }
+    }
+}
