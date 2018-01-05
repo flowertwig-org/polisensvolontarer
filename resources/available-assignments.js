@@ -236,7 +236,7 @@
         }
     }
 
-    function updateFilterInterface() {
+    function updateFilterInterface(showChangeFilter) {
 
         var container = document.querySelector('#filter-container');
 
@@ -247,11 +247,18 @@
         var filterSettings = getFilterSettings();
 
         var clone = null;
-        if (filterSettings) {
+        if (showChangeFilter) {
+            clone = document.importNode(templateFilterChange.content, true);
+        }
+        else if (filterSettings) {
             // TODO: show filter settings that we use
             clone = document.importNode(templateFilterView.content, true);
         }else {
             clone = document.importNode(templateFilterNone.content, true);
+            clone.querySelector('#filter-none-action').addEventListener('submit', function(event) {
+                event.preventDefault();
+                updateFilterInterface(true);
+            });
         }
         container.innerHTML = '';
         container.appendChild(clone);    
