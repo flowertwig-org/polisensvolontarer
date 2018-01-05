@@ -40,8 +40,6 @@
         }
 
         // filters out items that we are not interested in
-
-        // TODO: Remove hardcoded values
         var indexesToRemove = [];
         for (let assignmentIndex = 0; assignmentIndex < items.length; assignmentIndex++) {
             const assignment = items[assignmentIndex];
@@ -66,7 +64,6 @@
                 }
             }
 
-
             if (isProtected) {
                 continue;
             }
@@ -81,15 +78,6 @@
                         itemsMarkedAsRemove = true;
                     }
                 }
-                    
-                //if (assignment.category == 'Dagvandring') {
-                //    indexesToRemove.push(assignmentIndex);
-                //    itemsMarkedAsRemove = true;
-                //}
-                //if (assignment.category == 'Pass / Reception') {
-                //    indexesToRemove.push(assignmentIndex);
-                //    itemsMarkedAsRemove = true;
-                //}
             } else {
                 for (let index = 0; index < filterSettings.HideWeekendTypes.length; index++) {
                     const typeName = filterSettings.HideWeekendTypes[index];
@@ -98,26 +86,7 @@
                         itemsMarkedAsRemove = true;
                     }
                 }
-                //if (assignment.category == 'Dagvandring') {
-                //    indexesToRemove.push(assignmentIndex);
-                //    itemsMarkedAsRemove = true;
-                //}
-                //if (assignment.category == 'Pass / Reception') {
-                //    indexesToRemove.push(assignmentIndex);
-                //    itemsMarkedAsRemove = true;
-                //}
             }
-
-            //if (!itemsMarkedAsRemove
-            //    && assignment.category != 'Fortbildning'
-            //    && (assignment.area == 'Botkyrka'
-            //        || assignment.area == 'Haninge-Nynäshamn'
-            //        || assignment.area == 'Huddinge'
-            //        || assignment.area == 'Täby')
-            //    || assignment.area == 'Skärholmen') {
-            //    indexesToRemove.push(assignmentIndex);
-            //    itemsMarkedAsRemove = true;
-            //}
 
             if (!itemsMarkedAsRemove) {
                 for (let index = 0; index < filterSettings.NeverShowAreas.length; index++) {
