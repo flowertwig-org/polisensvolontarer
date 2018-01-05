@@ -32,6 +32,13 @@
     }
 
     function filterItems(items, dayOfWeekNumber) {
+
+        var filterSettings = getFilterSettings();
+        if (!filterSettings) {
+            // User has not specified filter, return all items
+            return items;
+        }
+
         // filters out items that we are not interested in
 
         // TODO: Remove hardcoded values
@@ -39,28 +46,87 @@
         for (let assignmentIndex = 0; assignmentIndex < items.length; assignmentIndex++) {
             const assignment = items[assignmentIndex];
 
-            let itemsMarkedAsRemove = false;
-            const isWeekend = dayOfWeekNumber >= 6;
-            if (!isWeekend) {
-                if (assignment.category == 'Dagvandring') {
-                    indexesToRemove.push(assignmentIndex);
-                    itemsMarkedAsRemove = true;
-                }
-                if (assignment.category == 'Pass / Reception') {
-                    indexesToRemove.push(assignmentIndex);
-                    itemsMarkedAsRemove = true;
+            var isProtected = false;
+
+            for (let index = 0; index < filterSettings.AlwaysShowTypes.length; index++) {
+                const typeName = filterSettings.AlwaysShowTypes[index];
+                if (assignment.category == typeName) {
+                    // Assignment are protected
+                    isProtected = true;
+                    break;
                 }
             }
 
-            if (!itemsMarkedAsRemove
-                && assignment.category != 'Fortbildning'
-                && (assignment.area == 'Botkyrka'
-                    || assignment.area == 'Haninge-Nynäshamn'
-                    || assignment.area == 'Huddinge'
-                    || assignment.area == 'Täby')
-                || assignment.area == 'Skärholmen') {
-                indexesToRemove.push(assignmentIndex);
-                itemsMarkedAsRemove = true;
+            for (let index = 0; index < filterSettings.AlwaysShowAreas.length; index++) {
+                const areaName = filterSettings.AlwaysShowAreas[index];
+                if (assignment.area == areaName) {
+                    // Assignment are protected
+                    isProtected = true;
+                    break;
+                }
+            }
+
+
+            if (isProtected) {
+                continue;
+            }
+
+            let itemsMarkedAsRemove = false;
+            const isWeekend = dayOfWeekNumber >= 6;
+            if (!isWeekend) {
+                for (let index = 0; index < filterSettings.HideWorkDayTypes.length; index++) {
+                    const typeName = filterSettings.HideWorkDayTypes[index];
+                    if (assignment.category == typeName) {
+                        indexesToRemove.push(assignmentIndex);
+                        itemsMarkedAsRemove = true;
+                    }
+                }
+                    
+                //if (assignment.category == 'Dagvandring') {
+                //    indexesToRemove.push(assignmentIndex);
+                //    itemsMarkedAsRemove = true;
+                //}
+                //if (assignment.category == 'Pass / Reception') {
+                //    indexesToRemove.push(assignmentIndex);
+                //    itemsMarkedAsRemove = true;
+                //}
+            } else {
+                for (let index = 0; index < filterSettings.HideWeekendTypes.length; index++) {
+                    const typeName = filterSettings.HideWeekendTypes[index];
+                    if (assignment.category == typeName) {
+                        indexesToRemove.push(assignmentIndex);
+                        itemsMarkedAsRemove = true;
+                    }
+                }
+                //if (assignment.category == 'Dagvandring') {
+                //    indexesToRemove.push(assignmentIndex);
+                //    itemsMarkedAsRemove = true;
+                //}
+                //if (assignment.category == 'Pass / Reception') {
+                //    indexesToRemove.push(assignmentIndex);
+                //    itemsMarkedAsRemove = true;
+                //}
+            }
+
+            //if (!itemsMarkedAsRemove
+            //    && assignment.category != 'Fortbildning'
+            //    && (assignment.area == 'Botkyrka'
+            //        || assignment.area == 'Haninge-Nynäshamn'
+            //        || assignment.area == 'Huddinge'
+            //        || assignment.area == 'Täby')
+            //    || assignment.area == 'Skärholmen') {
+            //    indexesToRemove.push(assignmentIndex);
+            //    itemsMarkedAsRemove = true;
+            //}
+
+            if (!itemsMarkedAsRemove) {
+                for (let index = 0; index < filterSettings.NeverShowAreas.length; index++) {
+                    const areaName = filterSettings.NeverShowAreas[index];
+                    if (assignment.area == areaName) {
+                        indexesToRemove.push(assignmentIndex);
+                        itemsMarkedAsRemove = true;
+                    }
+                }
             }
         }
 
@@ -147,6 +213,60 @@
         return areas;
     }
 
+    function getFilterSettings() {
+        var hasFilter = false;
+        var filterSettings = {
+            'AlwaysShowTypes': [],
+            'NeverShowTypes': [],
+            'HideWorkDayTypes': [],
+            'HideWeekendTypes': [],
+            'NeverShowAreas': [],
+            'AlwaysShowAreas': []
+        };
+
+        var pvAlwaysShowTypes = getSettingValue("FilterAlwaysShowTypes");
+        if (pvAlwaysShowTypes) {
+            hasFilter = true;
+            filterSettings.AlwaysShowTypes = pvAlwaysShowTypes.split(',');
+        }
+
+        var pvNeverShowTypes = getSettingValue("FilterNeverShowTypes");
+        if (pvNeverShowTypes) {
+            hasFilter = true;
+            filterSettings.NeverShowTypes = pvNeverShowTypes.split(',');
+        }
+
+        var pvWorkDayTypes = getSettingValue("FilterHideWorkDayTypes")
+        if (pvWorkDayTypes){
+            hasFilter = true;
+            filterSettings.HideWorkDayTypes = pvWorkDayTypes.split(',');
+        }
+
+        var pvWeekendTypes = getSettingValue("FilterHideWeekendTypes");
+        if (pvWeekendTypes) {
+            hasFilter = true;
+            filterSettings.HideWeekendTypes = pvWeekendTypes.split(',');
+        }
+
+        var pvNeverShowAreas = getSettingValue("FilterNeverShowAreas");
+        if (pvNeverShowAreas) {
+            hasFilter = true;
+            filterSettings.NeverShowAreas = pvNeverShowAreas.split(',');
+        }
+
+        var pvAlwaysShowAreas = getSettingValue("FilterAlwaysShowAreas");
+        if (pvAlwaysShowAreas) {
+            hasFilter = true;
+            filterSettings.AlwaysShowAreas = pvAlwaysShowAreas.split(',');
+        }
+
+        if (hasFilter) {
+            return filterSettings;
+        }else {
+            return null;
+        }
+    }
+
     function updateFilterInterface() {
 
         var container = document.querySelector('#filter-container');
@@ -155,35 +275,11 @@
         var templateFilterChange = document.querySelector('#filter-change-options');
         var templateFilterView = document.querySelector('#filter-view-options');
 
-        var hasFilter = false;
-
-        var pvAlwaysShowTypes = getSettingValue("FilterAlwaysShowTypes");
-        if (pvAlwaysShowTypes) {
-            hasFilter = true;
-        }
-
-        var pvNeverShowTypes = getSettingValue("FilterNeverShowTypes");
-        if (pvNeverShowTypes) {
-            hasFilter = true;
-        }
-
-        var pvWorkDayTypes = getSettingValue("FilterHideWorkDayTypes")
-        if (pvWorkDayTypes){
-            hasFilter = true;
-        }
-
-        var pvWeekendTypes = getSettingValue("FilterHideWeekendTypes");
-        if (pvWeekendTypes) {
-            hasFilter = true;
-        }
-
-        var pvNeverShowAreas = getSettingValue("FilterNeverShowAreas");
-        if (pvNeverShowAreas) {
-            hasFilter = true;
-        }
+        var filterSettings = getFilterSettings();
 
         var clone = null;
-        if (hasFilter) {
+        if (filterSettings) {
+            // TODO: show filter settings that we use
             clone = document.importNode(templateFilterView.content, true);
         }else {
             clone = document.importNode(templateFilterNone.content, true);
