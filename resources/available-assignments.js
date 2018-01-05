@@ -135,6 +135,7 @@
             "Brottsofferstöd",
             "Dagvandring",
             "Figurantuppdrag",
+            "Fortbildning",
             "Informationsinsats",
             "Kvällsvandring",
             "Pass / Reception",
