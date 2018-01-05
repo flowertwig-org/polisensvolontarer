@@ -108,6 +108,10 @@ main {
         color: #0970b8;
     }
 
+main ul {
+    margin-bottom: 1em;
+}
+
 footer {
     padding: 5px 10px;
     background-color: #000;
