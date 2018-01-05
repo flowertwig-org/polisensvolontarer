@@ -223,7 +223,7 @@ main input[type=password] {
 
 @media only screen and (min-width: 850px) {
     @supports (grid-area: header) {
-        .available-assignments-filter-section {
+        .available-assignments-filter-sections {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto;
