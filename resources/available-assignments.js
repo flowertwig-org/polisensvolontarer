@@ -255,13 +255,14 @@
             clone = document.importNode(templateFilterView.content, true);
         }else {
             clone = document.importNode(templateFilterNone.content, true);
-            clone.querySelector('#filter-none-action').addEventListener('submit', function(event) {
+            var form = clone.querySelector('#available-assignments-filter-container');
+            form.addEventListener('submit', function(event) {
                 event.preventDefault();
                 updateFilterInterface(true);
             });
         }
         container.innerHTML = '';
-        container.appendChild(clone);    
+        container.appendChild(clone);
     }
 
     var result = fetch('https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments', {
