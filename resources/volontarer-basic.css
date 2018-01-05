@@ -157,6 +157,9 @@ main label {
     width: 100%;
     color: #fff;
 }
+main input[type=checkbox] + label {
+    display: inline;
+}
 main input[type=submit] {
     display: block;
     width: 100%;
