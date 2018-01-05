@@ -168,6 +168,10 @@ main input[type=submit] {
     border: solid 1px;
     border-radius: 5px;
 }
+main input[type=submit]:hover {
+    background-color: lightblue;
+    color: #0970b8;
+}
 main input[type=text],
 main input[type=password] {
     border-radius: 5px;
