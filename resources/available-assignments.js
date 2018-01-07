@@ -250,6 +250,37 @@
         var clone = null;
         if (showChangeFilter) {
             clone = document.importNode(templateFilterChange.content, true);
+
+            var types = getTypes();
+            var areas = getAreas();
+
+            if(filterSettings.AlwaysShowTypes) {
+                var alwaysShowTypes = filterSettings.AlwaysShowTypes.split(',');
+                for (let selectedIndex = 0; selectedIndex < alwaysShowTypes.length; selectedIndex++) {
+                    const selectedTypeName = alwaysShowTypes[selectedIndex];
+                    for (let index = 0; index < types.length; index++) {
+                        const typeName = types[index];
+                        if (selectedTypeName = typeName) {
+                            clone.querySelector('#show-type-' + index).checked = true;
+                        }
+                    }                    
+                }
+            }
+            
+            if(filterSettings.FilterNeverShowTypes) {
+                var neverShowTypes = filterSettings.FilterNeverShowTypes.split(',');
+                for (let selectedIndex = 0; selectedIndex < neverShowTypes.length; selectedIndex++) {
+                    const selectedTypeName = neverShowTypes[selectedIndex];
+                    for (let index = 0; index < types.length; index++) {
+                        const typeName = types[index];
+                        if (selectedTypeName = typeName) {
+                            clone.querySelector('#hide-type-' + index).checked = true;
+                        }
+                    }                    
+                }
+            }
+
+
             var form = clone.querySelector('#available-assignments-filter-container');
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -311,6 +342,7 @@
         else if (filterSettings) {
             // show filter settings that we use
             clone = document.importNode(templateFilterView.content, true);
+
             var form = clone.querySelector('#available-assignments-filter-container');
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
