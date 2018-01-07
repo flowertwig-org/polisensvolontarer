@@ -77,7 +77,7 @@
                     itemsMarkedAsRemove = true;
                 }
             }
-        
+
             const isWeekend = dayOfWeekNumber >= 6;
             if (!isWeekend) {
                 for (let index = 0; index < filterSettings.HideWorkDayTypes.length; index++) {
@@ -150,12 +150,12 @@
             "Pass / Reception",
             "Volontärmöte",
             "Övrigt"
-        ];     
-        return types;  
+        ];
+        return types;
     }
 
     function getAreas() {
-        var areas =[
+        var areas = [
             // City
             "Norrmalm",
             "Södermalm",
@@ -216,7 +216,7 @@
         }
 
         var pvWorkDayTypes = getSettingValue("FilterHideWorkDayTypes")
-        if (pvWorkDayTypes){
+        if (pvWorkDayTypes) {
             hasFilter = true;
             filterSettings.HideWorkDayTypes = pvWorkDayTypes.split(',');
         }
@@ -241,7 +241,7 @@
 
         if (hasFilter) {
             return filterSettings;
-        }else {
+        } else {
             return null;
         }
     }
@@ -256,7 +256,7 @@
                 li.textContent = text;
                 listContainer.appendChild(li);
             }
-        }else {
+        } else {
             listContainer.parentElement.remove();
         }
     }
@@ -278,7 +278,7 @@
             var types = getTypes();
             var areas = getAreas();
 
-            if(filterSettings && filterSettings.AlwaysShowTypes) {
+            if (filterSettings && filterSettings.AlwaysShowTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.AlwaysShowTypes.length; selectedIndex++) {
                     const selectedTypeName = filterSettings.AlwaysShowTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
@@ -286,11 +286,11 @@
                         if (selectedTypeName == typeName) {
                             clone.querySelector('#show-type-' + index).checked = true;
                         }
-                    }                    
+                    }
                 }
             }
-            
-            if(filterSettings && filterSettings.NeverShowTypes) {
+
+            if (filterSettings && filterSettings.NeverShowTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowTypes.length; selectedIndex++) {
                     const selectedTypeName = filterSettings.NeverShowTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
@@ -298,11 +298,11 @@
                         if (selectedTypeName == typeName) {
                             clone.querySelector('#hide-type-' + index).checked = true;
                         }
-                    }                    
+                    }
                 }
             }
 
-            if(filterSettings && filterSettings.HideWorkDayTypes) {
+            if (filterSettings && filterSettings.HideWorkDayTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.HideWorkDayTypes.length; selectedIndex++) {
                     const selectedTypeName = filterSettings.HideWorkDayTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
@@ -310,11 +310,11 @@
                         if (selectedTypeName == typeName) {
                             clone.querySelector('#hide-workday-type-' + index).checked = true;
                         }
-                    }                    
+                    }
                 }
             }
 
-            if(filterSettings && filterSettings.HideWeekendTypes) {
+            if (filterSettings && filterSettings.HideWeekendTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.HideWeekendTypes.length; selectedIndex++) {
                     const selectedTypeName = filterSettings.HideWeekendTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
@@ -322,11 +322,11 @@
                         if (selectedTypeName == typeName) {
                             clone.querySelector('#hide-weekend-day-type-' + index).checked = true;
                         }
-                    }                    
+                    }
                 }
             }
 
-            if(filterSettings && filterSettings.AlwaysShowAreas) {
+            if (filterSettings && filterSettings.AlwaysShowAreas) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.AlwaysShowAreas.length; selectedIndex++) {
                     const selectedAreaName = filterSettings.AlwaysShowAreas[selectedIndex];
                     for (let index = 0; index < areas.length; index++) {
@@ -334,11 +334,11 @@
                         if (selectedAreaName == areaName) {
                             clone.querySelector('#show-area-' + index).checked = true;
                         }
-                    }                    
+                    }
                 }
             }
 
-            if(filterSettings && filterSettings.NeverShowAreas) {
+            if (filterSettings && filterSettings.NeverShowAreas) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowAreas.length; selectedIndex++) {
                     const selectedAreaName = filterSettings.NeverShowAreas[selectedIndex];
                     for (let index = 0; index < areas.length; index++) {
@@ -346,12 +346,12 @@
                         if (selectedAreaName == areaName) {
                             clone.querySelector('#hide-area-' + index).checked = true;
                         }
-                    }                    
+                    }
                 }
             }
-            
+
             var form = clone.querySelector('#available-assignments-filter-container');
-            form.addEventListener('submit', function(event) {
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
 
                 // Store options that user made
@@ -366,7 +366,7 @@
                 var hideArea = [];
 
                 var checkedOptions = document.querySelector('#available-assignments-filter-container').querySelectorAll('[type=checkbox]:checked');
-                for (var i = 0; i<checkedOptions.length;i++) {
+                for (var i = 0; i < checkedOptions.length; i++) {
                     var option = checkedOptions[i];
 
                     if (!option.name) {
@@ -379,18 +379,18 @@
                         var typeName = types[position];
                         if (option.name.indexOf('show-type') != -1) {
                             showTypes.push(typeName);
-                        }else if (option.name.indexOf('hide-type') != -1) {
+                        } else if (option.name.indexOf('hide-type') != -1) {
                             hideType.push(typeName);
-                        }else if (option.name.indexOf('hide-workday-type') != -1) {
+                        } else if (option.name.indexOf('hide-workday-type') != -1) {
                             hideWorkdayType.push(typeName);
-                        }else if (option.name.indexOf('hide-weekend-day-type') != -1) {
+                        } else if (option.name.indexOf('hide-weekend-day-type') != -1) {
                             hideWeekendDayType.push(typeName);
                         }
                     } else if (option.name.indexOf('-area-') != -1) {
                         var areaName = areas[position];
                         if (option.name.indexOf('show-area') != -1) {
                             showArea.push(areaName);
-                        }else {
+                        } else {
                             hideArea.push(areaName);
                         }
                     }
@@ -404,10 +404,10 @@
                 setSettingValue('FilterNeverShowAreas', hideArea.toString());
 
                 updateFilterInterface(false);
-                // TODO: Update items to show
+                getItems();
 
                 // Scroll to top (to ensure view)
-                window.scroll(0,0);
+                window.scroll(0, 0);
             });
         }
         else if (filterSettings) {
@@ -428,14 +428,14 @@
             addItemsToList(listContainer, filterSettings.NeverShowAreas);
 
             var form = clone.querySelector('#available-assignments-filter-container');
-            form.addEventListener('submit', function(event) {
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
                 updateFilterInterface(true);
             });
-        }else {
+        } else {
             clone = document.importNode(templateFilterNone.content, true);
             var form = clone.querySelector('#available-assignments-filter-container');
-            form.addEventListener('submit', function(event) {
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
                 updateFilterInterface(true);
             });
@@ -444,230 +444,233 @@
         container.appendChild(clone);
     }
 
-    var result = fetch('https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments', {
-        method: 'GET',
-        credentials: 'include',
-        mode: 'cors'
-    });
-    result.then(function (response) {
-        if (response.ok) {
-            return response.json();
-        } else {
-            window.location.assign('/login/?page=available-assignments');
-        }
-    }).then(function (array) {
-        var dayGroups = [];
-        for (var index = 0; index < array.length; index++) {
-            var firstItem = array[index][0];
-            var items = array[index];
-            var date = new Date(firstItem.date);
-            var monthNumber = date.getMonth() + 1;
-            var dayOfMonth = date.getDate();
-            var dayOfWeekNumber = date.getDay();
-            var weekNumber = date.getWeekNumber();
-
-            var maxDaysInMonth = getMaxDaysInMonth(date);
-
-            var dayOfWeekName = '';
-            switch (dayOfWeekNumber) {
-                case 1:
-                    dayOfWeekName = 'Måndag';
-                    break;
-                case 2:
-                    dayOfWeekName = 'Tisdag';
-                    break;
-                case 3:
-                    dayOfWeekName = 'Onsdag';
-                    break;
-                case 4:
-                    dayOfWeekName = 'Torsdag';
-                    break;
-                case 5:
-                    dayOfWeekName = 'Fredag';
-                    break;
-                case 6:
-                    dayOfWeekName = 'Lördag';
-                    break;
-                case 0:
-                    dayOfWeekName = 'Söndag';
-                    break;
+    function getItems() {
+        var result = fetch('https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments', {
+            method: 'GET',
+            credentials: 'include',
+            mode: 'cors'
+        });
+        result.then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                window.location.assign('/login/?page=available-assignments');
             }
+        }).then(function (array) {
+            var dayGroups = [];
+            for (var index = 0; index < array.length; index++) {
+                var firstItem = array[index][0];
+                var items = array[index];
+                var date = new Date(firstItem.date);
+                var monthNumber = date.getMonth() + 1;
+                var dayOfMonth = date.getDate();
+                var dayOfWeekNumber = date.getDay();
+                var weekNumber = date.getWeekNumber();
 
-            var monthName = '';
-            switch (monthNumber) {
-                case 1:
-                    monthName = 'Januari';
-                    break;
-                case 2:
-                    monthName = 'Februari';
-                    break;
-                case 3:
-                    monthName = 'Mars';
-                    break;
-                case 4:
-                    monthName = 'April';
-                    break;
-                case 5:
-                    monthName = 'Maj';
-                    break;
-                case 6:
-                    monthName = 'Juni';
-                    break;
-                case 7:
-                    monthName = 'Juli';
-                    break;
-                case 8:
-                    monthName = 'Augusti';
-                    break;
-                case 9:
-                    monthName = 'September';
-                    break;
-                case 10:
-                    monthName = 'Oktober';
-                    break;
-                case 11:
-                    monthName = 'November';
-                    break;
-                case 12:
-                    monthName = 'December';
-                    break;
+                var maxDaysInMonth = getMaxDaysInMonth(date);
+
+                var dayOfWeekName = '';
+                switch (dayOfWeekNumber) {
+                    case 1:
+                        dayOfWeekName = 'Måndag';
+                        break;
+                    case 2:
+                        dayOfWeekName = 'Tisdag';
+                        break;
+                    case 3:
+                        dayOfWeekName = 'Onsdag';
+                        break;
+                    case 4:
+                        dayOfWeekName = 'Torsdag';
+                        break;
+                    case 5:
+                        dayOfWeekName = 'Fredag';
+                        break;
+                    case 6:
+                        dayOfWeekName = 'Lördag';
+                        break;
+                    case 0:
+                        dayOfWeekName = 'Söndag';
+                        break;
+                }
+
+                var monthName = '';
+                switch (monthNumber) {
+                    case 1:
+                        monthName = 'Januari';
+                        break;
+                    case 2:
+                        monthName = 'Februari';
+                        break;
+                    case 3:
+                        monthName = 'Mars';
+                        break;
+                    case 4:
+                        monthName = 'April';
+                        break;
+                    case 5:
+                        monthName = 'Maj';
+                        break;
+                    case 6:
+                        monthName = 'Juni';
+                        break;
+                    case 7:
+                        monthName = 'Juli';
+                        break;
+                    case 8:
+                        monthName = 'Augusti';
+                        break;
+                    case 9:
+                        monthName = 'September';
+                        break;
+                    case 10:
+                        monthName = 'Oktober';
+                        break;
+                    case 11:
+                        monthName = 'November';
+                        break;
+                    case 12:
+                        monthName = 'December';
+                        break;
+                }
+
+                if (dayOfWeekNumber == 0) {
+                    dayOfWeekNumber = 7;
+                }
+
+                items = filterItems(items, dayOfWeekNumber);
+
+                const weHaveItemsToShowForDay = items.length > 0;
+                if (weHaveItemsToShowForDay) {
+                    dayGroups.push({
+                        monthNumber: monthNumber,
+                        monthName: monthName,
+                        dayOfMonth: dayOfMonth,
+                        weekNumber: weekNumber,
+                        dayOfWeekNumber: dayOfWeekNumber,
+                        dayOfWeekName: dayOfWeekName,
+                        maxDaysInMonth: maxDaysInMonth,
+                        items: items
+                    });
+                }
             }
-
-            if (dayOfWeekNumber == 0) {
-                dayOfWeekNumber = 7;
-            }
-
-            items = filterItems(items, dayOfWeekNumber);
-
-            const weHaveItemsToShowForDay = items.length > 0;
-            if (weHaveItemsToShowForDay) {
-                dayGroups.push({
-                    monthNumber: monthNumber,
-                    monthName: monthName,
-                    dayOfMonth: dayOfMonth,
-                    weekNumber: weekNumber,
-                    dayOfWeekNumber: dayOfWeekNumber,
-                    dayOfWeekName: dayOfWeekName,
-                    maxDaysInMonth: maxDaysInMonth,
-                    items: items
-                });
-            }
-        }
-        return dayGroups;
-    }).then(function (dayGroups) {
-        if (!dayGroups || !dayGroups.length) {
-            window.location.assign('/login/?page=available-assignments');
             return dayGroups;
-        }
+        }).then(function (dayGroups) {
+            if (!dayGroups || !dayGroups.length) {
+                window.location.assign('/login/?page=available-assignments');
+                return dayGroups;
+            }
 
-        if ('content' in document.createElement('template')) {
-            var lastMonthName = false;
-            var lastWeekNumber = false;
-            var main = document.querySelector("main");
+            if ('content' in document.createElement('template')) {
+                var lastMonthName = false;
+                var lastWeekNumber = false;
+                var itemsContainer = document.querySelector("#items-container");
+                itemsContainer.innerHTML = '';
 
-            updateFilterInterface();
+                updateFilterInterface();
 
-            var templateMonth = document.querySelector('#template-month');
-            var templateWeek = document.querySelector('#template-week');
-            var cloneWeek = document.importNode(templateWeek.content, true);
-            var templateAssignment = document.querySelector('#template-assignment');
+                var templateMonth = document.querySelector('#template-month');
+                var templateWeek = document.querySelector('#template-week');
+                var cloneWeek = document.importNode(templateWeek.content, true);
+                var templateAssignment = document.querySelector('#template-assignment');
 
-            var weekIndex = 1;
-            for (let index = 0; index < dayGroups.length; index++) {
-                const day = dayGroups[index];
+                var weekIndex = 1;
+                for (let index = 0; index < dayGroups.length; index++) {
+                    const day = dayGroups[index];
 
-                if (lastMonthName != day.monthName) {
-                    // logic for when we are in same week but just changed month.
-                    if (lastWeekNumber == day.weekNumber) {
+                    if (lastMonthName != day.monthName) {
+                        // logic for when we are in same week but just changed month.
+                        if (lastWeekNumber == day.weekNumber) {
+                            if (lastWeekNumber) {
+                                itemsContainer.appendChild(cloneWeek);
+                                cloneWeek = document.importNode(templateWeek.content, true);
+                            }
+                            weekIndex++;
+                        }
+
+                    }
+                    if (lastWeekNumber != day.weekNumber) {
                         if (lastWeekNumber) {
-                            main.appendChild(cloneWeek);
+                            itemsContainer.appendChild(cloneWeek);
                             cloneWeek = document.importNode(templateWeek.content, true);
                         }
                         weekIndex++;
                     }
 
-                }
-                if (lastWeekNumber != day.weekNumber) {
-                    if (lastWeekNumber) {
-                        main.appendChild(cloneWeek);
-                        cloneWeek = document.importNode(templateWeek.content, true);
+                    if (lastWeekNumber != day.weekNumber) {
+                        lastWeekNumber = day.weekNumber;
                     }
-                    weekIndex++;
-                }
 
-                if (lastWeekNumber != day.weekNumber) {
-                    lastWeekNumber = day.weekNumber;
-                }
-                
-                if (lastMonthName != day.monthName) {
-                    var monthHeader = templateMonth.content.querySelector(".month-header");
-                    monthHeader.textContent = day.monthName;
-                    var cloneMonth = document.importNode(templateMonth.content, true);
-                    main.appendChild(cloneMonth);                    
+                    if (lastMonthName != day.monthName) {
+                        var monthHeader = templateMonth.content.querySelector(".month-header");
+                        monthHeader.textContent = day.monthName;
+                        var cloneMonth = document.importNode(templateMonth.content, true);
+                        itemsContainer.appendChild(cloneMonth);
 
-                    lastMonthName = day.monthName;
-                }                
+                        lastMonthName = day.monthName;
+                    }
 
-                var weekContainer = cloneWeek.querySelector(".week-container");
-                if (weekIndex % 2 == 0) {
-                    weekContainer.style.padding = '5px 15px';
-                    weekContainer.style.backgroundColor = 'lightblue';
-                } else {
-                    weekContainer.style.padding = '5px';
-                    weekContainer.style.backgroundColor = '';
-                }
+                    var weekContainer = cloneWeek.querySelector(".week-container");
+                    if (weekIndex % 2 == 0) {
+                        weekContainer.style.padding = '5px 15px';
+                        weekContainer.style.backgroundColor = 'lightblue';
+                    } else {
+                        weekContainer.style.padding = '5px';
+                        weekContainer.style.backgroundColor = '';
+                    }
 
-                var weekHeader = cloneWeek.querySelector(".week-header");
-                weekHeader.textContent = "Vecka " + day.weekNumber;
+                    var weekHeader = cloneWeek.querySelector(".week-header");
+                    weekHeader.textContent = "Vecka " + day.weekNumber;
 
-                for (let weekDayIndex = 1; weekDayIndex <= 7; weekDayIndex++) {
-                    var dayHeader = cloneWeek.querySelector(".weekday-date" + weekDayIndex);
-                    var dayContainer = cloneWeek.querySelector(".day-container" + weekDayIndex);
+                    for (let weekDayIndex = 1; weekDayIndex <= 7; weekDayIndex++) {
+                        var dayHeader = cloneWeek.querySelector(".weekday-date" + weekDayIndex);
+                        var dayContainer = cloneWeek.querySelector(".day-container" + weekDayIndex);
 
-                    var assignmentName = templateAssignment.content.querySelector(".assignment-name");
-                    var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
-                    var assignmentArea = templateAssignment.content.querySelector(".assignment-area");
-                    var assignmentType = templateAssignment.content.querySelector(".assignment-type");
+                        var assignmentName = templateAssignment.content.querySelector(".assignment-name");
+                        var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
+                        var assignmentArea = templateAssignment.content.querySelector(".assignment-area");
+                        var assignmentType = templateAssignment.content.querySelector(".assignment-type");
 
-                    if (day.dayOfWeekNumber == weekDayIndex) {
-                        if (day.items.length) {
-                            for (let assignmentIndex = 0; assignmentIndex < day.items.length; assignmentIndex++) {
-                                const assignment = day.items[assignmentIndex];
+                        if (day.dayOfWeekNumber == weekDayIndex) {
+                            if (day.items.length) {
+                                for (let assignmentIndex = 0; assignmentIndex < day.items.length; assignmentIndex++) {
+                                    const assignment = day.items[assignmentIndex];
 
-                                dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
+                                    dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
 
-                                assignmentName.textContent = assignment.name;
-                                assignmentName.href = "/restricted/assignment?key=" + assignment.id;
-                                assignmentWhen.textContent = '';
-                                assignmentArea.textContent = assignment.area;
-                                assignmentType.textContent = assignment.category;
+                                    assignmentName.textContent = assignment.name;
+                                    assignmentName.href = "/restricted/assignment?key=" + assignment.id;
+                                    assignmentWhen.textContent = '';
+                                    assignmentArea.textContent = assignment.area;
+                                    assignmentType.textContent = assignment.category;
 
-                                var cloneAssignment = document.importNode(templateAssignment.content, true);
-                                dayContainer.appendChild(cloneAssignment);
+                                    var cloneAssignment = document.importNode(templateAssignment.content, true);
+                                    dayContainer.appendChild(cloneAssignment);
+                                }
+                                //dayContainer.className = 'day-container day-container' + weekDayIndex;
+                            } else {
+                                //dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
                             }
-                            //dayContainer.className = 'day-container day-container' + weekDayIndex;
                         } else {
+                            var currentDayNumber = day.dayOfMonth - day.dayOfWeekNumber + weekDayIndex;
+                            if (currentDayNumber >= 1 && currentDayNumber <= day.maxDaysInMonth) {
+                                dayHeader.textContent = currentDayNumber + "/" + day.monthNumber;
+                            } else {
+                                dayHeader.textContent = '';
+                            }
                             //dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
                         }
-                    } else {
-                        var currentDayNumber = day.dayOfMonth - day.dayOfWeekNumber + weekDayIndex;
-                        if (currentDayNumber >= 1 && currentDayNumber <= day.maxDaysInMonth) {
-                            dayHeader.textContent = currentDayNumber + "/" + day.monthNumber;
-                        } else {
-                            dayHeader.textContent = '';
-                        }
-                        //dayContainer.className = 'day-container day-container' + weekDayIndex + ' mobile-hide';
                     }
                 }
+
+                itemsContainer.appendChild(cloneWeek);
+            } else {
+                // TODO: Show warning message to user that it requires template support
             }
 
-            main.appendChild(cloneWeek);
-        } else {
-            // TODO: Show warning message to user that it requires template support
-        }
 
-
-    }).catch(function (ex) {
-        console.log(ex);
-    });
+        }).catch(function (ex) {
+            console.log(ex);
+        });
+    }
 })();
