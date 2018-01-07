@@ -69,6 +69,15 @@
             }
 
             let itemsMarkedAsRemove = false;
+
+            for (let index = 0; index < filterSettings.NeverShowTypes.length; index++) {
+                const typeName = filterSettings.NeverShowTypes[index];
+                if (assignment.category == typeName) {
+                    indexesToRemove.push(assignmentIndex);
+                    itemsMarkedAsRemove = true;
+                }
+            }
+        
             const isWeekend = dayOfWeekNumber >= 6;
             if (!isWeekend) {
                 for (let index = 0; index < filterSettings.HideWorkDayTypes.length; index++) {
