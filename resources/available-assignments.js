@@ -254,6 +254,14 @@
         else if (filterSettings) {
             // TODO: show filter settings that we use
             clone = document.importNode(templateFilterView.content, true);
+            var form = clone.querySelector('#available-assignments-filter-container');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // TODO: Store options that user made
+
+                updateFilterInterface(true);
+            });
         }else {
             clone = document.importNode(templateFilterNone.content, true);
             var form = clone.querySelector('#available-assignments-filter-container');
