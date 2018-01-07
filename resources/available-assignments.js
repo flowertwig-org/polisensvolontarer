@@ -244,7 +244,7 @@
             const text = items[index];
             var li = document.createElement('li');
             li.textContent = text;
-            listContainer.appendChild()
+            listContainer.appendChild(li);
         }
     }
 
