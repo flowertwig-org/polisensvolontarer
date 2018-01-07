@@ -256,7 +256,7 @@
 
                 // TODO: Store options that user made
 
-                updateFilterInterface(true);
+                updateFilterInterface(false);
             });
         }
         else if (filterSettings) {
