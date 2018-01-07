@@ -258,6 +258,13 @@
                 var types = getTypes();
                 var areas = getAreas();
 
+                var showTypes = [];
+                var hideType = [];
+                var hideWorkdayType = [];
+                var hideWeekendDayType = [];
+                var showArea = [];
+                var hideArea = [];
+
                 var checkedOptions = document.querySelector('#available-assignments-filter-container').querySelectorAll('[type=checkbox]:checked');
                 for (var i = 0; i<checkedOptions.length;i++) {
                     var option = checkedOptions[i];
@@ -270,14 +277,33 @@
 
                     if (option.name.indexOf('-type-') != -1) {
                         var typeName = types[position];
-                        console.log(typeName);
+                        if (option.name.indexOf('show-type') != -1) {
+                            showTypes.push(typeName);
+                        }else if (option.name.indexOf('hide-type') != -1) {
+                            hideType.push(typeName);
+                        }else if (option.name.indexOf('hide-workday-type') != -1) {
+                            hideWorkdayType.push(typeName);
+                        }else if (option.name.indexOf('hide-weekend-day-type') != -1) {
+                            hideWeekendDayType.push(typeName);
+                        }
                     } else if (option.name.indexOf('-area-') != -1) {
                         var areaName = areas[position];
-                        console.log(areaName);
+                        if (option.name.indexOf('show-area') != -1) {
+                            showArea.push(areaName);
+                        }else {
+                            hideArea.push(areaName);
+                        }
                     } else {
                         console.log(option.name);
                     }
                 }
+
+                console.log('showTypes', showTypes);
+                console.log('hideType', hideType);
+                console.log('hideWorkdayType', hideWorkdayType);
+                console.log('hideWeekendDayType', hideWeekendDayType);
+                console.log('showArea', showArea);
+                console.log('hideArea', hideArea);
 
                 updateFilterInterface(false);
                 // Scroll to top (to ensure view)
