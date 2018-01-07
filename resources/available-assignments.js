@@ -266,9 +266,9 @@
                 }
             }
             
-            if(filterSettings.FilterNeverShowTypes) {
-                for (let selectedIndex = 0; selectedIndex < filterSettings.FilterNeverShowTypes.length; selectedIndex++) {
-                    const selectedTypeName = filterSettings.FilterNeverShowTypes[selectedIndex];
+            if(filterSettings.NeverShowTypes) {
+                for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowTypes.length; selectedIndex++) {
+                    const selectedTypeName = filterSettings.NeverShowTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
                         const typeName = types[index];
                         if (selectedTypeName == typeName) {
