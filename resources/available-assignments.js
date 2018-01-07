@@ -248,7 +248,7 @@
                 listContainer.appendChild(li);
             }
         }else {
-            listContainer.parent.remove();
+            listContainer.parentElement.remove();
         }
     }
 
