@@ -254,7 +254,7 @@
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
 
-                // TODO: Store options that user made
+                // Store options that user made
                 var types = getTypes();
                 var areas = getAreas();
 
@@ -293,17 +293,15 @@
                         }else {
                             hideArea.push(areaName);
                         }
-                    } else {
-                        console.log(option.name);
                     }
                 }
 
-                console.log('showTypes', showTypes.toString());
-                console.log('hideType', hideType.toString());
-                console.log('hideWorkdayType', hideWorkdayType.toString());
-                console.log('hideWeekendDayType', hideWeekendDayType.toString());
-                console.log('showArea', showArea.toString());
-                console.log('hideArea', hideArea.toString());
+                setSettingValue('FilterAlwaysShowTypes', showTypes.toString());
+                setSettingValue('FilterNeverShowTypes', hideType.toString());
+                setSettingValue('FilterHideWorkDayTypes', hideWorkdayType.toString());
+                setSettingValue('FilterHideWeekendTypes', hideWeekendDayType.toString());
+                setSettingValue('FilterAlwaysShowAreas', showArea.toString());
+                setSettingValue('FilterNeverShowAreas', hideArea.toString());
 
                 updateFilterInterface(false);
                 // Scroll to top (to ensure view)
