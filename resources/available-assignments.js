@@ -278,7 +278,7 @@
             var types = getTypes();
             var areas = getAreas();
 
-            if(filterSettings.AlwaysShowTypes) {
+            if(filterSettings && filterSettings.AlwaysShowTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.AlwaysShowTypes.length; selectedIndex++) {
                     const selectedTypeName = filterSettings.AlwaysShowTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
@@ -290,7 +290,7 @@
                 }
             }
             
-            if(filterSettings.NeverShowTypes) {
+            if(filterSettings && filterSettings.NeverShowTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowTypes.length; selectedIndex++) {
                     const selectedTypeName = filterSettings.NeverShowTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
@@ -302,7 +302,7 @@
                 }
             }
 
-            if(filterSettings.HideWorkDayTypes) {
+            if(filterSettings && filterSettings.HideWorkDayTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.HideWorkDayTypes.length; selectedIndex++) {
                     const selectedTypeName = filterSettings.HideWorkDayTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
@@ -314,7 +314,7 @@
                 }
             }
 
-            if(filterSettings.HideWeekendTypes) {
+            if(filterSettings && filterSettings.HideWeekendTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.HideWeekendTypes.length; selectedIndex++) {
                     const selectedTypeName = filterSettings.HideWeekendTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
@@ -326,7 +326,7 @@
                 }
             }
 
-            if(filterSettings.AlwaysShowAreas) {
+            if(filterSettings && filterSettings.AlwaysShowAreas) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.AlwaysShowAreas.length; selectedIndex++) {
                     const selectedAreaName = filterSettings.AlwaysShowAreas[selectedIndex];
                     for (let index = 0; index < areas.length; index++) {
@@ -338,7 +338,7 @@
                 }
             }
 
-            if(filterSettings.NeverShowAreas) {
+            if(filterSettings && filterSettings.NeverShowAreas) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowAreas.length; selectedIndex++) {
                     const selectedAreaName = filterSettings.NeverShowAreas[selectedIndex];
                     for (let index = 0; index < areas.length; index++) {
