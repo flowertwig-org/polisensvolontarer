@@ -240,11 +240,15 @@
     function addItemsToList(listContainer, items) {
         listContainer.innerHTML = '';
 
-        for (let index = 0; index < items.length; index++) {
-            const text = items[index];
-            var li = document.createElement('li');
-            li.textContent = text;
-            listContainer.appendChild(li);
+        if (items.length) {
+            for (let index = 0; index < items.length; index++) {
+                const text = items[index];
+                var li = document.createElement('li');
+                li.textContent = text;
+                listContainer.appendChild(li);
+            }
+        }else {
+            listContainer.parent.remove();
         }
     }
 
