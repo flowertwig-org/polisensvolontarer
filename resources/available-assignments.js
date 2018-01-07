@@ -255,7 +255,30 @@
                 event.preventDefault();
 
                 // TODO: Store options that user made
-                
+                var types = getTypes();
+                var areas = getAreas();
+
+                var checkedOptions = document.querySelector('#available-assignments-filter-container').querySelectorAll('[type=checkbox]:checked');
+                for (var i = 0; i<checkedOptions.length;i++) {
+                    var option = checkedOptions[i];
+
+                    if (!option.name) {
+                        continue;
+                    }
+
+                    var position = parseInt(option.name.substr(option.name.lastIndexOf('-') + 1));
+
+                    if (option.name.indexOf('-type-') != -1) {
+                        var typeName = types[position];
+                        console.log(typeName);
+                    } else if (option.name.indexOf('-area-') != -1) {
+                        var areaName = areas[position];
+                        console.log(areaName);
+                    } else {
+                        console.log(option.name);
+                    }
+                }
+
                 updateFilterInterface(false);
                 // Scroll to top (to ensure view)
                 window.scroll(0,0);
