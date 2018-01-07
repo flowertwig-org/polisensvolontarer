@@ -304,10 +304,10 @@
 
             if(filterSettings.AlwaysShowAreas) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.AlwaysShowAreas.length; selectedIndex++) {
-                    const selectedTypeName = filterSettings.AlwaysShowAreas[selectedIndex];
-                    for (let index = 0; index < types.length; index++) {
-                        const typeName = types[index];
-                        if (selectedTypeName == typeName) {
+                    const selectedAreaName = filterSettings.AlwaysShowAreas[selectedIndex];
+                    for (let index = 0; index < areas.length; index++) {
+                        const areaName = areas[index];
+                        if (selectedAreaName == areaName) {
                             clone.querySelector('#show-area-' + index).checked = true;
                         }
                     }                    
@@ -316,10 +316,10 @@
 
             if(filterSettings.NeverShowAreas) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowAreas.length; selectedIndex++) {
-                    const selectedTypeName = filterSettings.NeverShowAreas[selectedIndex];
-                    for (let index = 0; index < types.length; index++) {
-                        const typeName = types[index];
-                        if (selectedTypeName == typeName) {
+                    const selectedAreaName = filterSettings.NeverShowAreas[selectedIndex];
+                    for (let index = 0; index < areas.length; index++) {
+                        const areaName = areas[index];
+                        if (selectedAreaName == areaName) {
                             clone.querySelector('#hide-area-' + index).checked = true;
                         }
                     }                    
