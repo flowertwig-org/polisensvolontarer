@@ -16,7 +16,7 @@
         <input type="checkbox" id="menu" name="menu" class="toggable" />
         <menu class="toggle-area">
             <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
-<!--
+            <!--
             <a href="#">Smått och gott</a>
             <a href="#">Kontakta oss</a>
             <br />
@@ -48,7 +48,7 @@
                 </div>
             </a>
         -->
-        <!--
+            <!--
             <div class="icon icon-login">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      width="30px" height="30px" viewBox="0 0 428.974 428.975" style="fill:#fff;enable-background:new 0 0 428.974 428.975;"
@@ -72,13 +72,12 @@
             <label for="menu">
                 <div class="icon icon-menu">
                     <div class="icon-focus-ring"></div>
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         width="30px" height="30px" viewBox="0 0 73.168 73.168" style="enable-background:new 0 0 73.168 73.168;"
-                         xml:space="preserve">
-<g>
-                    <g id="Navigation">
-                    <g>
-                    <path d="M4.242,14.425h64.684c2.344,0,4.242-1.933,4.242-4.324c0-2.385-1.898-4.325-4.242-4.325H4.242
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px"
+                        height="30px" viewBox="0 0 73.168 73.168" style="enable-background:new 0 0 73.168 73.168;" xml:space="preserve">
+                        <g>
+                            <g id="Navigation">
+                                <g>
+                                    <path d="M4.242,14.425h64.684c2.344,0,4.242-1.933,4.242-4.324c0-2.385-1.898-4.325-4.242-4.325H4.242
                 C1.898,5.776,0,7.716,0,10.101C0,12.493,1.898,14.425,4.242,14.425z M68.926,32.259H4.242C1.898,32.259,0,34.2,0,36.584
                 c0,2.393,1.898,4.325,4.242,4.325h64.684c2.344,0,4.242-1.933,4.242-4.325C73.168,34.2,71.27,32.259,68.926,32.259z
                  M68.926,58.742H4.242C1.898,58.742,0,60.683,0,63.067c0,2.393,1.898,4.325,4.242,4.325h64.684c2.344,0,4.242-1.935,4.242-4.325
@@ -86,10 +85,10 @@
 
 
 
-        </g>
-    </g>
-</g>
-</svg>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
 
                 </div>
             </label>
@@ -101,24 +100,8 @@
             Här kan du hitta uppdrag, ändra inställningar och komma i kontakt med dina samordnare.
         </p>
 
-        <!--
-        <h2>Dina uppdrag (2)</h2>
-        <p style="
-    border-bottom: solid 1px #000;
-    padding-bottom: 10px;
-">
-            <b><a href="#">WAS - We Are Stockholm!</a></b><br />
-            <span style="font-size:small">2017-08-18 kl 17:20-23:30 * Övrigt</span>
-        </p>
-        <p style="
-    border-bottom: solid 1px #000;
-    padding-bottom: 10px;
-">
-            <b><a href="#">Synlighets insats publika platser Söderm</a></b><br />
-            <span style="font-size:small">2017-08-22 kl 18-22 * Kvällsvandring</span>
-        </p>
-    -->
-
+        <h2>Dina uppdrag (<span id="my-assignments-count">2</span>)</h2>
+        <div id="my-assignments-confirms"></div>
     </main>
     <footer>
         <div class="logo">Polisens Volontärer</div>
@@ -126,9 +109,32 @@
         <br />
 
         <a href="https://github.com/flowertwig-org/polisensvolontarer" target="_blank" rel="noopener">Fork website on GitHub</a>
-        <br /><br />
-        <div>Icons made by <a href="http://www.freepik.com" title="Freepik" target="_blank" rel="noopener">Freepik</a> and <a href="https://www.flaticon.com/authors/robin-kylander" title="Robin Kylander" target="_blank" rel="noopener">Robin Kylander</a><br /> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener">CC 3.0 BY</a></div>
+        <br />
+        <br />
+        <div>Icons made by
+            <a href="http://www.freepik.com" title="Freepik" target="_blank" rel="noopener">Freepik</a> and
+            <a href="https://www.flaticon.com/authors/robin-kylander" title="Robin Kylander" target="_blank" rel="noopener">Robin Kylander</a>
+            <br /> from
+            <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener">www.flaticon.com</a> is licensed by
+            <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener">CC 3.0 BY</a>
+        </div>
     </footer>
+
+    <template id="template-my-assignments">
+        <p style="
+        border-bottom: solid 1px #000;
+        padding-bottom: 10px;
+    ">
+            <b>
+                <a href="#" class="assignment-name">WAS - We Are Stockholm!</a>
+            </b>
+            <br />
+            <span style="font-size:small"><span class="assignment-when">2017-08-18</span> * <span class="assignment-type">Övrigt</span></span>
+        </p>
+    </template>
+
+    <script src="/resources/my-assignments.js" async></script>
     <script src="/resources/keep-alive.js" async></script>
 </body>
+
 </html>
