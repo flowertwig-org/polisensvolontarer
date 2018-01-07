@@ -26,7 +26,7 @@
         var main = document.querySelector("#my-assignments-confirms");
         if (nOfConfirms > 0) {
             if ('content' in document.createElement('template')) {
-                var templateAssignment = document.querySelector('#template-my-assignment');
+                var templateAssignment = document.querySelector('#template-my-assignments');
 
                 for (let index = 0; index < nOfConfirms; index++) {
                     const assignment = myAssignments.confirms[index];
