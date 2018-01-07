@@ -278,7 +278,54 @@
                 }
             }
 
+            if(filterSettings.HideWorkDayTypes) {
+                for (let selectedIndex = 0; selectedIndex < filterSettings.HideWorkDayTypes.length; selectedIndex++) {
+                    const selectedTypeName = filterSettings.HideWorkDayTypes[selectedIndex];
+                    for (let index = 0; index < types.length; index++) {
+                        const typeName = types[index];
+                        if (selectedTypeName == typeName) {
+                            clone.querySelector('#hide-workday-type-' + index).checked = true;
+                        }
+                    }                    
+                }
+            }
 
+            if(filterSettings.HideWeekendTypes) {
+                for (let selectedIndex = 0; selectedIndex < filterSettings.HideWeekendTypes.length; selectedIndex++) {
+                    const selectedTypeName = filterSettings.HideWeekendTypes[selectedIndex];
+                    for (let index = 0; index < types.length; index++) {
+                        const typeName = types[index];
+                        if (selectedTypeName == typeName) {
+                            clone.querySelector('#hide-weekend-day-type-' + index).checked = true;
+                        }
+                    }                    
+                }
+            }
+
+            if(filterSettings.AlwaysShowAreas) {
+                for (let selectedIndex = 0; selectedIndex < filterSettings.AlwaysShowAreas.length; selectedIndex++) {
+                    const selectedTypeName = filterSettings.AlwaysShowAreas[selectedIndex];
+                    for (let index = 0; index < types.length; index++) {
+                        const typeName = types[index];
+                        if (selectedTypeName == typeName) {
+                            clone.querySelector('#show-area-' + index).checked = true;
+                        }
+                    }                    
+                }
+            }
+
+            if(filterSettings.NeverShowAreas) {
+                for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowAreas.length; selectedIndex++) {
+                    const selectedTypeName = filterSettings.NeverShowAreas[selectedIndex];
+                    for (let index = 0; index < types.length; index++) {
+                        const typeName = types[index];
+                        if (selectedTypeName == typeName) {
+                            clone.querySelector('#hide-area-' + index).checked = true;
+                        }
+                    }                    
+                }
+            }
+            
             var form = clone.querySelector('#available-assignments-filter-container');
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
