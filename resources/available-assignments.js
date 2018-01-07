@@ -298,12 +298,12 @@
                     }
                 }
 
-                console.log('showTypes', showTypes);
-                console.log('hideType', hideType);
-                console.log('hideWorkdayType', hideWorkdayType);
-                console.log('hideWeekendDayType', hideWeekendDayType);
-                console.log('showArea', showArea);
-                console.log('hideArea', hideArea);
+                console.log('showTypes', showTypes.toString());
+                console.log('hideType', hideType.toString());
+                console.log('hideWorkdayType', hideWorkdayType.toString());
+                console.log('hideWeekendDayType', hideWeekendDayType.toString());
+                console.log('showArea', showArea.toString());
+                console.log('hideArea', hideArea.toString());
 
                 updateFilterInterface(false);
                 // Scroll to top (to ensure view)
