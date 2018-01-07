@@ -259,7 +259,7 @@
                     const selectedTypeName = filterSettings.AlwaysShowTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
                         const typeName = types[index];
-                        if (selectedTypeName = typeName) {
+                        if (selectedTypeName == typeName) {
                             clone.querySelector('#show-type-' + index).checked = true;
                         }
                     }                    
@@ -271,7 +271,7 @@
                     const selectedTypeName = filterSettings.FilterNeverShowTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
                         const typeName = types[index];
-                        if (selectedTypeName = typeName) {
+                        if (selectedTypeName == typeName) {
                             clone.querySelector('#hide-type-' + index).checked = true;
                         }
                     }                    
