@@ -237,6 +237,17 @@
         }
     }
 
+    function addItemsToList(listContainer, items) {
+        listContainer.innerHTML = '';
+
+        for (let index = 0; index < items.length; index++) {
+            const text = items[index];
+            var li = document.createElement('li');
+            li.textContent = text;
+            listContainer.appendChild()
+        }
+    }
+
     function updateFilterInterface(showChangeFilter) {
 
         var container = document.querySelector('#filter-container');
@@ -380,6 +391,8 @@
                 setSettingValue('FilterNeverShowAreas', hideArea.toString());
 
                 updateFilterInterface(false);
+                // TODO: Update items to show
+
                 // Scroll to top (to ensure view)
                 window.scroll(0,0);
             });
@@ -387,6 +400,19 @@
         else if (filterSettings) {
             // show filter settings that we use
             clone = document.importNode(templateFilterView.content, true);
+
+            var listContainer = clone.querySelector('#FilterAlwaysShowTypes');
+            addItemsToList(listContainer, filterSettings.AlwaysShowTypes);
+            listContainer = clone.querySelector('#FilterNeverShowTypes');
+            addItemsToList(listContainer, filterSettings.NeverShowTypes);
+            listContainer = clone.querySelector('#FilterHideWorkDayTypes');
+            addItemsToList(listContainer, filterSettings.HideWorkDayTypes);
+            listContainer = clone.querySelector('#FilterHideWeekendTypes');
+            addItemsToList(listContainer, filterSettings.HideWeekendTypes);
+            listContainer = clone.querySelector('#FilterAlwaysShowAreas');
+            addItemsToList(listContainer, filterSettings.AlwaysShowAreas);
+            listContainer = clone.querySelector('#FilterNeverShowAreas');
+            addItemsToList(listContainer, filterSettings.NeverShowAreas);
 
             var form = clone.querySelector('#available-assignments-filter-container');
             form.addEventListener('submit', function(event) {
