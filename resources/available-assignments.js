@@ -255,9 +255,8 @@
             var areas = getAreas();
 
             if(filterSettings.AlwaysShowTypes) {
-                var alwaysShowTypes = filterSettings.AlwaysShowTypes.split(',');
-                for (let selectedIndex = 0; selectedIndex < alwaysShowTypes.length; selectedIndex++) {
-                    const selectedTypeName = alwaysShowTypes[selectedIndex];
+                for (let selectedIndex = 0; selectedIndex < filterSettings.AlwaysShowTypes.length; selectedIndex++) {
+                    const selectedTypeName = filterSettings.AlwaysShowTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
                         const typeName = types[index];
                         if (selectedTypeName = typeName) {
@@ -268,9 +267,8 @@
             }
             
             if(filterSettings.FilterNeverShowTypes) {
-                var neverShowTypes = filterSettings.FilterNeverShowTypes.split(',');
-                for (let selectedIndex = 0; selectedIndex < neverShowTypes.length; selectedIndex++) {
-                    const selectedTypeName = neverShowTypes[selectedIndex];
+                for (let selectedIndex = 0; selectedIndex < filterSettings.FilterNeverShowTypes.length; selectedIndex++) {
+                    const selectedTypeName = filterSettings.FilterNeverShowTypes[selectedIndex];
                     for (let index = 0; index < types.length; index++) {
                         const typeName = types[index];
                         if (selectedTypeName = typeName) {
