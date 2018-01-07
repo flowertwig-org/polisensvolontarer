@@ -673,4 +673,6 @@
             console.log(ex);
         });
     }
+
+    getItems();
 })();
