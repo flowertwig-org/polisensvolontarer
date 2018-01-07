@@ -23,8 +23,8 @@
         document.querySelector('#my-assignments-count').textContent = nOfConfirms;
         document.querySelector('#my-assignments').style.display = 'block';
 
+        var main = document.querySelector("#my-assignments-confirms");
         if (nOfConfirms > 0) {
-            var main = document.querySelector("#my-assignments-confirms");
             if ('content' in document.createElement('template')) {
                 var templateAssignment = document.querySelector('#template-my-assignment');
 
