@@ -255,8 +255,10 @@
                 event.preventDefault();
 
                 // TODO: Store options that user made
-
+                
                 updateFilterInterface(false);
+                // Scroll to top (to ensure view)
+                window.scroll(0,0);
             });
         }
         else if (filterSettings) {
