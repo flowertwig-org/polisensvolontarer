@@ -21,6 +21,7 @@
 
         var nOfConfirms = myAssignments.confirms.length;
         document.querySelector('#my-assignments-count').textContent = nOfConfirms;
+        document.querySelector('#my-assignments').style.display = 'block';
 
         if (nOfConfirms > 0) {
             if ('content' in document.createElement('template')) {
