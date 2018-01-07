@@ -24,8 +24,8 @@
         document.querySelector('#my-assignments').style.display = 'block';
 
         if (nOfConfirms > 0) {
+            var main = document.querySelector("#my-assignments-confirms");
             if ('content' in document.createElement('template')) {
-                var main = document.querySelector("#my-assignments-confirms");
                 var templateAssignment = document.querySelector('#template-my-assignment');
 
                 for (let index = 0; index < nOfConfirms; index++) {
@@ -47,6 +47,8 @@
             } else {
                 // TODO: Show warning message to user that it requires template support
             }
+        }else {
+            main.innerHTML = '<p>Du är ej uttagen att medverka på några uppdrag</p>';
         }
 
 
