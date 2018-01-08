@@ -1,7 +1,13 @@
 ﻿(function () {
     'use strict';
 
-    var result = fetch('https://polisens-volontarer-api.azurewebsites.net/api/Assignment' + location.search, {
+    var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/Assignment';
+    var inTestEnvironment = location.origin.indexOf('test-') != -1;
+    if (inTestEnvironment) {
+        serviceUrl = serviceUrl.replace("https://", "https://test-");
+    }
+
+    var result = fetch(serviceUrl + location.search, {
         method: 'GET',
         credentials: 'include',
         mode: 'cors'
