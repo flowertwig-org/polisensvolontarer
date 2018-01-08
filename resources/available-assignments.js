@@ -445,7 +445,13 @@
     }
 
     function getItems() {
-        var result = fetch('https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments', {
+        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments';
+        var inTestEnvironment = location.origin.indexOf('test-') != -1;
+        if (inTestEnvironment) {
+            serviceUrl = serviceUrl.replace("https://", "https://test-");
+        }
+    
+        var result = fetch(serviceUrl, {
             method: 'GET',
             credentials: 'include',
             mode: 'cors'
