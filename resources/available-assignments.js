@@ -135,7 +135,8 @@
     }
 
     function setSettingValue(key, value) {
-        document.cookie = key + "=" + value;
+        var maxAge = 60*60*24*30;
+        document.cookie = key + "=" + value + ';max-age=' + maxAge + ';path=/;secure';
     }
 
     function getTypes() {
@@ -207,36 +208,44 @@
         if (pvAlwaysShowTypes) {
             hasFilter = true;
             filterSettings.AlwaysShowTypes = pvAlwaysShowTypes.split(',');
+            // Update timestamp for cookie
+            setSettingValue("FilterAlwaysShowTypes", pvAlwaysShowTypes);
         }
 
         var pvNeverShowTypes = getSettingValue("FilterNeverShowTypes");
         if (pvNeverShowTypes) {
             hasFilter = true;
             filterSettings.NeverShowTypes = pvNeverShowTypes.split(',');
+            // Update timestamp for cookie
+            setSettingValue("FilterNeverShowTypes", pvNeverShowTypes);
         }
 
         var pvWorkDayTypes = getSettingValue("FilterHideWorkDayTypes")
         if (pvWorkDayTypes) {
             hasFilter = true;
             filterSettings.HideWorkDayTypes = pvWorkDayTypes.split(',');
+            setSettingValue("FilterHideWorkDayTypes", pvWorkDayTypes);
         }
 
         var pvWeekendTypes = getSettingValue("FilterHideWeekendTypes");
         if (pvWeekendTypes) {
             hasFilter = true;
             filterSettings.HideWeekendTypes = pvWeekendTypes.split(',');
+            setSettingValue("FilterHideWeekendTypes", pvWeekendTypes);
         }
 
         var pvNeverShowAreas = getSettingValue("FilterNeverShowAreas");
         if (pvNeverShowAreas) {
             hasFilter = true;
             filterSettings.NeverShowAreas = pvNeverShowAreas.split(',');
+            setSettingValue("FilterNeverShowAreas", pvNeverShowAreas);
         }
 
         var pvAlwaysShowAreas = getSettingValue("FilterAlwaysShowAreas");
         if (pvAlwaysShowAreas) {
             hasFilter = true;
             filterSettings.AlwaysShowAreas = pvAlwaysShowAreas.split(',');
+            setSettingValue("FilterAlwaysShowAreas", pvAlwaysShowAreas);
         }
 
         if (hasFilter) {
