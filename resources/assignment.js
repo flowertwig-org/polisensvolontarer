@@ -57,7 +57,7 @@
             var assignmentCalendar = templateAssignment.content.querySelector(".assignment-calendar-google");
             assignmentCalendar.href = assignment.googleCalendarEventUrl;
 
-            var assignmentInterestForm = templateAssignment.content.querySelector(".assignment-interest-form");
+            var assignmentInterestForm = templateAssignment.content.querySelector("#assignment-interest-form");
             if (assignment.interestsValues.length) {
                 assignmentInterestForm.className = '';
             }
