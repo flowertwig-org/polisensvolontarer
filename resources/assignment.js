@@ -87,6 +87,31 @@
     });
 
     function submitForm(assignmentId, comment, password) {
-        console.log('submitForm', assignmentId, comment, password);
+        var form = document.querySelector('#assignment-interest-form');
+        form.disabled = true;
+
+        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments';
+        var inTestEnvironment = location.origin.indexOf('test-') != -1;
+        if (inTestEnvironment) {
+            serviceUrl = serviceUrl.replace("https://", "https://test-");
+        }
+    
+        var result = fetch(serviceUrl, {
+            method: 'POST',
+            credentials: 'include',
+            mode: 'cors'
+        });
+
+        result.then(function (response) {
+            if (response.ok) {
+                form.className = 'hide';
+                alert('Ditt intresse är nu registrerat');
+                // TODO: Re enable this part when code is working as it should again
+            } else {
+                alert('Det gick dessvärre inte att registrera ditt intresse, försök gärna igen.');
+            }
+        }).catch(function (ex) {
+            console.log(ex);
+        });
     }
 })();
