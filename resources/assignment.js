@@ -59,7 +59,7 @@
 
             var cloneAssignment = document.importNode(templateAssignment.content, true);
 
-            var assignmentInterestForm = clone.querySelector('#assignment-interest-form');
+            var assignmentInterestForm = cloneAssignment.querySelector('#assignment-interest-form');
             if (assignment.interestsValues.length) {
                 assignmentInterestForm.className = '';
             }
