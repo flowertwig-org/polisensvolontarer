@@ -62,6 +62,9 @@
             var assignmentInterestForm = cloneAssignment.querySelector('#assignment-interest-form');
             if (assignment.interestsValues.length) {
                 assignmentInterestForm.className = '';
+
+                // NOTE: we do this for password managers
+                assignmentInterestForm.querySelector('#username').value = assignment.interestsValues[5].value;
             }
             assignmentInterestForm.addEventListener('submit', function (event) {
                 event.preventDefault();
