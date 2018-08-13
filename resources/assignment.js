@@ -57,12 +57,22 @@
             var assignmentCalendar = templateAssignment.content.querySelector(".assignment-calendar-google");
             assignmentCalendar.href = assignment.googleCalendarEventUrl;
 
-            var assignmentInterestForm = templateAssignment.content.querySelector("#assignment-interest-form");
+            var cloneAssignment = document.importNode(templateAssignment.content, true);
+
+            var assignmentInterestForm = clone.querySelector('#assignment-interest-form');
             if (assignment.interestsValues.length) {
                 assignmentInterestForm.className = '';
             }
+            assignmentInterestForm.addEventListener('submit', function (event) {
+                event.preventDefault();
 
-            var cloneAssignment = document.importNode(templateAssignment.content, true);
+                var form = document.querySelector('#assignment-interest-form');
+                var comment = form.querySelector('#comment').value;
+                var password = form.querySelector('#password').value;
+
+                submitForm(assignment.id, comment, password);
+            });
+
             main.appendChild(cloneAssignment);
         } else {
             // TODO: Show warning message to user that it requires template support
@@ -72,4 +82,8 @@
     }).catch(function (ex) {
         console.log(ex);
     });
+
+    function submitForm(assignmentId, comment, password) {
+        console.log('submitForm', assignmentId, comment, password);
+    }
 })();
