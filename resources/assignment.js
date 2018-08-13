@@ -57,6 +57,12 @@
             var assignmentCalendar = templateAssignment.content.querySelector(".assignment-calendar-google");
             assignmentCalendar.href = assignment.googleCalendarEventUrl;
 
+            var assignmentInterestForm = templateAssignment.content.querySelector(".assignment-interest-form");
+            if (assignment.interestsValues.length) {
+                assignmentInterestForm.className = '';
+            }
+            
+
             var cloneAssignment = document.importNode(templateAssignment.content, true);
             main.appendChild(cloneAssignment);
         } else {

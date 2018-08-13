@@ -162,6 +162,15 @@
                     Lägg till i Google Calendar
                 </a>
             </p>
+            <form class="hide" id="assignment-interest-form" action="https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments" method="post" enctype="application/x-www-form-urlencoded">
+                <label for="comment">Vill du lämna ett meddelande, i samband med anmälan, kan det göras här. Skriv inte ditt namn i rutan, det syns ändå.:</label>
+                <textarea id="comment" name="comment"></textarea>
+                <br>
+                <label for="password">Lösenord:</label>
+                <input id="password" name="password" type="password">
+                <br>
+                <input type="submit" value="Logga in">
+            </form>
             
         </template>
     <script src="/resources/assignment.js" async></script>
