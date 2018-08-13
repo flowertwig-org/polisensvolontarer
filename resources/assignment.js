@@ -61,7 +61,6 @@
             if (assignment.interestsValues.length) {
                 assignmentInterestForm.className = '';
             }
-            
 
             var cloneAssignment = document.importNode(templateAssignment.content, true);
             main.appendChild(cloneAssignment);

@@ -180,9 +180,11 @@ main input[type=submit]:hover {
     color: #0970b8;
 }
 main input[type=text],
-main input[type=password] {
+main input[type=password],
+textarea {
     border-radius: 5px;
     border: none;
+    padding: 0;
     width: 100%;
 }
 
