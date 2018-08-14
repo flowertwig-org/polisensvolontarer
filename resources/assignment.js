@@ -97,9 +97,9 @@
         }
 
         var data = {
-            key: 'Test',
-            comment: 'Test1',
-            password: 'Test2'
+            key: assignmentId,
+            comment: comment,
+            password: password
         };
     
         var result = fetch(serviceUrl, {
