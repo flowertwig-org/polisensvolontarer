@@ -58,6 +58,24 @@
             assignmentCalendar.href = assignment.googleCalendarEventUrl;
 
             var cloneAssignment = document.importNode(templateAssignment.content, true);
+
+            var assignmentInterestForm = cloneAssignment.querySelector('#assignment-interest-form');
+            if (assignment.interestsValues.length) {
+                assignmentInterestForm.className = '';
+
+                // NOTE: we do this for password managers
+                assignmentInterestForm.querySelector('#username').value = assignment.interestsValues[5].value;
+            }
+            assignmentInterestForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                var form = document.querySelector('#assignment-interest-form');
+                var comment = form.querySelector('#comment').value;
+                var password = form.querySelector('#password').value;
+
+                submitForm(assignment.id, comment, password);
+            });
+
             main.appendChild(cloneAssignment);
         } else {
             // TODO: Show warning message to user that it requires template support
@@ -67,4 +85,43 @@
     }).catch(function (ex) {
         console.log(ex);
     });
+
+    function submitForm(assignmentId, comment, password) {
+        var form = document.querySelector('#assignment-interest-form');
+        form.disabled = true;
+
+        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments';
+        var inTestEnvironment = location.origin.indexOf('test-') != -1;
+        if (inTestEnvironment) {
+            serviceUrl = serviceUrl.replace("https://", "https://test-");
+        }
+
+        var data = {
+            key: assignmentId,
+            comment: comment,
+            password: password
+        };
+    
+        var result = fetch(serviceUrl, {
+            method: 'POST',
+            credentials: 'include',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: "key=" + assignmentId + "&comment=" + encodeURI(comment) + "&password=" + encodeURI(password)
+        });
+
+        result.then(function (response) {
+            if (response.ok) {
+                form.className = 'hide';
+                alert('Ditt intresse är nu registrerat');
+                // TODO: Re enable this part when code is working as it should again
+            } else {
+                alert('Det gick dessvärre inte att registrera ditt intresse, försök gärna igen.');
+            }
+        }).catch(function (ex) {
+            console.log(ex);
+        });
+    }
 })();

@@ -125,7 +125,7 @@
             </p>
     
             <p>
-                <b>Uppdrags beskrivning: </b><br>
+                <b>Uppdragsbeskrivning: </b><br>
                 <span class="assignment-description"></span>
             </p>
     
@@ -162,6 +162,18 @@
                     Lägg till i Google Calendar
                 </a>
             </p>
+            <form class="hide" id="assignment-interest-form" name="assignment-interest-form" action="https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments" method="post" enctype="application/x-www-form-urlencoded">
+                <label for="comment">Meddelande till samordnaren:</label>
+                <textarea id="comment" name="comment"></textarea>
+                <br>
+                <label class="hide" for="username">Användarnamn:</label>
+                <input id="username" name="username" type="text" class="hide" value="" autocomplete="username" />
+                <br class="hide">
+                <label for="password">Lösenord:</label>
+                <input id="password" name="password" type="password" autocomplete="current-password">
+                <br>
+                <input type="submit" value="Anmäl intresse till uppdrag">
+            </form>
             
         </template>
     <script src="/resources/assignment.js" async></script>
