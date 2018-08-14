@@ -106,7 +106,10 @@
             method: 'POST',
             credentials: 'include',
             mode: 'cors',
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
 
         result.then(function (response) {
