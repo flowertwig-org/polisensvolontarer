@@ -95,11 +95,18 @@
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
         }
+
+        var data = {
+            key: 'Test',
+            comment: 'Test1',
+            password: 'Test2'
+        };
     
         var result = fetch(serviceUrl, {
             method: 'POST',
             credentials: 'include',
-            mode: 'cors'
+            mode: 'cors',
+            body: JSON.stringify(data)
         });
 
         result.then(function (response) {
