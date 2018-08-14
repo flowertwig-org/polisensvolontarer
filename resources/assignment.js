@@ -106,6 +106,9 @@
             method: 'POST',
             credentials: 'include',
             mode: 'cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             body: "key=" + assignmentId + "&comment=" + encodeURI(comment) + "&password=" + encodeURI(password)
         });
 
