@@ -25,6 +25,41 @@
             return myAssignments;
         }
 
+        // Dina intresse anmälningar
+        var nOfInterests = myAssignments.interests.length;
+        document.querySelector('#my-assignments-interests-count').textContent = nOfInterests;
+        document.querySelector('#my-assignments-interests').style.display = 'block';
+
+        var main = document.querySelector("#my-assignments-interests-items");
+        if (nOfInterests > 0) {
+            if ('content' in document.createElement('template')) {
+                var templateAssignment = document.querySelector('#template-my-assignments');
+
+                for (let index = 0; index < nOfInterests; index++) {
+                    const assignment = myAssignments.interests[index];
+                    
+                    var assignmentName = templateAssignment.content.querySelector(".assignment-name");
+                    assignmentName.textContent = assignment.name;
+    
+                    assignmentName.href = "/restricted/assignment?key=" + assignment.id;
+                    var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
+                    assignmentWhen.textContent = assignment.date;
+                    var assignmentType = templateAssignment.content.querySelector(".assignment-type");
+                    assignmentType.textContent = assignment.category;
+    
+                    var cloneAssignment = document.importNode(templateAssignment.content, true);
+                    main.appendChild(cloneAssignment);
+                }
+
+            } else {
+                // TODO: Show warning message to user that it requires template support
+            }
+        }else {
+            main.innerHTML = '<p>Du har inga intresseanmälningar</p>';
+        }
+
+
+        // Dina uppdrag
         var nOfConfirms = myAssignments.confirms.length;
         document.querySelector('#my-assignments-count').textContent = nOfConfirms;
         document.querySelector('#my-assignments').style.display = 'block';
