@@ -27,11 +27,11 @@
 
         // Dina intresse anmälningar
         var nOfInterests = myAssignments.interests.length;
-        document.querySelector('#my-assignments-interests-count').textContent = nOfInterests;
-        document.querySelector('#my-assignments-interests').style.display = 'block';
-
-        var main = document.querySelector("#my-assignments-interests-items");
+        // Visa bara intressa anmälningar OM vi har några
         if (nOfInterests > 0) {
+            document.querySelector('#my-assignments-interests-count').textContent = nOfInterests;
+
+            var main = document.querySelector("#my-assignments-interests-items");
             if ('content' in document.createElement('template')) {
                 var templateAssignment = document.querySelector('#template-my-assignments');
 
@@ -49,13 +49,13 @@
     
                     var cloneAssignment = document.importNode(templateAssignment.content, true);
                     main.appendChild(cloneAssignment);
+
+                    document.querySelector('#my-assignments-interests').style.display = 'block';
                 }
 
             } else {
                 // TODO: Show warning message to user that it requires template support
             }
-        }else {
-            main.innerHTML = '<p>Du har inga intresseanmälningar</p>';
         }
 
 
