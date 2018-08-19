@@ -13,7 +13,7 @@
                 warningElement.className = 'warning';
                 switch (value) {
                     case "1":
-                        warningElement.innerText = 'Du använder ett vanligt använt lösenord och bör därför byta.';
+                        warningElement.innerText = 'Du använder ett vanligt använt lösenord och bör därför byta. Just nu kan du bara göra detta på: http://volontar.polisen.se';
                         break;
                     }
                 document.querySelector('main').insertAdjacentElement('afterbegin', warningElement);
