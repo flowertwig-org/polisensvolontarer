@@ -17,11 +17,11 @@
             return response.json();
             // TODO: Re enable this part when code is working as it should again
         } else {
-            window.location.assign('/login/');
+            window.location.assign('/');
         }
     }).then(function (myAssignments) {
         if (!myAssignments || !('confirms' in myAssignments)) {
-            window.location.assign('/login/');
+            window.location.assign('/');
             return myAssignments;
         }
 
@@ -51,6 +51,41 @@
                     main.appendChild(cloneAssignment);
 
                     document.querySelector('#my-assignments-interests').style.display = 'block';
+                }
+
+            } else {
+                // TODO: Show warning message to user that it requires template support
+            }
+        }
+
+
+
+        // Dina reservplatser
+        var nOfReservations = myAssignments.reservations.length;
+        // Visa bara reservplatser OM vi har några
+        if (nOfReservations > 0) {
+            document.querySelector('#my-assignments-reservations-count').textContent = nOfReservations;
+
+            var main = document.querySelector("#my-assignments-reservations-items");
+            if ('content' in document.createElement('template')) {
+                var templateAssignment = document.querySelector('#template-my-assignments');
+
+                for (let index = 0; index < nOfReservations; index++) {
+                    const assignment = myAssignments.reservations[index];
+                    
+                    var assignmentName = templateAssignment.content.querySelector(".assignment-name");
+                    assignmentName.textContent = assignment.name;
+    
+                    assignmentName.href = "/restricted/assignment?key=" + assignment.id;
+                    var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
+                    assignmentWhen.textContent = assignment.date;
+                    var assignmentType = templateAssignment.content.querySelector(".assignment-type");
+                    assignmentType.textContent = assignment.category;
+    
+                    var cloneAssignment = document.importNode(templateAssignment.content, true);
+                    main.appendChild(cloneAssignment);
+
+                    document.querySelector('#my-assignments-reservations').style.display = 'block';
                 }
 
             } else {
