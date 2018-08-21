@@ -469,7 +469,7 @@
             if (response.ok) {
                 return response.json();
             } else {
-                window.location.assign('/login/?page=available-assignments');
+                window.location.assign('/?page=available-assignments');
             }
         }).then(function (array) {
             var dayGroups = [];
@@ -572,7 +572,7 @@
             return dayGroups;
         }).then(function (dayGroups) {
             if (!dayGroups || !dayGroups.length) {
-                window.location.assign('/login/?page=available-assignments');
+                window.location.assign('/?page=available-assignments');
                 return dayGroups;
             }
 
