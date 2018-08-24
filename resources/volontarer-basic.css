@@ -173,7 +173,8 @@ main label {
 main input[type=checkbox] + label {
     display: inline;
 }
-main input[type=submit] {
+main input[type=submit],
+#logout-form input[type=submit] {
     display: block;
     width: 100%;
     color: #fff;
@@ -184,7 +185,8 @@ main input[type=submit] {
     border: solid 1px;
     border-radius: 5px;
 }
-main input[type=submit]:hover {
+main input[type=submit]:hover,
+#logout-form input[type=submit]:hover {
     background-color: lightblue;
     color: #0970b8;
 }
