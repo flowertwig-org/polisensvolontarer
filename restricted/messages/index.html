@@ -20,8 +20,9 @@
             <a href="#">Smått och gott</a>
             <a href="#">Kontakta oss</a>
             -->
-            <br />
-            <a href="/">Logga ut</a>
+            <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
+                <input type="submit" value="Logga ut" />
+            </form>
         </menu>
         <div class="icons">
             <div class="icon icon-message">
@@ -126,6 +127,7 @@
         <br /><br />
         <div>Icons made by <a href="http://www.freepik.com" title="Freepik" target="_blank" rel="noopener">Freepik</a> and <a href="https://www.flaticon.com/authors/robin-kylander" title="Robin Kylander" target="_blank" rel="noopener">Robin Kylander</a><br /> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener">CC 3.0 BY</a></div>
     </footer>
+    <script src="/resources/environment.js" async></script>
     <script src="/resources/keep-alive.js" async></script>
     <script src="/resources/warnings.js" async></script>
 </body>

@@ -184,7 +184,17 @@ main input[type=submit] {
     border: solid 1px;
     border-radius: 5px;
 }
-main input[type=submit]:hover {
+#logout-form input[type=submit] {
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    margin-top: 10px;
+    border: solid 1px;
+    border-radius: 5px;
+}
+main input[type=submit]:hover,
+#logout-form input[type=submit]:hover {
     background-color: lightblue;
     color: #0970b8;
 }

@@ -21,7 +21,9 @@
             <a href="#">Kontakta oss</a>
             <br />
             -->
-            <a href="/">Logga ut</a>
+            <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
+                <input type="submit" value="Logga ut" />
+            </form>
         </menu>
         <div class="icons">
             <!--
@@ -378,6 +380,7 @@
             <br />
         </div>
     </template>
+    <script src="/resources/environment.js" async></script>
     <script src="/resources/available-assignments.js" async></script>
     <script src="/resources/keep-alive.js" async></script>
 </body>
