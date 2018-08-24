@@ -173,10 +173,18 @@ main label {
 main input[type=checkbox] + label {
     display: inline;
 }
-main input[type=submit],
-#logout-form input[type=submit] {
+main input[type=submit] {
     display: block;
     width: 100%;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    margin-top: 10px;
+    border: solid 1px;
+    border-radius: 5px;
+}
+#logout-form input[type=submit] {
     color: #fff;
     background-color: transparent;
     border: none;
