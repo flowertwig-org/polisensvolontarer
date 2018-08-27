@@ -597,7 +597,7 @@
                 }else {
                     countInfo = info.totalnOfItems;
                 }
-                countInfoElement.textContent = '(' + countInfo + ')';
+                countInfoElement.textContent = ' (' + countInfo + ')';
 
                 var lastMonthName = false;
                 var lastWeekNumber = false;
