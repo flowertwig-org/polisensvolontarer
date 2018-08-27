@@ -108,6 +108,10 @@ main {
         color: #0970b8;
     }
 
+    main a:visited {
+        color: #9C27B0;
+    }
+
 .warning {
     background-color: orange;
     padding: 10px;
