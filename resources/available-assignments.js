@@ -472,10 +472,20 @@
                 window.location.assign('/?page=available-assignments');
             }
         }).then(function (array) {
-            var dayGroups = [];
+
+            var info = {
+                totalnOfItems: 0,
+                filterednOfItems: 0,
+                dayGroups: []
+            };
+
             for (var index = 0; index < array.length; index++) {
                 var firstItem = array[index][0];
                 var items = array[index];
+
+                // Let us know the total number of items
+                info.totalnOfItems += items.length;
+
                 var date = new Date(firstItem.date);
                 var monthNumber = date.getMonth() + 1;
                 var dayOfMonth = date.getDate();
@@ -554,10 +564,11 @@
                 }
 
                 items = filterItems(items, dayOfWeekNumber);
+                info.filterednOfItems += items.length;
 
                 const weHaveItemsToShowForDay = items.length > 0;
                 if (weHaveItemsToShowForDay) {
-                    dayGroups.push({
+                    info.dayGroups.push({
                         monthNumber: monthNumber,
                         monthName: monthName,
                         dayOfMonth: dayOfMonth,
@@ -569,14 +580,25 @@
                     });
                 }
             }
-            return dayGroups;
-        }).then(function (dayGroups) {
-            if (!dayGroups || !dayGroups.length) {
+            return info;
+        }).then(function (info) {
+            if (!info.dayGroups || !info.dayGroups.length) {
                 window.location.assign('/?page=available-assignments');
-                return dayGroups;
+                return info.dayGroups;
             }
 
             if ('content' in document.createElement('template')) {
+
+                // Information om antal upp 
+                var countInfoElement = document.querySelector('#showed-count-information');
+                var countInfo = '';
+                if (info.totalnOfItems != info.filterednOfItems) {
+                    countInfo = info.filterednOfItems + ' av ' + info.totalnOfItems;
+                }else {
+                    countInfo = info.totalnOfItems;
+                }
+                countInfoElement.textContent = '(' + countInfo + ')';
+
                 var lastMonthName = false;
                 var lastWeekNumber = false;
                 var itemsContainer = document.querySelector("#items-container");
@@ -590,8 +612,8 @@
                 var templateAssignment = document.querySelector('#template-assignment');
 
                 var weekIndex = 1;
-                for (let index = 0; index < dayGroups.length; index++) {
-                    const day = dayGroups[index];
+                for (let index = 0; index < info.dayGroups.length; index++) {
+                    const day = info.dayGroups[index];
 
                     if (lastMonthName != day.monthName) {
                         // logic for when we are in same week but just changed month.
