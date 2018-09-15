@@ -101,8 +101,9 @@ header .icon-focus-ring {
 
     menu {
         border-top: solid 1px #fff;
-        margin: 0 15px;
-        padding: 15px;
+        margin: 0 5px;
+        margin-top: 15px;
+        padding: 15px 5px;
     }
     menu a {
         display: block;
