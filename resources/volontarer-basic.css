@@ -164,6 +164,18 @@ label .icon {
     cursor: pointer;
 }
 
+.icon-menu-v2 {
+    width: 25px;
+    height: 25px;
+}
+.icon-menu-v2-inner {
+    width: 25px;
+    height: 4px;
+    margin-top: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
 #menu:active ~ .icons .icon-menu svg,
 #menu:focus ~ .icons .icon-menu svg {
     fill: lightblue;
