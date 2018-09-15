@@ -9,6 +9,7 @@ body {
 header {
     background-color: #0970b8;
     color: #fff;
+    padding: 10px;
 }
 
     header a,
@@ -46,6 +47,12 @@ header {
             font-weight: bold;
             line-height: 50px;
         }
+
+        header .logo-v2 {
+            display: inline;
+            vertical-align: bottom;
+        }
+
     header a:active,
     header a:focus {
         color: lightblue;
