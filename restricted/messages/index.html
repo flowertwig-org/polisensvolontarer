@@ -21,16 +21,13 @@
 </head>
 <body>
     <header>
-        <a href="/restricted/" class="logo">
-            Polisens Volontärer
-        </a>
+            <img class="logo-v2" src="/favicon-32x32.png" />
+            <a href="/restricted/" class="logo-text">
+                Polisens Volontärer
+            </a>
         <input type="checkbox" id="menu" name="menu" class="toggable" />
         <menu class="toggle-area">
             <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
-            <!--
-            <a href="#">Smått och gott</a>
-            <a href="#">Kontakta oss</a>
-            -->
             <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
                 <input type="submit" value="Logga ut" />
             </form>
