@@ -52,6 +52,9 @@ header {
             display: inline;
             vertical-align: bottom;
         }
+        header .logo-text {
+            font-weight: bold;
+        }
 
     header a:active,
     header a:focus {
