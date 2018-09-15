@@ -175,6 +175,10 @@ label .icon {
     background-color: #fff;
     border-radius: 5px;
 }
+#menu:active ~ .icon-menu-v2-inner,
+#menu:focus ~ .icon-menu-v2-inner {
+    background-color: lightblue;
+}
 
 #menu:active ~ .icons .icon-menu svg,
 #menu:focus ~ .icons .icon-menu svg {
