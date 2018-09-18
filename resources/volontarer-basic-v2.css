@@ -293,3 +293,34 @@ textarea {
         }
     }
 }
+
+@media only screen and (min-width: 600px) {
+    .icons {
+        display: none;
+    }
+    menu {
+        position: absolute;
+        top: 0px;
+        right: 15px;
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+    menu a {
+        display: inline;
+        margin-right: 15px;
+        position: relative;
+        top: 15px;        
+    }
+    .toggle-area {
+        display: block;
+    }
+    #logout-form {
+        display: inline;
+    }
+    #logout-form input {
+        position: relative;
+        top: 10px;
+        margin: 0;
+    }
+}
