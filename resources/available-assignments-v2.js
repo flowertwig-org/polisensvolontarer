@@ -487,7 +487,6 @@
 
                 // Let us know the total number of items
                 info.totalnOfItems += items.length;
-                console.log('totalnOfItems', info.totalnOfItems);
 
                 var date = new Date(firstItem.date);
                 var monthNumber = date.getMonth() + 1;
@@ -585,9 +584,8 @@
             }
             return info;
         }).then(function (info) {
-            if (!info.totalnOfItems || !info.totalnOfItems.length) {
-                console.log('totalnOfItems2', info.totalnOfItems);
-                window.location.assign('/?page=available-assignments&test2=' + info.totalnOfItems);
+            if (!info.totalnOfItems) {
+                window.location.assign('/?page=available-assignments');
                 return info.dayGroups;
             }
 
