@@ -27,7 +27,8 @@
             </a>
         <input type="checkbox" id="menu" name="menu" class="toggable" />
         <menu class="toggle-area">
-            <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
+            <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a><br />
+            <a href="/restricted/">Mina uppdrag</a>
 
             <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
                 <input type="submit" value="Logga ut" />
@@ -51,12 +52,12 @@
         </p>
 
         <div id="my-assignments" style="display:none">
-            <h2>Dina uppdrag (<span id="my-assignments-count">?</span>)</h2>
+            <h2>Mina uppdrag (<span id="my-assignments-count">?</span>)</h2>
             <div id="my-assignments-confirms"></div>
         </div>
 
         <div id="my-assignments-interests" style="display:none">
-            <h2>Dina intresseanmälningar (<span id="my-assignments-interests-count">?</span>)</h2>
+            <h2>Mina intresseanmälningar (<span id="my-assignments-interests-count">?</span>)</h2>
             <div id="my-assignments-interests-items"></div>
         </div>
 
