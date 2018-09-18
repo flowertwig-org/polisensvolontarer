@@ -318,7 +318,7 @@ textarea {
     #logout-form {
         display: inline;
     }
-    #logout-form input {
+    #logout-form input[type=submit] {
         position: relative;
         top: 10px;
         margin: 0;
