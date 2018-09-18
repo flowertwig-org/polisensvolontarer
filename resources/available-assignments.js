@@ -150,7 +150,9 @@
             "Kvällsvandring",
             "Pass / Reception",
             "Volontärmöte",
-            "Övrigt"
+            "Övrigt",
+            "Cykel / Segway",
+            "Föreläsning / Temakväll"
         ];
         return types;
     }
