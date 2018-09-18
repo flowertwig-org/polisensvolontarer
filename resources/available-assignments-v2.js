@@ -585,7 +585,7 @@
             return info;
         }).then(function (info) {
             if (!info.totalnOfItems || !info.totalnOfItems.length) {
-                window.location.assign('/?page=available-assignments');
+                window.location.assign('/?page=available-assignments&test=2');
                 return info.dayGroups;
             }
 
