@@ -586,6 +586,7 @@
             return info;
         }).then(function (info) {
             if (!info.totalnOfItems || !info.totalnOfItems.length) {
+                console.log('totalnOfItems2', info.totalnOfItems);
                 window.location.assign('/?page=available-assignments&test2=' + info.totalnOfItems);
                 return info.dayGroups;
             }
