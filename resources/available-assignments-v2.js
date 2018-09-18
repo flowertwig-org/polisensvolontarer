@@ -487,7 +487,7 @@
 
                 // Let us know the total number of items
                 info.totalnOfItems += items.length;
-                console.log('totalnOfItems', totalnOfItems);
+                console.log('totalnOfItems', info.totalnOfItems);
 
                 var date = new Date(firstItem.date);
                 var monthNumber = date.getMonth() + 1;
