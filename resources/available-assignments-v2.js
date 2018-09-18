@@ -584,7 +584,7 @@
             }
             return info;
         }).then(function (info) {
-            if (!info.dayGroups || !info.dayGroups.length) {
+            if (!info.totalnOfItems || !info.totalnOfItems.length) {
                 window.location.assign('/?page=available-assignments');
                 return info.dayGroups;
             }
