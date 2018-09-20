@@ -150,7 +150,9 @@
             "Kvällsvandring",
             "Pass / Reception",
             "Volontärmöte",
-            "Övrigt"
+            "Övrigt",
+            "Cykel / Segway",
+            "Föreläsning / Temakväll"
         ];
         return types;
     }
@@ -582,7 +584,7 @@
             }
             return info;
         }).then(function (info) {
-            if (!info.dayGroups || !info.dayGroups.length) {
+            if (!info.totalnOfItems) {
                 window.location.assign('/?page=available-assignments');
                 return info.dayGroups;
             }

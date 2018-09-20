@@ -9,6 +9,7 @@ body {
 header {
     background-color: #0970b8;
     color: #fff;
+    padding: 10px;
 }
 
     header a,
@@ -46,6 +47,15 @@ header {
             font-weight: bold;
             line-height: 50px;
         }
+
+        header .logo-v2 {
+            display: inline;
+            vertical-align: bottom;
+        }
+        header .logo-text {
+            font-weight: bold;
+        }
+
     header a:active,
     header a:focus {
         color: lightblue;
@@ -91,11 +101,13 @@ header .icon-focus-ring {
 
     menu {
         border-top: solid 1px #fff;
-        margin: 0 15px;
-        padding: 15px;
+        margin: 0 5px;
+        margin-top: 15px;
+        padding: 15px 5px;
     }
     menu a {
         display: block;
+        padding: 5px 0;
     }
 
 main {
@@ -126,7 +138,7 @@ main ul {
 }
 
 footer {
-    padding: 5px 10px;
+    padding: 20px 10px;
     background-color: #000;
     color: #fff;
     text-align: center;
@@ -151,6 +163,22 @@ footer .logo {
 }
 label .icon {
     cursor: pointer;
+}
+
+.icon-menu-v2 {
+    width: 25px;
+    height: 25px;
+}
+.icon-menu-v2-inner {
+    width: 25px;
+    height: 4px;
+    margin-top: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+#menu:active ~ .icons .icon-menu-v2-inner,
+#menu:focus ~ .icons .icon-menu-v2-inner {
+    background-color: lightblue;
 }
 
 #menu:active ~ .icons .icon-menu svg,
@@ -263,5 +291,36 @@ textarea {
             grid-template-rows: auto;
             grid-gap: 10px;
         }
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .icons {
+        display: none;
+    }
+    menu {
+        position: absolute;
+        top: 0px;
+        right: 15px;
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+    menu a {
+        display: inline;
+        margin-right: 15px;
+        position: relative;
+        top: 15px;        
+    }
+    .toggle-area {
+        display: block;
+    }
+    #logout-form {
+        display: inline;
+    }
+    #logout-form input[type=submit] {
+        position: relative;
+        top: 10px;
+        margin: 0;
     }
 }

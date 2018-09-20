@@ -5,7 +5,7 @@
     <title>Polisens Volontärer</title>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
-    <link rel="stylesheet" href="/resources/volontarer-basic.css" />
+    <link rel="stylesheet" href="/resources/volontarer-basic-v2.css" />
     <link rel="stylesheet" href="/resources/volontarer-grid.css" />
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -20,7 +20,8 @@
     <meta name="theme-color" content="#ffffff"></head>
 <body>
     <header>
-        <a href="/" class="logo">
+        <a href="/" class="logo-text">
+            <img class="logo-v2" src="/favicon-32x32.png" />
             Polisens Volontärer
         </a>
 
@@ -29,11 +30,10 @@
         </div>
     </header>
     <main>
-        <h1>Inloggning för Polisens volontärer</h1>
+        <h1>Inloggning</h1>
         <p>
-            Genom att logga in accepterar du vår användning av kakor för att kunna tillhandahålla denna tjänst.<br>
-            <br>
-            <a href="/kakor/">Läs mer om vad kakor är och vår användning av dessa</a>
+            Genom att logga in accepterar du vår användning av kakor för att kunna tillhandahålla denna tjänst. 
+            <a href="/kakor/">Läs mer</a>
         </p>
 
         <form id="login-form" action="https://polisens-volontarer-api.azurewebsites.net/api/login" method="post" enctype="application/x-www-form-urlencoded">
@@ -50,13 +50,6 @@
 
     </main>
     <footer>
-        <div class="logo">Polisens Volontärer</div>
-
-        <br />
-
-        <a href="https://github.com/flowertwig-org/polisensvolontarer" target="_blank" rel="noopener">Fork website on GitHub</a>
-        <br /><br />
-        <div>Icons made by <a href="http://www.freepik.com" title="Freepik" target="_blank" rel="noopener">Freepik</a> and <a href="https://www.flaticon.com/authors/robin-kylander" title="Robin Kylander" target="_blank" rel="noopener">Robin Kylander</a><br /> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener">CC 3.0 BY</a></div>
     </footer>
 
     <script src="/resources/environment.js" async></script>

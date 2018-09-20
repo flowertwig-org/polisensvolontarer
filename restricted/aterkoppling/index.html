@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8" />
+    <title>Återkoppling - Polisens Volontärer</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
+    <link rel="stylesheet" href="/resources/volontarer-basic-v2.css" />
+    <link rel="stylesheet" href="/resources/volontarer-grid.css" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffffff">
+    <meta name="apple-mobile-web-app-title" content="Polisens Volont&auml;rer">
+    <meta name="application-name" content="Polisens Volont&auml;rer">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff"></head>
+</head>
+<body>
+    <header>
+            <a href="/restricted/" class="logo-text">
+                <img class="logo-v2" src="/favicon-32x32.png" />
+                Polisens Volontärer
+            </a>
+        <input type="checkbox" id="menu" name="menu" class="toggable" />
+        <menu class="toggle-area">
+                <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
+                <a href="/restricted/">Mina uppdrag</a>
+            <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
+                <input type="submit" value="Logga ut" />
+            </form>
+        </menu>
+        <div class="icons">
+                <label for="menu">
+                        <div class="icon icon-menu-v2">
+                            <div class="icon-menu-v2-inner"></div>
+                            <div class="icon-menu-v2-inner"></div>
+                            <div class="icon-menu-v2-inner"></div>
+                            <div class="icon-focus-ring"></div>
+                        </div>
+                    </label>
+                </div>
+    </header>
+    <main>
+
+        <h1>Återkoppling</h1>
+        <p>
+            Tack för att du vill förbättra denna webbplats antingen genom förbättringsförslag eller buggrapportering.<br>
+            Det är tack vare dig som vi ständigt kan förbättra denna webbplats och göra upplevelsen för dig bättre.<br>
+            <br>
+            Vi använder oss av GitHub som ärendehanteringssystem och för att kunna lämna förbättringsförslag eller buggrapporter till oss behöver du ha ett konto där.<br>
+            När du klickar på någon av länkarna nedan så har du antingen möjlighet att logga in eller skapa ett konto (Att skapa ett konto är gratis).<br>
+            <br>
+            Under respektive rubrik nedan hittar du information som gör att den återkoppling du ger oss hjälper på bästa sätt.<br>
+            Vänligen följ detta format så mycket som möjligt för att göra det möjligt för oss att snabbare och bättre göra den ändring du vill ha.
+        </p>
+        <h2>Förbättringsförslag</h2>
+        <p>
+            När du lämnar ett förbättringsförslag är det viktigt att vi snabbt och enkelt förstår vad du vill ändra.<br>
+            Detta gör du genom att:
+            <ul>
+                <li>Skriva en kort och tydlig titel (Title)</li>
+                <li>Skriv för <b>VEM</b> denna ändring är</li>
+                <li>Skriv <b>VARFÖR</b> denna ändring behövs</li>
+                <li>Skriv <b>VAD</b> denna ändring innebär</li>
+                <li>Har du en skärmdump eller kan rita en bild och bifoga hjälper detta mycket</li>
+            </ul>
+            <a href="https://github.com/flowertwig-org/polisensvolontarer/issues/new?labels=enhancement&title=Kort%20beskrivning%20av%20ditt%20förslag&body=1.%20kort%20och%20tydlig%20titel.%202.%20VEM%203.%20VARFÖR%204.%20VAD" target="_blank" rel="noopener">Lämna förbättringsförslag</a><br>
+        </p>
+        <h2>Buggrapportering</h2>
+        <p>
+                När du lämnar en buggrapport är det viktigt att vi snabbt och enkelt förstår vad som är fel.<br>
+                Detta gör du genom att:
+                <ul>
+                    <li>Skriva en kort och tydlig titel (Title)</li>
+                    <li>Skriv för <b>VILKA</b> detta händer, bara dig eller alla?</li>
+                    <li>Skriv <b>NÄR</b> detta fel hände (Datum och tid)</li>
+                    <li>Skriv <b>VAD</b> som är fel</li>
+                    <li>Om du har möjlighet att <b>bifoga en skärmdump</b> som visar felet brukar det vara till väldigt stor hjälp</li>
+                </ul>
+                <br>
+            <a href="https://github.com/flowertwig-org/polisensvolontarer/issues/new?labels=bug&title=BUGG:%20Kort%20beskrivning%20av%20felet&body=1.%20kort%20och%20tydlig%20titel.%202.%20VILKA%203.%20NÄR%204.%20VAD" target="_blank" rel="noopener">Rapportera fel</a><br>
+        </p>
+    </main>
+    <footer>
+    </footer>
+
+    <script src="/resources/environment.js" async></script>
+    <script src="/resources/keep-alive.js" async></script>
+    <script src="/resources/warnings.js" async></script>
+</body>
+</html>
