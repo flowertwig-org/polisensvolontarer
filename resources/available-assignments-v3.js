@@ -251,6 +251,23 @@
                 setSettingValue("FilterAlwaysShowTypes", pvAlwaysShowTypes);
             }else {
                 // TODO: convert old (AND VALID) filter values
+                pvAlwaysShowTypes = '';
+                var types = getTypes();
+                for (let index = 0; index < tmp.length; index++) {
+                    const name = tmp[index];
+                    for (let typeIndex = 0; typeIndex < types.length; typeIndex++) {
+                        const typeName = types[typeIndex];
+                        if (name === typeName) {
+                            filterSettings.AlwaysShowTypes.push(typeIndex.toString());
+                            hasFilter = true;
+                            pvAlwaysShowTypes += '' + typeIndex + ',';
+                        }
+                    }
+                }
+
+                if (hasFilter) {
+                    setSettingValue("FilterAlwaysShowTypes", pvAlwaysShowTypes);
+                }
             }
         }
 
