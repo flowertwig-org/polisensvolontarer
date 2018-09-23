@@ -243,46 +243,74 @@
 
         var pvAlwaysShowTypes = getSettingValue("FilterAlwaysShowTypes");
         if (pvAlwaysShowTypes) {
-            hasFilter = true;
             filterSettings.AlwaysShowTypes = pvAlwaysShowTypes.split(',');
-            // Update timestamp for cookie
-            setSettingValue("FilterAlwaysShowTypes", pvAlwaysShowTypes);
+            if (convertToNames(filterSettings.AlwaysShowTypes, getTypes()).length > 0) {
+                hasFilter = true;
+                // Update timestamp for cookie
+                setSettingValue("FilterAlwaysShowTypes", pvAlwaysShowTypes);
+            }else {
+                // TODO: convert old (AND VALID) filter values
+            }
         }
 
         var pvNeverShowTypes = getSettingValue("FilterNeverShowTypes");
         if (pvNeverShowTypes) {
-            hasFilter = true;
             filterSettings.NeverShowTypes = pvNeverShowTypes.split(',');
-            // Update timestamp for cookie
-            setSettingValue("FilterNeverShowTypes", pvNeverShowTypes);
+            if (convertToNames(filterSettings.NeverShowTypes, getTypes()).length > 0) {
+                hasFilter = true;
+                // Update timestamp for cookie
+                setSettingValue("FilterNeverShowTypes", pvNeverShowTypes);
+            }else {
+                // TODO: convert old (AND VALID) filter values
+            }
         }
 
         var pvWorkDayTypes = getSettingValue("FilterHideWorkDayTypes")
         if (pvWorkDayTypes) {
-            hasFilter = true;
             filterSettings.HideWorkDayTypes = pvWorkDayTypes.split(',');
-            setSettingValue("FilterHideWorkDayTypes", pvWorkDayTypes);
+            if (convertToNames(filterSettings.HideWorkDayTypes, getTypes()).length > 0) {
+                hasFilter = true;
+                // Update timestamp for cookie
+                setSettingValue("FilterHideWorkDayTypes", pvWorkDayTypes);
+            }else {
+                // TODO: convert old (AND VALID) filter values
+            }
         }
 
         var pvWeekendTypes = getSettingValue("FilterHideWeekendTypes");
         if (pvWeekendTypes) {
-            hasFilter = true;
             filterSettings.HideWeekendTypes = pvWeekendTypes.split(',');
-            setSettingValue("FilterHideWeekendTypes", pvWeekendTypes);
+            if (convertToNames(filterSettings.HideWeekendTypes, getTypes()).length > 0) {
+                hasFilter = true;
+                // Update timestamp for cookie
+                setSettingValue("FilterHideWeekendTypes", pvWeekendTypes);
+            }else {
+                // TODO: convert old (AND VALID) filter values
+            }
         }
 
         var pvNeverShowAreas = getSettingValue("FilterNeverShowAreas");
         if (pvNeverShowAreas) {
-            hasFilter = true;
             filterSettings.NeverShowAreas = pvNeverShowAreas.split(',');
-            setSettingValue("FilterNeverShowAreas", pvNeverShowAreas);
+            if (convertToNames(filterSettings.NeverShowAreas, getAreas()).length > 0) {
+                hasFilter = true;
+                // Update timestamp for cookie
+                setSettingValue("FilterNeverShowAreas", pvNeverShowAreas);
+            }else {
+                // TODO: convert old (AND VALID) filter values
+            }
         }
 
         var pvAlwaysShowAreas = getSettingValue("FilterAlwaysShowAreas");
         if (pvAlwaysShowAreas) {
-            hasFilter = true;
             filterSettings.AlwaysShowAreas = pvAlwaysShowAreas.split(',');
-            setSettingValue("FilterAlwaysShowAreas", pvAlwaysShowAreas);
+            if (convertToNames(filterSettings.AlwaysShowAreas, getAreas()).length > 0) {
+                hasFilter = true;
+                // Update timestamp for cookie
+                setSettingValue("FilterAlwaysShowAreas", pvAlwaysShowAreas);
+            }else {
+                // TODO: convert old (AND VALID) filter values
+            }
         }
 
         if (hasFilter) {
