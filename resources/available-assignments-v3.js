@@ -31,6 +31,39 @@
         }
     }
 
+    function convertToNames(arrayOfIndexes, arrayOfNames) {
+        var arr =  [];
+        for (let index = 0; index < arrayOfIndexes.length; index++) {
+            const indexData = arrayOfIndexes[index];
+            var name = getValueFromArray(indexData, arrayOfNames);
+            if (name) {
+                arr.push(name);
+            }
+        }
+        return arr;
+    }
+
+    function getValueFromArray(index, arrayToGetValueFrom) {
+        var parsedIndex = parseInt(index);
+        if (isNaN(parsedIndex)) {
+            return "";
+        }else {
+            if (arrayToGetValueFrom.length > parsedIndex) {
+                return arrayToGetValueFrom[parsedIndex];
+            }else {
+                return "";
+            }
+        }
+    }
+
+    function getTypeName(index) {
+        return getValueFromArray(index, getTypes());
+    }
+
+    function getAreaName(index) {
+        return getValueFromArray(index, getAreas());
+    }
+
     function filterItems(items, dayOfWeekNumber) {
 
         var filterSettings = getFilterSettings();
@@ -47,7 +80,7 @@
             var isProtected = false;
 
             for (let index = 0; index < filterSettings.AlwaysShowTypes.length; index++) {
-                const typeName = filterSettings.AlwaysShowTypes[index];
+                const typeName = getTypeName(filterSettings.AlwaysShowTypes[index]);
                 if (assignment.category == typeName) {
                     // Assignment are protected
                     isProtected = true;
@@ -56,7 +89,7 @@
             }
 
             for (let index = 0; index < filterSettings.AlwaysShowAreas.length; index++) {
-                const areaName = filterSettings.AlwaysShowAreas[index];
+                const areaName = getAreaName(filterSettings.AlwaysShowAreas[index]);
                 if (assignment.area == areaName) {
                     // Assignment are protected
                     isProtected = true;
@@ -71,7 +104,7 @@
             let itemsMarkedAsRemove = false;
 
             for (let index = 0; index < filterSettings.NeverShowTypes.length; index++) {
-                const typeName = filterSettings.NeverShowTypes[index];
+                const typeName = getTypeName(filterSettings.NeverShowTypes[index]);
                 if (assignment.category == typeName) {
                     indexesToRemove.push(assignmentIndex);
                     itemsMarkedAsRemove = true;
@@ -81,7 +114,7 @@
             const isWeekend = dayOfWeekNumber >= 6;
             if (!isWeekend) {
                 for (let index = 0; index < filterSettings.HideWorkDayTypes.length; index++) {
-                    const typeName = filterSettings.HideWorkDayTypes[index];
+                    const typeName = getTypeName(filterSettings.HideWorkDayTypes[index]);
                     if (assignment.category == typeName) {
                         indexesToRemove.push(assignmentIndex);
                         itemsMarkedAsRemove = true;
@@ -89,7 +122,7 @@
                 }
             } else {
                 for (let index = 0; index < filterSettings.HideWeekendTypes.length; index++) {
-                    const typeName = filterSettings.HideWeekendTypes[index];
+                    const typeName = getTypeName(filterSettings.HideWeekendTypes[index]);
                     if (assignment.category == typeName) {
                         indexesToRemove.push(assignmentIndex);
                         itemsMarkedAsRemove = true;
@@ -99,7 +132,7 @@
 
             if (!itemsMarkedAsRemove) {
                 for (let index = 0; index < filterSettings.NeverShowAreas.length; index++) {
-                    const areaName = filterSettings.NeverShowAreas[index];
+                    const areaName = getAreaName(filterSettings.NeverShowAreas[index]);
                     if (assignment.area == areaName) {
                         indexesToRemove.push(assignmentIndex);
                         itemsMarkedAsRemove = true;
@@ -140,6 +173,7 @@
     }
 
     function getTypes() {
+        // Order MUST remain (stored in user cookies), add more items last
         var types = [
             "Biträde vid utbildning /möte",
             "Brottsofferstöd",
@@ -158,6 +192,7 @@
     }
 
     function getAreas() {
+        // Order MUST remain (stored in user cookies), add more items last
         var areas = [
             // City
             "Norrmalm",
@@ -291,7 +326,7 @@
 
             if (filterSettings && filterSettings.AlwaysShowTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.AlwaysShowTypes.length; selectedIndex++) {
-                    const selectedTypeName = filterSettings.AlwaysShowTypes[selectedIndex];
+                    const selectedTypeName = getTypeName(filterSettings.AlwaysShowTypes[selectedIndex]);
                     for (let index = 0; index < types.length; index++) {
                         const typeName = types[index];
                         if (selectedTypeName == typeName) {
@@ -303,7 +338,7 @@
 
             if (filterSettings && filterSettings.NeverShowTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowTypes.length; selectedIndex++) {
-                    const selectedTypeName = filterSettings.NeverShowTypes[selectedIndex];
+                    const selectedTypeName = getTypeName(filterSettings.NeverShowTypes[selectedIndex]);
                     for (let index = 0; index < types.length; index++) {
                         const typeName = types[index];
                         if (selectedTypeName == typeName) {
@@ -315,7 +350,7 @@
 
             if (filterSettings && filterSettings.HideWorkDayTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.HideWorkDayTypes.length; selectedIndex++) {
-                    const selectedTypeName = filterSettings.HideWorkDayTypes[selectedIndex];
+                    const selectedTypeName = getTypeName(filterSettings.HideWorkDayTypes[selectedIndex]);
                     for (let index = 0; index < types.length; index++) {
                         const typeName = types[index];
                         if (selectedTypeName == typeName) {
@@ -327,7 +362,7 @@
 
             if (filterSettings && filterSettings.HideWeekendTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.HideWeekendTypes.length; selectedIndex++) {
-                    const selectedTypeName = filterSettings.HideWeekendTypes[selectedIndex];
+                    const selectedTypeName = getTypeName(filterSettings.HideWeekendTypes[selectedIndex]);
                     for (let index = 0; index < types.length; index++) {
                         const typeName = types[index];
                         if (selectedTypeName == typeName) {
@@ -339,7 +374,7 @@
 
             if (filterSettings && filterSettings.AlwaysShowAreas) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.AlwaysShowAreas.length; selectedIndex++) {
-                    const selectedAreaName = filterSettings.AlwaysShowAreas[selectedIndex];
+                    const selectedAreaName = getAreaName(filterSettings.AlwaysShowAreas[selectedIndex]);
                     for (let index = 0; index < areas.length; index++) {
                         const areaName = areas[index];
                         if (selectedAreaName == areaName) {
@@ -351,7 +386,7 @@
 
             if (filterSettings && filterSettings.NeverShowAreas) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowAreas.length; selectedIndex++) {
-                    const selectedAreaName = filterSettings.NeverShowAreas[selectedIndex];
+                    const selectedAreaName = getAreaName(filterSettings.NeverShowAreas[selectedIndex]);
                     for (let index = 0; index < areas.length; index++) {
                         const areaName = areas[index];
                         if (selectedAreaName == areaName) {
@@ -366,8 +401,8 @@
                 event.preventDefault();
 
                 // Store options that user made
-                var types = getTypes();
-                var areas = getAreas();
+                //var types = getTypes();
+                //var areas = getAreas();
 
                 var showTypes = [];
                 var hideType = [];
@@ -387,22 +422,22 @@
                     var position = parseInt(option.name.substr(option.name.lastIndexOf('-') + 1));
 
                     if (option.name.indexOf('-type-') != -1) {
-                        var typeName = types[position];
+                        //var typeName = types[position];
                         if (option.name.indexOf('show-type') != -1) {
-                            showTypes.push(typeName);
+                            showTypes.push(position);
                         } else if (option.name.indexOf('hide-type') != -1) {
-                            hideType.push(typeName);
+                            hideType.push(position);
                         } else if (option.name.indexOf('hide-workday-type') != -1) {
-                            hideWorkdayType.push(typeName);
+                            hideWorkdayType.push(position);
                         } else if (option.name.indexOf('hide-weekend-day-type') != -1) {
-                            hideWeekendDayType.push(typeName);
+                            hideWeekendDayType.push(position);
                         }
                     } else if (option.name.indexOf('-area-') != -1) {
-                        var areaName = areas[position];
+                        //var areaName = areas[position];
                         if (option.name.indexOf('show-area') != -1) {
-                            showArea.push(areaName);
+                            showArea.push(position);
                         } else {
-                            hideArea.push(areaName);
+                            hideArea.push(position);
                         }
                     }
                 }
@@ -426,17 +461,17 @@
             clone = document.importNode(templateFilterView.content, true);
 
             var listContainer = clone.querySelector('#FilterAlwaysShowTypes');
-            addItemsToList(listContainer, filterSettings.AlwaysShowTypes);
+            addItemsToList(listContainer, convertToNames(filterSettings.AlwaysShowTypes, getTypes()));
             listContainer = clone.querySelector('#FilterNeverShowTypes');
-            addItemsToList(listContainer, filterSettings.NeverShowTypes);
+            addItemsToList(listContainer, convertToNames(filterSettings.NeverShowTypes, getTypes()));
             listContainer = clone.querySelector('#FilterHideWorkDayTypes');
-            addItemsToList(listContainer, filterSettings.HideWorkDayTypes);
+            addItemsToList(listContainer, convertToNames(filterSettings.HideWorkDayTypes, getTypes()));
             listContainer = clone.querySelector('#FilterHideWeekendTypes');
-            addItemsToList(listContainer, filterSettings.HideWeekendTypes);
+            addItemsToList(listContainer, convertToNames(filterSettings.HideWeekendTypes, getTypes()));
             listContainer = clone.querySelector('#FilterAlwaysShowAreas');
-            addItemsToList(listContainer, filterSettings.AlwaysShowAreas);
+            addItemsToList(listContainer, convertToNames(filterSettings.AlwaysShowAreas, getAreas()));
             listContainer = clone.querySelector('#FilterNeverShowAreas');
-            addItemsToList(listContainer, filterSettings.NeverShowAreas);
+            addItemsToList(listContainer, convertToNames(filterSettings.NeverShowAreas, getAreas()));
 
             var form = clone.querySelector('#available-assignments-filter-container');
             form.addEventListener('submit', function (event) {
