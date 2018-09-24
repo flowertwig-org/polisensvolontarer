@@ -35,10 +35,10 @@
         var arr =  [];
         for (let index = 0; index < arrayOfIndexes.length; index++) {
             const indexData = arrayOfIndexes[index];
-            var name = getValueFromArray(indexData, arrayOfNames);
-            if (name) {
-                var parsedIndex = parseInt(index);
-                if (!isNaN(parsedIndex)) {
+            var parsedIndex = parseInt(indexData);
+            if (!isNaN(parsedIndex)) {
+                var name = getValueFromArray(parsedIndex, arrayOfNames);
+                if (name) {
                     arr.push(parsedIndex);
                 }
             }
