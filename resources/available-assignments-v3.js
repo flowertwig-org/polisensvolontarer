@@ -37,7 +37,7 @@
             const indexData = arrayOfIndexes[index];
             var name = getValueFromArray(indexData, arrayOfNames);
             if (name) {
-                var parsedIndex = parseInt(index);
+                var parsedIndex = parseInt(indexData);
                 if (!isNaN(parsedIndex)) {
                     arr.push(parsedIndex);
                 }
