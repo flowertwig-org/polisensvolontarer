@@ -31,6 +31,21 @@
         }
     }
 
+    function toValidArray(arrayOfIndexes, arrayOfNames) {
+        var arr =  [];
+        for (let index = 0; index < arrayOfIndexes.length; index++) {
+            const indexData = arrayOfIndexes[index];
+            var name = getValueFromArray(indexData, arrayOfNames);
+            if (name) {
+                var parsedIndex = parseInt(index);
+                if (!isNaN(parsedIndex)) {
+                    arr.push(parsedIndex);
+                }
+            }
+        }
+        return arr;
+    }
+
     function convertToNames(arrayOfIndexes, arrayOfNames) {
         var arr =  [];
         for (let index = 0; index < arrayOfIndexes.length; index++) {
@@ -38,6 +53,20 @@
             var name = getValueFromArray(indexData, arrayOfNames);
             if (name) {
                 arr.push(name);
+            }
+        }
+        return arr;
+    }
+
+    function convertToIndexes(arrayOfNames, arrayOfIndexes) {
+        var arr =  [];
+        for (let index = 0; index < arrayOfNames.length; index++) {
+            const name = arrayOfNames[index];
+            for (let typeIndex = 0; typeIndex < arrayOfIndexes.length; typeIndex++) {
+                const typeName = arrayOfIndexes[typeIndex];
+                if (name === typeName) {
+                    arr.push(typeIndex.toString());
+                }
             }
         }
         return arr;
@@ -241,99 +270,97 @@
             'AlwaysShowAreas': []
         };
 
+        // 1. Validera och sanitera all input från kakor
+        // 2. Konvertera eventuellt gamla värden till nya
+
         var pvAlwaysShowTypes = getSettingValue("FilterAlwaysShowTypes");
         if (pvAlwaysShowTypes) {
-            var tmp = pvAlwaysShowTypes.split(',');
-            if (convertToNames(tmp, getTypes()).length > 0) {
+            var tmp = toValidArray(pvAlwaysShowTypes.split(','), getTypes());
+            if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.AlwaysShowTypes = tmp;
-                // Update timestamp for cookie
-                setSettingValue("FilterAlwaysShowTypes", pvAlwaysShowTypes);
             }else {
-                // TODO: convert old (AND VALID) filter values
-                pvAlwaysShowTypes = '';
-                var types = getTypes();
-                for (let index = 0; index < tmp.length; index++) {
-                    const name = tmp[index];
-                    for (let typeIndex = 0; typeIndex < types.length; typeIndex++) {
-                        const typeName = types[typeIndex];
-                        if (name === typeName) {
-                            filterSettings.AlwaysShowTypes.push(typeIndex.toString());
-                            hasFilter = true;
-                            pvAlwaysShowTypes += '' + typeIndex + ',';
-                        }
-                    }
-                }
-
-                if (hasFilter) {
-                    setSettingValue("FilterAlwaysShowTypes", pvAlwaysShowTypes);
-                }
+                // convert old (AND VALID) filter values
+                filterSettings.AlwaysShowTypes = convertToIndexes(tmp, getTypes());
+                hasFilter = filterSettings.AlwaysShowTypes.length > 0;
             }
+            // Update timestamp for cookie
+            setSettingValue("FilterAlwaysShowTypes", filterSettings.AlwaysShowTypes.join(','));
         }
 
         var pvNeverShowTypes = getSettingValue("FilterNeverShowTypes");
         if (pvNeverShowTypes) {
-            var tmp = pvNeverShowTypes.split(',');
-            if (convertToNames(tmp, getTypes()).length > 0) {
+            var tmp = toValidArray(pvNeverShowTypes.split(','), getTypes());
+            if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.NeverShowTypes = tmp;
-                // Update timestamp for cookie
-                setSettingValue("FilterNeverShowTypes", pvNeverShowTypes);
             }else {
-                // TODO: convert old (AND VALID) filter values
+                // convert old (AND VALID) filter values
+                filterSettings.NeverShowTypes = convertToIndexes(tmp, getTypes());
+                hasFilter = filterSettings.NeverShowTypes.length > 0;
             }
+            // Update timestamp for cookie
+            setSettingValue("FilterNeverShowTypes", filterSettings.NeverShowTypes.join(','));
         }
 
         var pvWorkDayTypes = getSettingValue("FilterHideWorkDayTypes")
         if (pvWorkDayTypes) {
-            var tmp = pvWorkDayTypes.split(',');
-            if (convertToNames(tmp, getTypes()).length > 0) {
+            var tmp = toValidArray(pvWorkDayTypes.split(','), getTypes());
+            if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.HideWorkDayTypes = tmp;
-                // Update timestamp for cookie
-                setSettingValue("FilterHideWorkDayTypes", pvWorkDayTypes);
             }else {
-                // TODO: convert old (AND VALID) filter values
+                // convert old (AND VALID) filter values
+                filterSettings.HideWorkDayTypes = convertToIndexes(tmp, getTypes());
+                hasFilter = filterSettings.HideWorkDayTypes.length > 0;
             }
+            // Update timestamp for cookie
+            setSettingValue("FilterHideWorkDayTypes", filterSettings.HideWorkDayTypes.join(','));
         }
 
         var pvWeekendTypes = getSettingValue("FilterHideWeekendTypes");
         if (pvWeekendTypes) {
-            var tmp = pvWeekendTypes.split(',');
-            if (convertToNames(tmp, getTypes()).length > 0) {
+            var tmp = toValidArray(pvWeekendTypes.split(','), getTypes());
+            if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.HideWeekendTypes = tmp;
-                // Update timestamp for cookie
-                setSettingValue("FilterHideWeekendTypes", pvWeekendTypes);
             }else {
-                // TODO: convert old (AND VALID) filter values
+                // convert old (AND VALID) filter values
+                filterSettings.HideWeekendTypes = convertToIndexes(tmp, getTypes());
+                hasFilter = filterSettings.HideWeekendTypes.length > 0;
             }
+            // Update timestamp for cookie
+            setSettingValue("FilterHideWeekendTypes", filterSettings.HideWeekendTypes.join(','));
         }
 
         var pvNeverShowAreas = getSettingValue("FilterNeverShowAreas");
         if (pvNeverShowAreas) {
-            var tmp = pvNeverShowAreas.split(',');
-            if (convertToNames(tmp, getAreas()).length > 0) {
+            var tmp = toValidArray(pvNeverShowAreas.split(','), getAreas());
+            if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.NeverShowAreas = tmp;
-                // Update timestamp for cookie
-                setSettingValue("FilterNeverShowAreas", pvNeverShowAreas);
             }else {
-                // TODO: convert old (AND VALID) filter values
+                // convert old (AND VALID) filter values
+                filterSettings.NeverShowAreas = convertToIndexes(tmp, getAreas());
+                hasFilter = filterSettings.NeverShowAreas.length > 0;
             }
+            // Update timestamp for cookie
+            setSettingValue("FilterNeverShowAreas", filterSettings.NeverShowAreas.join(','));
         }
 
         var pvAlwaysShowAreas = getSettingValue("FilterAlwaysShowAreas");
         if (pvAlwaysShowAreas) {
-            var tmp = pvAlwaysShowAreas.split(',');
-            if (convertToNames(tmp, getAreas()).length > 0) {
+            var tmp = toValidArray(pvAlwaysShowAreas.split(','), getAreas());
+            if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.AlwaysShowAreas = tmp;
-                // Update timestamp for cookie
-                setSettingValue("FilterAlwaysShowAreas", pvAlwaysShowAreas);
             }else {
-                // TODO: convert old (AND VALID) filter values
+                // convert old (AND VALID) filter values
+                filterSettings.AlwaysShowAreas = convertToIndexes(tmp, getAreas());
+                hasFilter = filterSettings.AlwaysShowAreas.length > 0;
             }
+            // Update timestamp for cookie
+            setSettingValue("FilterAlwaysShowAreas", filterSettings.AlwaysShowAreas.join(','));
         }
 
         if (hasFilter) {
