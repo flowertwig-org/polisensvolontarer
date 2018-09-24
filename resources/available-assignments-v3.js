@@ -281,7 +281,7 @@
                 filterSettings.AlwaysShowTypes = tmp;
             }else {
                 // convert old (AND VALID) filter values
-                filterSettings.AlwaysShowTypes = convertToIndexes(tmp, getTypes());
+                filterSettings.AlwaysShowTypes = convertToIndexes(pvAlwaysShowTypes.split(','), getTypes());
                 hasFilter = filterSettings.AlwaysShowTypes.length > 0;
             }
             // Update timestamp for cookie
@@ -296,7 +296,7 @@
                 filterSettings.NeverShowTypes = tmp;
             }else {
                 // convert old (AND VALID) filter values
-                filterSettings.NeverShowTypes = convertToIndexes(tmp, getTypes());
+                filterSettings.NeverShowTypes = convertToIndexes(pvNeverShowTypes.split(','), getTypes());
                 hasFilter = filterSettings.NeverShowTypes.length > 0;
             }
             // Update timestamp for cookie
@@ -311,7 +311,7 @@
                 filterSettings.HideWorkDayTypes = tmp;
             }else {
                 // convert old (AND VALID) filter values
-                filterSettings.HideWorkDayTypes = convertToIndexes(tmp, getTypes());
+                filterSettings.HideWorkDayTypes = convertToIndexes(pvWorkDayTypes.split(','), getTypes());
                 hasFilter = filterSettings.HideWorkDayTypes.length > 0;
             }
             // Update timestamp for cookie
@@ -326,7 +326,7 @@
                 filterSettings.HideWeekendTypes = tmp;
             }else {
                 // convert old (AND VALID) filter values
-                filterSettings.HideWeekendTypes = convertToIndexes(tmp, getTypes());
+                filterSettings.HideWeekendTypes = convertToIndexes(pvWeekendTypes.split(','), getTypes());
                 hasFilter = filterSettings.HideWeekendTypes.length > 0;
             }
             // Update timestamp for cookie
@@ -341,7 +341,7 @@
                 filterSettings.NeverShowAreas = tmp;
             }else {
                 // convert old (AND VALID) filter values
-                filterSettings.NeverShowAreas = convertToIndexes(tmp, getAreas());
+                filterSettings.NeverShowAreas = convertToIndexes(pvNeverShowAreas.split(','), getAreas());
                 hasFilter = filterSettings.NeverShowAreas.length > 0;
             }
             // Update timestamp for cookie
@@ -356,7 +356,7 @@
                 filterSettings.AlwaysShowAreas = tmp;
             }else {
                 // convert old (AND VALID) filter values
-                filterSettings.AlwaysShowAreas = convertToIndexes(tmp, getAreas());
+                filterSettings.AlwaysShowAreas = convertToIndexes(pvAlwaysShowAreas.split(','), getAreas());
                 hasFilter = filterSettings.AlwaysShowAreas.length > 0;
             }
             // Update timestamp for cookie
