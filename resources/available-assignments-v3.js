@@ -215,7 +215,8 @@
             "Volontärmöte",
             "Övrigt",
             "Cykel / Segway",
-            "Föreläsning / Temakväll"
+            "Föreläsning / Temakväll",
+            "Nattknappen"
         ];
         return types;
     }
@@ -248,7 +249,7 @@
 
             // Centrala uppdrag
             "Operativa enheten",
-            "Nattknappen",
+            "Po Syd",
 
             // Gotland
             "Gotland",
