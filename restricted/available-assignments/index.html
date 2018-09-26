@@ -1,13 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="utf-8" />
     <title>Tillgängliga uppdrag - Polisens Volontärer</title>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
-    <link rel="stylesheet" href="/resources/volontarer-basic-v2.css" />
+    <link rel="stylesheet" href="/resources/volontarer-basic-v3.css" />
     <link rel="stylesheet" href="/resources/volontarer-grid.css" />
-    
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
@@ -17,32 +18,35 @@
     <meta name="apple-mobile-web-app-title" content="Polisens Volont&auml;rer">
     <meta name="application-name" content="Polisens Volont&auml;rer">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="theme-color" content="#ffffff"></head>
+    <meta name="theme-color" content="#ffffff">
 </head>
+</head>
+
 <body>
     <header>
-            <a href="/restricted/" class="logo-text">
-                <img class="logo-v2" src="/favicon-32x32.png" />
-                Polisens Volontärer
-            </a>
+        <a href="/restricted/" class="logo-text">
+            <img class="logo-v2" src="/favicon-32x32.png" />
+            Polisens Volontärer
+        </a>
         <input type="checkbox" id="menu" name="menu" class="toggable" />
         <menu class="toggle-area">
-                <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
-                <a href="/restricted/">Mina uppdrag</a>
-            <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
+            <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
+            <a href="/restricted/">Mina uppdrag</a>
+            <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post"
+                enctype="application/x-www-form-urlencoded">
                 <input type="submit" value="Logga ut" />
             </form>
         </menu>
         <div class="icons">
-                <label for="menu">
-                        <div class="icon icon-menu-v2">
-                            <div class="icon-menu-v2-inner"></div>
-                            <div class="icon-menu-v2-inner"></div>
-                            <div class="icon-menu-v2-inner"></div>
-                            <div class="icon-focus-ring"></div>
-                        </div>
-                </label>
-            </div>
+            <label for="menu">
+                <div class="icon icon-menu-v2">
+                    <div class="icon-menu-v2-inner"></div>
+                    <div class="icon-menu-v2-inner"></div>
+                    <div class="icon-menu-v2-inner"></div>
+                    <div class="icon-focus-ring"></div>
+                </div>
+            </label>
+        </div>
     </header>
     <main>
         <h1>Tillgängliga uppdrag<span id="showed-count-information"></span>!</h1>
@@ -52,172 +56,21 @@
 
     </main>
     <footer>
-            <a href="/restricted/aterkoppling/#bug">Rapportera fel</a><br>
-            <a href="/restricted/aterkoppling/#enhancement">Lämna förbättringsförslag</a><br>
+        <a href="/restricted/aterkoppling/#bug">Rapportera fel</a><br>
+        <a href="/restricted/aterkoppling/#enhancement">Lämna förbättringsförslag</a><br>
     </footer>
-    
+
     <template id="filter-none">
-            <form id="available-assignments-filter-container">
-                    <input id="filter-none-action" type="submit" value="Sätt filtrering" style="width:auto;float:right;margin:0;border:solid 1px;border-radius:5px;" />
-                    <label>Du har för närvarande inga aktiva filtreringar</label>
-            </form>
+        <form id="available-assignments-filter-container">
+            <input id="filter-none-action" type="submit" value="Sätt filtrering" style="width:auto;float:right;margin:0;border:solid 1px;border-radius:5px;" />
+            <label>Du har för närvarande inga aktiva filtreringar</label>
+        </form>
     </template>
     <template id="filter-change-options">
-            <form id="available-assignments-filter-container">
-                    <label>
-                        <b>Du har för närvarande följande aktiva filtreringar:</b>
-                        <ul style="padding-left:15px" class="available-assignments-filter-sections">
-                            <li>Visa
-                                <strong><u>alltid</u></strong> följande uppdrags typer:
-                                <ul>
-                                    <li><input id="show-type-0" name="show-type-0" type="checkbox" /><label for="show-type-0">Biträde vid utbildning /möte</label></li>
-                                    <li><input id="show-type-1" name="show-type-1" type="checkbox" /><label for="show-type-1">Brottsofferstöd</label></li>
-                                    <li><input id="show-type-10" name="show-type-10" type="checkbox" /><label for="show-type-10">Cykel / Segway</label></li>
-                                    <li><input id="show-type-2" name="show-type-2" type="checkbox" /><label for="show-type-2">Dagvandring</label></li>
-                                    <li><input id="show-type-15" name="show-type-15" type="checkbox" /><label for="show-type-15">Demonstration</label></li>
-                                    <li><input id="show-type-18" name="show-type-18" type="checkbox" /><label for="show-type-18">Familje-/ musikevenemang</label></li>
-                                    <li><input id="show-type-3" name="show-type-3" type="checkbox" /><label for="show-type-3">Figurantuppdrag</label></li>
-                                    <li><input id="show-type-4" name="show-type-4" type="checkbox" /><label for="show-type-4">Fortbildning</label></li>
-                                    <li><input id="show-type-11" name="show-type-11" type="checkbox" /><label for="show-type-11">Föreläsning / Temakväll</label></li>
-                                    <li><input id="show-type-14" name="show-type-14" type="checkbox" /><label for="show-type-14">Idrottsevenemang</label></li>
-                                    <li><input id="show-type-5" name="show-type-5" type="checkbox" /><label for="show-type-5">Informationsinsats</label></li>
-                                    <li><input id="show-type-6" name="show-type-6" type="checkbox" /><label for="show-type-6">Kvällsvandring</label></li>
-                                    <li><input id="show-type-12" name="show-type-12" type="checkbox" /><label for="show-type-12">Nattknappen</label></li>
-                                    <li><input id="show-type-13" name="show-type-13" type="checkbox" /><label for="show-type-13">Nattvandring</label></li>
-                                    <li><input id="show-type-7" name="show-type-7" type="checkbox" /><label for="show-type-7">Pass / Reception</label></li>
-                                    <li><input id="show-type-17" name="show-type-17" type="checkbox" /><label for="show-type-17">Rytteriet</label></li>
-                                    <li><input id="show-type-16" name="show-type-16" type="checkbox" /><label for="show-type-16">Trafikuppdrag</label></li>
-                                    <li><input id="show-type-8" name="show-type-8" type="checkbox" /><label for="show-type-8">Volontärmöte</label></li>
-                                    <li><input id="show-type-9" name="show-type-9" type="checkbox" /><label for="show-type-9">Övrigt</label></li>
-                                </ul>
-                            </li>
-                            <li>Visa
-                                    <strong><u>aldrig</u></strong> följande uppdrags typer:
-                                    <ul>
-                                        <li><input id="hide-type-0" name="hide-type-0" type="checkbox" /><label for="hide-type-0">Biträde vid utbildning /möte</label></li>
-                                        <li><input id="hide-type-1" name="hide-type-1" type="checkbox" /><label for="hide-type-1">Brottsofferstöd</label></li>
-                                        <li><input id="hide-type-10" name="hide-type-10" type="checkbox" /><label for="hide-type-10">Cykel / Segway</label></li>
-                                        <li><input id="hide-type-2" name="hide-type-2" type="checkbox" /><label for="hide-type-2">Dagvandring</label></li>
-                                        <li><input id="hide-type-15" name="hide-type-15" type="checkbox" /><label for="hide-type-15">Demonstration</label></li>
-                                        <li><input id="hide-type-18" name="hide-type-18" type="checkbox" /><label for="hide-type-18">Familje-/ musikevenemang</label></li>
-                                        <li><input id="hide-type-3" name="hide-type-3" type="checkbox" /><label for="hide-type-3">Figurantuppdrag</label></li>
-                                        <li><input id="hide-type-4" name="hide-type-4" type="checkbox" /><label for="hide-type-4">Fortbildning</label></li>
-                                        <li><input id="hide-type-11" name="hide-type-11" type="checkbox" /><label for="hide-type-11">Föreläsning / Temakväll</label></li>
-                                        <li><input id="hide-type-14" name="hide-type-14" type="checkbox" /><label for="hide-type-14">Idrottsevenemang</label></li>
-                                        <li><input id="hide-type-5" name="hide-type-5" type="checkbox" /><label for="hide-type-5">Informationsinsats</label></li>
-                                        <li><input id="hide-type-6" name="hide-type-6" type="checkbox" /><label for="hide-type-6">Kvällsvandring</label></li>
-                                        <li><input id="hide-type-12" name="hide-type-12" type="checkbox" /><label for="hide-type-12">Nattknappen</label></li>
-                                        <li><input id="hide-type-13" name="hide-type-13" type="checkbox" /><label for="hide-type-13">Nattvandring</label></li>
-                                        <li><input id="hide-type-7" name="hide-type-7" type="checkbox" /><label for="hide-type-7">Pass / Reception</label></li>
-                                        <li><input id="hide-type-17" name="hide-type-17" type="checkbox" /><label for="hide-type-17">Rytteriet</label></li>
-                                        <li><input id="hide-type-16" name="hide-type-16" type="checkbox" /><label for="hide-type-16">Trafikuppdrag</label></li>
-                                        <li><input id="hide-type-8" name="hide-type-8" type="checkbox" /><label for="hide-type-8">Volontärmöte</label></li>
-                                        <li><input id="hide-type-9" name="hide-type-9" type="checkbox" /><label for="hide-type-9">Övrigt</label></li>
-                                        </ul>
-                                </li>
-                            <li>Visa
-                                    <strong><u>aldrig</u></strong> uppdrag som inträffar på <strong><u>vardagar</u></strong> och är
-                                <ul>
-                                    <li><input id="hide-workday-type-0" name="hide-workday-type-0" type="checkbox" /><label for="hide-workday-type-0">Biträde vid utbildning /möte</label></li>
-                                    <li><input id="hide-workday-type-1" name="hide-workday-type-1" type="checkbox" /><label for="hide-workday-type-1">Brottsofferstöd</label></li>
-                                    <li><input id="hide-workday-type-10" name="hide-workday-type-10" type="checkbox" /><label for="hide-workday-type-10">Cykel / Segway</label></li>
-                                    <li><input id="hide-workday-type-2" name="hide-workday-type-2" type="checkbox" /><label for="hide-workday-type-2">Dagvandring</label></li>
-                                    <li><input id="hide-workday-type-15" name="hide-workday-type-15" type="checkbox" /><label for="hide-workday-type-15">Demonstration</label></li>
-                                    <li><input id="hide-workday-type-18" name="hide-workday-type-18" type="checkbox" /><label for="hide-workday-type-18">Familje-/ musikevenemang</label></li>
-                                    <li><input id="hide-workday-type-3" name="hide-workday-type-3" type="checkbox" /><label for="hide-workday-type-3">Figurantuppdrag</label></li>
-                                    <li><input id="hide-workday-type-4" name="hide-workday-type-4" type="checkbox" /><label for="hide-workday-type-4">Fortbildning</label></li>
-                                    <li><input id="hide-workday-type-11" name="hide-workday-type-11" type="checkbox" /><label for="hide-workday-type-11">Föreläsning / Temakväll</label></li>
-                                    <li><input id="hide-workday-type-14" name="hide-workday-type-14" type="checkbox" /><label for="hide-workday-type-14">Idrottsevenemang</label></li>
-                                    <li><input id="hide-workday-type-5" name="hide-workday-type-5" type="checkbox" /><label for="hide-workday-type-5">Informationsinsats</label></li>
-                                    <li><input id="hide-workday-type-6" name="hide-workday-type-6" type="checkbox" /><label for="hide-workday-type-6">Kvällsvandring</label></li>
-                                    <li><input id="hide-workday-type-12" name="hide-workday-type-12" type="checkbox" /><label for="hide-workday-type-12">Nattknappen</label></li>
-                                    <li><input id="hide-workday-type-13" name="hide-workday-type-13" type="checkbox" /><label for="hide-workday-type-13">Nattvandring</label></li>
-                                    <li><input id="hide-workday-type-7" name="hide-workday-type-7" type="checkbox" /><label for="hide-workday-type-7">Pass / Reception</label></li>
-                                    <li><input id="hide-workday-type-17" name="hide-workday-type-17" type="checkbox" /><label for="hide-workday-type-17">Rytteriet</label></li>
-                                    <li><input id="hide-workday-type-16" name="hide-workday-type-16" type="checkbox" /><label for="hide-workday-type-16">Trafikuppdrag</label></li>
-                                    <li><input id="hide-workday-type-8" name="hide-workday-type-8" type="checkbox" /><label for="hide-workday-type-8">Volontärmöte</label></li>
-                                    <li><input id="hide-workday-type-9" name="hide-workday-type-9" type="checkbox" /><label for="hide-workday-type-9">Övrigt</label></li>
-                                </ul>
-                            </li>
-                            <li>Visa
-                                    <strong><u>aldrig</u></strong> uppdrag som inträffar på <strong><u>helger</u></strong> och är
-                                    <ul>
-                                        <li><input id="hide-weekend-day-type-0" name="hide-weekend-day-type-0" type="checkbox" /><label for="hide-weekend-day-type-0">Biträde vid utbildning /möte</label></li>
-                                        <li><input id="hide-weekend-day-type-1" name="hide-weekend-day-type-1" type="checkbox" /><label for="hide-weekend-day-type-1">Brottsofferstöd</label></li>
-                                        <li><input id="hide-weekend-day-type-10" name="hide-weekend-day-type-10" type="checkbox" /><label for="hide-weekend-day-type-10">Cykel / Segway</label></li>
-                                        <li><input id="hide-weekend-day-type-2" name="hide-weekend-day-type-2" type="checkbox" /><label for="hide-weekend-day-type-2">Dagvandring</label></li>
-                                        <li><input id="hide-weekend-day-type-15" name="hide-weekend-day-type-15" type="checkbox" /><label for="hide-weekend-day-type-15">Demonstration</label></li>
-                                        <li><input id="hide-weekend-day-type-18" name="hide-weekend-day-type-18" type="checkbox" /><label for="hide-weekend-day-type-18">Familje-/ musikevenemang</label></li>
-                                        <li><input id="hide-weekend-day-type-3" name="hide-weekend-day-type-3" type="checkbox" /><label for="hide-weekend-day-type-3">Figurantuppdrag</label></li>
-                                        <li><input id="hide-weekend-day-type-4" name="hide-weekend-day-type-4" type="checkbox" /><label for="hide-weekend-day-type-4">Fortbildning</label></li>
-                                        <li><input id="hide-weekend-day-type-11" name="hide-weekend-day-type-11" type="checkbox" /><label for="hide-weekend-day-type-11">Föreläsning / Temakväll</label></li>
-                                        <li><input id="hide-weekend-day-type-14" name="hide-weekend-day-type-14" type="checkbox" /><label for="hide-weekend-day-type-14">Idrottsevenemang</label></li>
-                                        <li><input id="hide-weekend-day-type-5" name="hide-weekend-day-type-5" type="checkbox" /><label for="hide-weekend-day-type-5">Informationsinsats</label></li>
-                                        <li><input id="hide-weekend-day-type-6" name="hide-weekend-day-type-6" type="checkbox" /><label for="hide-weekend-day-type-6">Kvällsvandring</label></li>
-                                        <li><input id="hide-weekend-day-type-12" name="hide-weekend-day-type-12" type="checkbox" /><label for="hide-weekend-day-type-12">Nattknappen</label></li>
-                                        <li><input id="hide-weekend-day-type-13" name="hide-weekend-day-type-13" type="checkbox" /><label for="hide-weekend-day-type-13">Nattvandring</label></li>
-                                        <li><input id="hide-weekend-day-type-7" name="hide-weekend-day-type-7" type="checkbox" /><label for="hide-weekend-day-type-7">Pass / Reception</label></li>
-                                        <li><input id="hide-weekend-day-type-17" name="hide-weekend-day-type-17" type="checkbox" /><label for="hide-weekend-day-type-17">Rytteriet</label></li>
-                                        <li><input id="hide-weekend-day-type-16" name="hide-weekend-day-type-16" type="checkbox" /><label for="hide-weekend-day-type-16">Trafikuppdrag</label></li>
-                                        <li><input id="hide-weekend-day-type-8" name="hide-weekend-day-type-8" type="checkbox" /><label for="hide-weekend-day-type-8">Volontärmöte</label></li>
-                                        <li><input id="hide-weekend-day-type-9" name="hide-weekend-day-type-9" type="checkbox" /><label for="hide-weekend-day-type-9">Övrigt</label></li>
-                                        </ul>
-                            </li>
-                            <li>
-                                    Visa <strong><u>alltid</u></strong> uppdrag som är i området
-                                    <ul>
-                                            <li><input id="show-area-0" name="show-area-0" type="checkbox" /><label for="show-area-0">Norrmalm</label></li>
-                                            <li><input id="show-area-1" name="show-area-1" type="checkbox" /><label for="show-area-1">Södermalm</label></li>
-                                            <li><input id="show-area-2" name="show-area-2" type="checkbox" /><label for="show-area-2">Farsta</label></li>
-                                            <li><input id="show-area-3" name="show-area-3" type="checkbox" /><label for="show-area-3">Globen</label></li>
-                                            <li><input id="show-area-4" name="show-area-4" type="checkbox" /><label for="show-area-4">Skärholmen</label></li>
-                                            <li><input id="show-area-5" name="show-area-5" type="checkbox" /><label for="show-area-5">Botkyrka</label></li>
-                                            <li><input id="show-area-6" name="show-area-6" type="checkbox" /><label for="show-area-6">Huddinge</label></li>
-                                            <li><input id="show-area-7" name="show-area-7" type="checkbox" /><label for="show-area-7">Haninge-Nynäshamn</label></li>
-                                            <li><input id="show-area-8" name="show-area-8" type="checkbox" /><label for="show-area-8">Nacka</label></li>
-                                            <li><input id="show-area-9" name="show-area-9" type="checkbox" /><label for="show-area-9">Södertälje</label></li>
-                                            <li><input id="show-area-10" name="show-area-10" type="checkbox" /><label for="show-area-10">Järfälla</label></li>
-                                            <li><input id="show-area-11" name="show-area-11" type="checkbox" /><label for="show-area-11">Sollentuna</label></li>
-                                            <li><input id="show-area-12" name="show-area-12" type="checkbox" /><label for="show-area-12">Täby</label></li>
-                                            <li><input id="show-area-13" name="show-area-13" type="checkbox" /><label for="show-area-13">Norrtälje</label></li>
-                                            <li><input id="show-area-14" name="show-area-14" type="checkbox" /><label for="show-area-14">Solna</label></li>
-                                            <li><input id="show-area-15" name="show-area-15" type="checkbox" /><label for="show-area-15">Rinkeby</label></li>
-                                            <li><input id="show-area-16" name="show-area-16" type="checkbox" /><label for="show-area-16">Vällingby</label></li>
-                                            <li><input id="show-area-17" name="show-area-17" type="checkbox" /><label for="show-area-17">Operativa enheten</label></li>
-                                            <li><input id="show-area-18" name="show-area-18" type="checkbox" /><label for="show-area-18">Po Syd</label></li>
-                                            <li><input id="show-area-19" name="show-area-19" type="checkbox" /><label for="show-area-19">Gotland</label></li>
-                                            <li><input id="show-area-20" name="show-area-20" type="checkbox" /><label for="show-area-20">Gränspolisenheten</label></li>
-                                            <li><input id="show-area-21" name="show-area-21" type="checkbox" /><label for="show-area-21">Övrig</label></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                Visa <strong><u>aldrig</u></strong> uppdrag som är i området
-                                <ul>
-                                        <li><input id="hide-area-0" name="hide-area-0" type="checkbox" /><label for="hide-area-0">Norrmalm</label></li>
-                                        <li><input id="hide-area-1" name="hide-area-1" type="checkbox" /><label for="hide-area-1">Södermalm</label></li>
-                                        <li><input id="hide-area-2" name="hide-area-2" type="checkbox" /><label for="hide-area-2">Farsta</label></li>
-                                        <li><input id="hide-area-3" name="hide-area-3" type="checkbox" /><label for="hide-area-3">Globen</label></li>
-                                        <li><input id="hide-area-4" name="hide-area-4" type="checkbox" /><label for="hide-area-4">Skärholmen</label></li>
-                                        <li><input id="hide-area-5" name="hide-area-5" type="checkbox" /><label for="hide-area-5">Botkyrka</label></li>
-                                        <li><input id="hide-area-6" name="hide-area-6" type="checkbox" /><label for="hide-area-6">Huddinge</label></li>
-                                        <li><input id="hide-area-7" name="hide-area-7" type="checkbox" /><label for="hide-area-7">Haninge-Nynäshamn</label></li>
-                                        <li><input id="hide-area-8" name="hide-area-8" type="checkbox" /><label for="hide-area-8">Nacka</label></li>
-                                        <li><input id="hide-area-9" name="hide-area-9" type="checkbox" /><label for="hide-area-9">Södertälje</label></li>
-                                        <li><input id="hide-area-10" name="hide-area-10" type="checkbox" /><label for="hide-area-10">Järfälla</label></li>
-                                        <li><input id="hide-area-11" name="hide-area-11" type="checkbox" /><label for="hide-area-11">Sollentuna</label></li>
-                                        <li><input id="hide-area-12" name="hide-area-12" type="checkbox" /><label for="hide-area-12">Täby</label></li>
-                                        <li><input id="hide-area-13" name="hide-area-13" type="checkbox" /><label for="hide-area-13">Norrtälje</label></li>
-                                        <li><input id="hide-area-14" name="hide-area-14" type="checkbox" /><label for="hide-area-14">Solna</label></li>
-                                        <li><input id="hide-area-15" name="hide-area-15" type="checkbox" /><label for="hide-area-15">Rinkeby</label></li>
-                                        <li><input id="hide-area-16" name="hide-area-16" type="checkbox" /><label for="hide-area-16">Vällingby</label></li>
-                                        <li><input id="hide-area-17" name="hide-area-17" type="checkbox" /><label for="hide-area-17">Operativa enheten</label></li>
-                                        <li><input id="hide-area-18" name="hide-area-18" type="checkbox" /><label for="hide-area-18">Po Syd</label></li>
-                                        <li><input id="hide-area-19" name="hide-area-19" type="checkbox" /><label for="hide-area-19">Gotland</label></li>
-                                        <li><input id="hide-area-20" name="hide-area-20" type="checkbox" /><label for="hide-area-20">Gränspolisenheten</label></li>
-                                        <li><input id="hide-area-21" name="hide-area-21" type="checkbox" /><label for="hide-area-21">Övrig</label></li>
-                                </ul>
-                            </li>
-                            <!--
+        <form id="available-assignments-filter-container">
+                <b>Du har för närvarande följande aktiva filtreringar:</b>
+                <ul style="padding-left:15px" class="available-assignments-filter-sections">
+                    <!--
                             <li>
                                 Dölj uppdrag utifrån min Google kalender
                                 <ul>
@@ -226,62 +79,209 @@
                                 </ul>
                             </li>
                             -->
+                    <li>Visa
+                        <strong><u>alltid</u></strong> följande uppdrags typer:
+                        <ul>
+                            <li><input id="show-type-0" name="show-type-0" type="checkbox" /><label for="show-type-0">Biträde
+                                    vid utbildning /möte</label></li>
+                            <li><input id="show-type-1" name="show-type-1" type="checkbox" /><label for="show-type-1">Brottsofferstöd</label></li>
+                            <li><input id="show-type-10" name="show-type-10" type="checkbox" /><label for="show-type-10">Cykel
+                                    / Segway</label></li>
+                            <li><input id="show-type-2" name="show-type-2" type="checkbox" /><label for="show-type-2">Dagvandring</label></li>
+                            <li><input id="show-type-15" name="show-type-15" type="checkbox" /><label for="show-type-15">Demonstration</label></li>
+                            <li><input id="show-type-18" name="show-type-18" type="checkbox" /><label for="show-type-18">Familje-/
+                                    musikevenemang</label></li>
+                            <li><input id="show-type-3" name="show-type-3" type="checkbox" /><label for="show-type-3">Figurantuppdrag</label></li>
+                            <li><input id="show-type-4" name="show-type-4" type="checkbox" /><label for="show-type-4">Fortbildning</label></li>
+                            <li><input id="show-type-11" name="show-type-11" type="checkbox" /><label for="show-type-11">Föreläsning
+                                    / Temakväll</label></li>
+                            <li><input id="show-type-14" name="show-type-14" type="checkbox" /><label for="show-type-14">Idrottsevenemang</label></li>
+                            <li><input id="show-type-5" name="show-type-5" type="checkbox" /><label for="show-type-5">Informationsinsats</label></li>
+                            <li><input id="show-type-6" name="show-type-6" type="checkbox" /><label for="show-type-6">Kvällsvandring</label></li>
+                            <li><input id="show-type-12" name="show-type-12" type="checkbox" /><label for="show-type-12">Nattknappen</label></li>
+                            <li><input id="show-type-13" name="show-type-13" type="checkbox" /><label for="show-type-13">Nattvandring</label></li>
+                            <li><input id="show-type-7" name="show-type-7" type="checkbox" /><label for="show-type-7">Pass
+                                    / Reception</label></li>
+                            <li><input id="show-type-17" name="show-type-17" type="checkbox" /><label for="show-type-17">Rytteriet</label></li>
+                            <li><input id="show-type-16" name="show-type-16" type="checkbox" /><label for="show-type-16">Trafikuppdrag</label></li>
+                            <li><input id="show-type-8" name="show-type-8" type="checkbox" /><label for="show-type-8">Volontärmöte</label></li>
+                            <li><input id="show-type-9" name="show-type-9" type="checkbox" /><label for="show-type-9">Övrigt</label></li>
                         </ul>
-                    </label>
-                    <input id="filter-save-action" type="submit" value="Spara filtrerings val" style="width:auto;margin:auto;" />
-                </form>        
+                    </li>
+                    <li>Visa
+                        <strong><u>aldrig</u></strong> följande uppdrags typer:
+                        <ul>
+                            <li><input id="hide-type-0" name="hide-type-0" type="checkbox" /><label for="hide-type-0">Biträde
+                                    vid utbildning /möte</label></li>
+                            <li><input id="hide-type-1" name="hide-type-1" type="checkbox" /><label for="hide-type-1">Brottsofferstöd</label></li>
+                            <li><input id="hide-type-10" name="hide-type-10" type="checkbox" /><label for="hide-type-10">Cykel
+                                    / Segway</label></li>
+                            <li><input id="hide-type-2" name="hide-type-2" type="checkbox" /><label for="hide-type-2">Dagvandring</label></li>
+                            <li><input id="hide-type-15" name="hide-type-15" type="checkbox" /><label for="hide-type-15">Demonstration</label></li>
+                            <li><input id="hide-type-18" name="hide-type-18" type="checkbox" /><label for="hide-type-18">Familje-/
+                                    musikevenemang</label></li>
+                            <li><input id="hide-type-3" name="hide-type-3" type="checkbox" /><label for="hide-type-3">Figurantuppdrag</label></li>
+                            <li><input id="hide-type-4" name="hide-type-4" type="checkbox" /><label for="hide-type-4">Fortbildning</label></li>
+                            <li><input id="hide-type-11" name="hide-type-11" type="checkbox" /><label for="hide-type-11">Föreläsning
+                                    / Temakväll</label></li>
+                            <li><input id="hide-type-14" name="hide-type-14" type="checkbox" /><label for="hide-type-14">Idrottsevenemang</label></li>
+                            <li><input id="hide-type-5" name="hide-type-5" type="checkbox" /><label for="hide-type-5">Informationsinsats</label></li>
+                            <li><input id="hide-type-6" name="hide-type-6" type="checkbox" /><label for="hide-type-6">Kvällsvandring</label></li>
+                            <li><input id="hide-type-12" name="hide-type-12" type="checkbox" /><label for="hide-type-12">Nattknappen</label></li>
+                            <li><input id="hide-type-13" name="hide-type-13" type="checkbox" /><label for="hide-type-13">Nattvandring</label></li>
+                            <li><input id="hide-type-7" name="hide-type-7" type="checkbox" /><label for="hide-type-7">Pass
+                                    / Reception</label></li>
+                            <li><input id="hide-type-17" name="hide-type-17" type="checkbox" /><label for="hide-type-17">Rytteriet</label></li>
+                            <li><input id="hide-type-16" name="hide-type-16" type="checkbox" /><label for="hide-type-16">Trafikuppdrag</label></li>
+                            <li><input id="hide-type-8" name="hide-type-8" type="checkbox" /><label for="hide-type-8">Volontärmöte</label></li>
+                            <li><input id="hide-type-9" name="hide-type-9" type="checkbox" /><label for="hide-type-9">Övrigt</label></li>
+                        </ul>
+                    </li>
+                    <li>Visa
+                        <strong><u>aldrig</u></strong> uppdrag som inträffar på <strong><u>vardagar</u></strong> och är
+                        <ul>
+                            <li><input id="hide-workday-type-0" name="hide-workday-type-0" type="checkbox" /><label for="hide-workday-type-0">Biträde
+                                    vid utbildning /möte</label></li>
+                            <li><input id="hide-workday-type-1" name="hide-workday-type-1" type="checkbox" /><label for="hide-workday-type-1">Brottsofferstöd</label></li>
+                            <li><input id="hide-workday-type-10" name="hide-workday-type-10" type="checkbox" /><label
+                                    for="hide-workday-type-10">Cykel / Segway</label></li>
+                            <li><input id="hide-workday-type-2" name="hide-workday-type-2" type="checkbox" /><label for="hide-workday-type-2">Dagvandring</label></li>
+                            <li><input id="hide-workday-type-15" name="hide-workday-type-15" type="checkbox" /><label
+                                    for="hide-workday-type-15">Demonstration</label></li>
+                            <li><input id="hide-workday-type-18" name="hide-workday-type-18" type="checkbox" /><label
+                                    for="hide-workday-type-18">Familje-/ musikevenemang</label></li>
+                            <li><input id="hide-workday-type-3" name="hide-workday-type-3" type="checkbox" /><label for="hide-workday-type-3">Figurantuppdrag</label></li>
+                            <li><input id="hide-workday-type-4" name="hide-workday-type-4" type="checkbox" /><label for="hide-workday-type-4">Fortbildning</label></li>
+                            <li><input id="hide-workday-type-11" name="hide-workday-type-11" type="checkbox" /><label
+                                    for="hide-workday-type-11">Föreläsning / Temakväll</label></li>
+                            <li><input id="hide-workday-type-14" name="hide-workday-type-14" type="checkbox" /><label
+                                    for="hide-workday-type-14">Idrottsevenemang</label></li>
+                            <li><input id="hide-workday-type-5" name="hide-workday-type-5" type="checkbox" /><label for="hide-workday-type-5">Informationsinsats</label></li>
+                            <li><input id="hide-workday-type-6" name="hide-workday-type-6" type="checkbox" /><label for="hide-workday-type-6">Kvällsvandring</label></li>
+                            <li><input id="hide-workday-type-12" name="hide-workday-type-12" type="checkbox" /><label
+                                    for="hide-workday-type-12">Nattknappen</label></li>
+                            <li><input id="hide-workday-type-13" name="hide-workday-type-13" type="checkbox" /><label
+                                    for="hide-workday-type-13">Nattvandring</label></li>
+                            <li><input id="hide-workday-type-7" name="hide-workday-type-7" type="checkbox" /><label for="hide-workday-type-7">Pass
+                                    / Reception</label></li>
+                            <li><input id="hide-workday-type-17" name="hide-workday-type-17" type="checkbox" /><label
+                                    for="hide-workday-type-17">Rytteriet</label></li>
+                            <li><input id="hide-workday-type-16" name="hide-workday-type-16" type="checkbox" /><label
+                                    for="hide-workday-type-16">Trafikuppdrag</label></li>
+                            <li><input id="hide-workday-type-8" name="hide-workday-type-8" type="checkbox" /><label for="hide-workday-type-8">Volontärmöte</label></li>
+                            <li><input id="hide-workday-type-9" name="hide-workday-type-9" type="checkbox" /><label for="hide-workday-type-9">Övrigt</label></li>
+                        </ul>
+                    </li>
+                    <li>Visa
+                        <strong><u>aldrig</u></strong> uppdrag som inträffar på <strong><u>helger</u></strong> och är
+                        <ul>
+                            <li><input id="hide-weekend-day-type-0" name="hide-weekend-day-type-0" type="checkbox" /><label
+                                    for="hide-weekend-day-type-0">Biträde vid utbildning /möte</label></li>
+                            <li><input id="hide-weekend-day-type-1" name="hide-weekend-day-type-1" type="checkbox" /><label
+                                    for="hide-weekend-day-type-1">Brottsofferstöd</label></li>
+                            <li><input id="hide-weekend-day-type-10" name="hide-weekend-day-type-10" type="checkbox" /><label
+                                    for="hide-weekend-day-type-10">Cykel / Segway</label></li>
+                            <li><input id="hide-weekend-day-type-2" name="hide-weekend-day-type-2" type="checkbox" /><label
+                                    for="hide-weekend-day-type-2">Dagvandring</label></li>
+                            <li><input id="hide-weekend-day-type-15" name="hide-weekend-day-type-15" type="checkbox" /><label
+                                    for="hide-weekend-day-type-15">Demonstration</label></li>
+                            <li><input id="hide-weekend-day-type-18" name="hide-weekend-day-type-18" type="checkbox" /><label
+                                    for="hide-weekend-day-type-18">Familje-/ musikevenemang</label></li>
+                            <li><input id="hide-weekend-day-type-3" name="hide-weekend-day-type-3" type="checkbox" /><label
+                                    for="hide-weekend-day-type-3">Figurantuppdrag</label></li>
+                            <li><input id="hide-weekend-day-type-4" name="hide-weekend-day-type-4" type="checkbox" /><label
+                                    for="hide-weekend-day-type-4">Fortbildning</label></li>
+                            <li><input id="hide-weekend-day-type-11" name="hide-weekend-day-type-11" type="checkbox" /><label
+                                    for="hide-weekend-day-type-11">Föreläsning / Temakväll</label></li>
+                            <li><input id="hide-weekend-day-type-14" name="hide-weekend-day-type-14" type="checkbox" /><label
+                                    for="hide-weekend-day-type-14">Idrottsevenemang</label></li>
+                            <li><input id="hide-weekend-day-type-5" name="hide-weekend-day-type-5" type="checkbox" /><label
+                                    for="hide-weekend-day-type-5">Informationsinsats</label></li>
+                            <li><input id="hide-weekend-day-type-6" name="hide-weekend-day-type-6" type="checkbox" /><label
+                                    for="hide-weekend-day-type-6">Kvällsvandring</label></li>
+                            <li><input id="hide-weekend-day-type-12" name="hide-weekend-day-type-12" type="checkbox" /><label
+                                    for="hide-weekend-day-type-12">Nattknappen</label></li>
+                            <li><input id="hide-weekend-day-type-13" name="hide-weekend-day-type-13" type="checkbox" /><label
+                                    for="hide-weekend-day-type-13">Nattvandring</label></li>
+                            <li><input id="hide-weekend-day-type-7" name="hide-weekend-day-type-7" type="checkbox" /><label
+                                    for="hide-weekend-day-type-7">Pass / Reception</label></li>
+                            <li><input id="hide-weekend-day-type-17" name="hide-weekend-day-type-17" type="checkbox" /><label
+                                    for="hide-weekend-day-type-17">Rytteriet</label></li>
+                            <li><input id="hide-weekend-day-type-16" name="hide-weekend-day-type-16" type="checkbox" /><label
+                                    for="hide-weekend-day-type-16">Trafikuppdrag</label></li>
+                            <li><input id="hide-weekend-day-type-8" name="hide-weekend-day-type-8" type="checkbox" /><label
+                                    for="hide-weekend-day-type-8">Volontärmöte</label></li>
+                            <li><input id="hide-weekend-day-type-9" name="hide-weekend-day-type-9" type="checkbox" /><label
+                                    for="hide-weekend-day-type-9">Övrigt</label></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Visa <strong><u>alltid</u></strong> uppdrag som är i området
+                        <ul>
+                            <li><input id="show-area-0" name="show-area-0" type="checkbox" /><label for="show-area-0">Norrmalm</label></li>
+                            <li><input id="show-area-1" name="show-area-1" type="checkbox" /><label for="show-area-1">Södermalm</label></li>
+                            <li><input id="show-area-2" name="show-area-2" type="checkbox" /><label for="show-area-2">Farsta</label></li>
+                            <li><input id="show-area-3" name="show-area-3" type="checkbox" /><label for="show-area-3">Globen</label></li>
+                            <li><input id="show-area-4" name="show-area-4" type="checkbox" /><label for="show-area-4">Skärholmen</label></li>
+                            <li><input id="show-area-5" name="show-area-5" type="checkbox" /><label for="show-area-5">Botkyrka</label></li>
+                            <li><input id="show-area-6" name="show-area-6" type="checkbox" /><label for="show-area-6">Huddinge</label></li>
+                            <li><input id="show-area-7" name="show-area-7" type="checkbox" /><label for="show-area-7">Haninge-Nynäshamn</label></li>
+                            <li><input id="show-area-8" name="show-area-8" type="checkbox" /><label for="show-area-8">Nacka</label></li>
+                            <li><input id="show-area-9" name="show-area-9" type="checkbox" /><label for="show-area-9">Södertälje</label></li>
+                            <li><input id="show-area-10" name="show-area-10" type="checkbox" /><label for="show-area-10">Järfälla</label></li>
+                            <li><input id="show-area-11" name="show-area-11" type="checkbox" /><label for="show-area-11">Sollentuna</label></li>
+                            <li><input id="show-area-12" name="show-area-12" type="checkbox" /><label for="show-area-12">Täby</label></li>
+                            <li><input id="show-area-13" name="show-area-13" type="checkbox" /><label for="show-area-13">Norrtälje</label></li>
+                            <li><input id="show-area-14" name="show-area-14" type="checkbox" /><label for="show-area-14">Solna</label></li>
+                            <li><input id="show-area-15" name="show-area-15" type="checkbox" /><label for="show-area-15">Rinkeby</label></li>
+                            <li><input id="show-area-16" name="show-area-16" type="checkbox" /><label for="show-area-16">Vällingby</label></li>
+                            <li><input id="show-area-17" name="show-area-17" type="checkbox" /><label for="show-area-17">Operativa
+                                    enheten</label></li>
+                            <li><input id="show-area-18" name="show-area-18" type="checkbox" /><label for="show-area-18">Po
+                                    Syd</label></li>
+                            <li><input id="show-area-19" name="show-area-19" type="checkbox" /><label for="show-area-19">Gotland</label></li>
+                            <li><input id="show-area-20" name="show-area-20" type="checkbox" /><label for="show-area-20">Gränspolisenheten</label></li>
+                            <li><input id="show-area-21" name="show-area-21" type="checkbox" /><label for="show-area-21">Övrig</label></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Visa <strong><u>aldrig</u></strong> uppdrag som är i området
+                        <ul>
+                            <li><input id="hide-area-0" name="hide-area-0" type="checkbox" /><label for="hide-area-0">Norrmalm</label></li>
+                            <li><input id="hide-area-1" name="hide-area-1" type="checkbox" /><label for="hide-area-1">Södermalm</label></li>
+                            <li><input id="hide-area-2" name="hide-area-2" type="checkbox" /><label for="hide-area-2">Farsta</label></li>
+                            <li><input id="hide-area-3" name="hide-area-3" type="checkbox" /><label for="hide-area-3">Globen</label></li>
+                            <li><input id="hide-area-4" name="hide-area-4" type="checkbox" /><label for="hide-area-4">Skärholmen</label></li>
+                            <li><input id="hide-area-5" name="hide-area-5" type="checkbox" /><label for="hide-area-5">Botkyrka</label></li>
+                            <li><input id="hide-area-6" name="hide-area-6" type="checkbox" /><label for="hide-area-6">Huddinge</label></li>
+                            <li><input id="hide-area-7" name="hide-area-7" type="checkbox" /><label for="hide-area-7">Haninge-Nynäshamn</label></li>
+                            <li><input id="hide-area-8" name="hide-area-8" type="checkbox" /><label for="hide-area-8">Nacka</label></li>
+                            <li><input id="hide-area-9" name="hide-area-9" type="checkbox" /><label for="hide-area-9">Södertälje</label></li>
+                            <li><input id="hide-area-10" name="hide-area-10" type="checkbox" /><label for="hide-area-10">Järfälla</label></li>
+                            <li><input id="hide-area-11" name="hide-area-11" type="checkbox" /><label for="hide-area-11">Sollentuna</label></li>
+                            <li><input id="hide-area-12" name="hide-area-12" type="checkbox" /><label for="hide-area-12">Täby</label></li>
+                            <li><input id="hide-area-13" name="hide-area-13" type="checkbox" /><label for="hide-area-13">Norrtälje</label></li>
+                            <li><input id="hide-area-14" name="hide-area-14" type="checkbox" /><label for="hide-area-14">Solna</label></li>
+                            <li><input id="hide-area-15" name="hide-area-15" type="checkbox" /><label for="hide-area-15">Rinkeby</label></li>
+                            <li><input id="hide-area-16" name="hide-area-16" type="checkbox" /><label for="hide-area-16">Vällingby</label></li>
+                            <li><input id="hide-area-17" name="hide-area-17" type="checkbox" /><label for="hide-area-17">Operativa
+                                    enheten</label></li>
+                            <li><input id="hide-area-18" name="hide-area-18" type="checkbox" /><label for="hide-area-18">Po
+                                    Syd</label></li>
+                            <li><input id="hide-area-19" name="hide-area-19" type="checkbox" /><label for="hide-area-19">Gotland</label></li>
+                            <li><input id="hide-area-20" name="hide-area-20" type="checkbox" /><label for="hide-area-20">Gränspolisenheten</label></li>
+                            <li><input id="hide-area-21" name="hide-area-21" type="checkbox" /><label for="hide-area-21">Övrig</label></li>
+                        </ul>
+                    </li>
+                </ul>
+            <input id="filter-save-action" type="submit" value="Spara filtrerings val" style="width:auto;margin:auto;" />
+        </form>
     </template>
     <template id="filter-view-options">
-            <form id="available-assignments-filter-container">
-                    <label>
-                        <b>Du har för närvarande följande aktiva filtreringar:</b>
-                        <ul style="padding-left:15px">
-                            <li>Visa
-                                <strong>alltid</strong> följande uppdrags typer:
-                                <ul id="FilterAlwaysShowTypes">
-                                    <li>Fortbildning</li>
-                                </ul>
-                            </li>
-                            <li>Visa
-                                    <strong><u>aldrig</u></strong> följande uppdrags typer:
-                                    <ul id="FilterNeverShowTypes">
-                                        <li>Inga valda</li>
-                                    </ul>
-                                </li>
-                            <li>Visa
-                                    <strong><u>aldrig</u></strong> uppdrag som inträffar på vardagar och är
-                                <ul id="FilterHideWorkDayTypes">
-                                    <li>Pass / Reception</li>
-                                    <li>Dagvandring</li>
-                                </ul>
-                            </li>
-                            <li>Visa
-                                    <strong><u>aldrig</u></strong> uppdrag som inträffar på helger och är
-                                    <ul id="FilterHideWeekendTypes">
-                                        <li>Inga valda</li>
-                                    </ul>
-                            </li>
-                            <li>
-                                    Visa <strong><u>alltid</u></strong> uppdrag som är i
-                                    <ul id="FilterAlwaysShowAreas">
-                                        <li>Botkyrka</li>
-                                        <li>Haninge-Nynäshamn</li>
-                                        <li>Huddinge</li>
-                                        <li>Skärholmen</li>
-                                        <li>Täby</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                Visa <strong><u>aldrig</u></strong> uppdrag som är i
-                                <ul id="FilterNeverShowAreas">
-                                    <li>Botkyrka</li>
-                                    <li>Haninge-Nynäshamn</li>
-                                    <li>Huddinge</li>
-                                    <li>Skärholmen</li>
-                                    <li>Täby</li>
-                                </ul>
-                            </li>
-                            <!--
+        <form id="available-assignments-filter-container">
+            <b>Du har för närvarande följande aktiva filtreringar:</b>
+            <ul style="padding-left:15px">
+                <!--
                             <li>
                                 Dölj uppdrag utifrån min Google kalender
                                 <ul>
@@ -290,10 +290,54 @@
                                 </ul>
                             </li>
                             -->
-                        </ul>
-                    </label>
-                    <input type="submit" value="ändra dina filtrerings val" />
-                </form>        
+                <li>Visa
+                    <strong>alltid</strong> följande uppdrags typer:
+                    <ul id="FilterAlwaysShowTypes">
+                        <li>Fortbildning</li>
+                    </ul>
+                </li>
+                <li>Visa
+                    <strong><u>aldrig</u></strong> följande uppdrags typer:
+                    <ul id="FilterNeverShowTypes">
+                        <li>Inga valda</li>
+                    </ul>
+                </li>
+                <li>Visa
+                    <strong><u>aldrig</u></strong> uppdrag som inträffar på vardagar och är
+                    <ul id="FilterHideWorkDayTypes">
+                        <li>Pass / Reception</li>
+                        <li>Dagvandring</li>
+                    </ul>
+                </li>
+                <li>Visa
+                    <strong><u>aldrig</u></strong> uppdrag som inträffar på helger och är
+                    <ul id="FilterHideWeekendTypes">
+                        <li>Inga valda</li>
+                    </ul>
+                </li>
+                <li>
+                    Visa <strong><u>alltid</u></strong> uppdrag som är i
+                    <ul id="FilterAlwaysShowAreas">
+                        <li>Botkyrka</li>
+                        <li>Haninge-Nynäshamn</li>
+                        <li>Huddinge</li>
+                        <li>Skärholmen</li>
+                        <li>Täby</li>
+                    </ul>
+                </li>
+                <li>
+                    Visa <strong><u>aldrig</u></strong> uppdrag som är i
+                    <ul id="FilterNeverShowAreas">
+                        <li>Botkyrka</li>
+                        <li>Haninge-Nynäshamn</li>
+                        <li>Huddinge</li>
+                        <li>Skärholmen</li>
+                        <li>Täby</li>
+                    </ul>
+                </li>
+            </ul>
+            <input type="submit" value="ändra dina filtrerings val" />
+        </form>
     </template>
     <template id="template-month">
         <h2 class="month-header" style="text-align:center">Augusti</h2>
@@ -328,7 +372,7 @@
                 </div>
                 <div class="day-container day-container5">
                     <b class="weekday-header">Fredag
-                        <br/>
+                        <br />
                         <span class="weekday-date weekday-date5">18/8</span>
                     </b>
                 </div>
@@ -365,4 +409,5 @@
     <script src="/resources/available-assignments-v4b.js" async></script>
     <script src="/resources/keep-alive.js" async></script>
 </body>
+
 </html>
