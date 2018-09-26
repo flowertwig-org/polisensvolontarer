@@ -223,7 +223,7 @@
             "Demonstration",
             "Trafikuppdrag",
             "Rytteriet",
-            "Familje-/ musikeveneman"
+            "Familje-/ musikevenemang"
         ];
         return types;
     }
