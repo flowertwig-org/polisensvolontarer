@@ -216,7 +216,14 @@
             "Övrigt",
             "Cykel / Segway",
             "Föreläsning / Temakväll",
-            "Nattknappen"
+            "Nattknappen",
+            // NYA
+            "Nattvandring",
+            "Idrottsevenemang",
+            "Demonstration",
+            "Trafikuppdrag",
+            "Rytteriet",
+            "Familje-/ musikeveneman"
         ];
         return types;
     }
@@ -255,7 +262,9 @@
             "Gotland",
 
             // Gränspolisenheten
-            "Arlanda"
+            "Gränspolisenheten",
+            // Övrigt
+            "Övrig"
         ];
         return areas;
     }
