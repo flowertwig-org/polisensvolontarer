@@ -85,6 +85,10 @@
         }
     }
 
+    function getSpecTypeName(index) {
+        return getValueFromArray(index, getSpecTypes());
+    }
+
     function getTypeName(index) {
         return getValueFromArray(index, getTypes());
     }
@@ -168,6 +172,16 @@
                     }
                 }
             }
+
+            if (!itemsMarkedAsRemove) {
+                for (let index = 0; index < filterSettings.NeverShowSpecTypes.length; index++) {
+                    const typeName = getSpecTypeName(filterSettings.NeverShowSpecTypes[index]);
+                    if (assignment.category == typeName) {
+                        indexesToRemove.push(assignmentIndex);
+                        itemsMarkedAsRemove = true;
+                    }
+                }
+            }
         }
 
         if (indexesToRemove.length) {
@@ -199,6 +213,14 @@
     function setSettingValue(key, value) {
         var maxAge = 60*60*24*30;
         document.cookie = key + "=" + value + ';max-age=' + maxAge + ';path=/;secure';
+    }
+
+    function getSpecTypes() {
+        var specType = [
+            "EJ går att anmäla instresse till"
+        ];
+
+        return specType;
     }
 
     function getTypes() {
@@ -376,13 +398,13 @@
 
         var pvNeverShowSpecTypes = getSettingValue("FilterNeverShowSpecTypes");
         if (pvNeverShowSpecTypes) {
-            var tmp = toValidArray(pvNeverShowSpecTypes.split(','), getTypes());
+            var tmp = toValidArray(pvNeverShowSpecTypes.split(','), getSpecTypes());
             if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.NeverShowSpecTypes = tmp;
             }else {
                 // convert old (AND VALID) filter values
-                filterSettings.NeverShowSpecTypes = convertToIndexes(pvNeverShowSpecTypes.split(','), getTypes());
+                filterSettings.NeverShowSpecTypes = convertToIndexes(pvNeverShowSpecTypes.split(','), getSpecTypes());
                 hasFilter = filterSettings.NeverShowSpecTypes.length > 0;
             }
             // Update timestamp for cookie
@@ -426,6 +448,7 @@
             clone = document.importNode(templateFilterChange.content, true);
 
             var types = getTypes();
+            var specTypes = getSpecTypes();
             var areas = getAreas();
 
             if (filterSettings && filterSettings.AlwaysShowTypes) {
@@ -502,9 +525,9 @@
 
             if (filterSettings && filterSettings.NeverShowSpecTypes) {
                 for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowSpecTypes.length; selectedIndex++) {
-                    const selectedTypeName = getTypeName(filterSettings.NeverShowSpecTypes[selectedIndex]);
-                    for (let index = 0; index < types.length; index++) {
-                        const typeName = types[index];
+                    const selectedTypeName = getSpecTypeName(filterSettings.NeverShowSpecTypes[selectedIndex]);
+                    for (let index = 0; index < specTypes.length; index++) {
+                        const typeName = specTypes[index];
                         if (selectedTypeName == typeName) {
                             clone.querySelector('#hide-type-spec-' + index).checked = true;
                         }
