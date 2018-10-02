@@ -526,6 +526,7 @@
                 var hideWeekendDayType = [];
                 var showArea = [];
                 var hideArea = [];
+                var hideSpecType = [];
 
                 var checkedOptions = document.querySelector('#available-assignments-filter-container').querySelectorAll('[type=checkbox]:checked');
                 for (var i = 0; i < checkedOptions.length; i++) {
@@ -541,6 +542,8 @@
                         //var typeName = types[position];
                         if (option.name.indexOf('show-type') != -1) {
                             showTypes.push(position);
+                        } else if (option.name.indexOf('hide-type-spec') != -1) {
+                            hideSpecType.push(position);
                         } else if (option.name.indexOf('hide-type') != -1) {
                             hideType.push(position);
                         } else if (option.name.indexOf('hide-workday-type') != -1) {
@@ -564,6 +567,7 @@
                 setSettingValue('FilterHideWeekendTypes', hideWeekendDayType.toString());
                 setSettingValue('FilterAlwaysShowAreas', showArea.toString());
                 setSettingValue('FilterNeverShowAreas', hideArea.toString());
+                setSettingValue('FilterNeverShowSpecTypes', hideSpecType.toString());
 
                 updateFilterInterface(false);
                 getItems();
@@ -588,6 +592,8 @@
             addItemsToList(listContainer, convertToNames(filterSettings.AlwaysShowAreas, getAreas()));
             listContainer = clone.querySelector('#FilterNeverShowAreas');
             addItemsToList(listContainer, convertToNames(filterSettings.NeverShowAreas, getAreas()));
+            listContainer = clone.querySelector('#FilterNeverShowSpecTypes');
+            addItemsToList(listContainer, convertToNames(filterSettings.NeverShowSpecTypes, getTypes()));
 
             var form = clone.querySelector('#available-assignments-filter-container');
             form.addEventListener('submit', function (event) {
