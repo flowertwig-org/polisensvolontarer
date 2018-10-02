@@ -596,20 +596,32 @@
             } else {
                 window.location.assign('/?page=available-assignments');
             }
-        }).then(function (array) {
+        }).then(function (response) {
 
+            var isOldApiResponse = true;
             var info = {
                 totalnOfItems: 0,
                 filterednOfItems: 0,
                 dayGroups: []
             };
 
+            var array = [];
+            if ('length' in response) {
+                // Old respone
+                array = response;
+            } else {
+                array = response.Items;
+                isOldApiResponse = false;
+            }
+
             for (var index = 0; index < array.length; index++) {
                 var firstItem = array[index][0];
                 var items = array[index];
 
-                // Let us know the total number of items
-                info.totalnOfItems += items.length;
+                if (isOldApiResponse) {
+                    // Let us know the total number of items
+                    info.totalnOfItems += items.length;
+                }
 
                 var date = new Date(firstItem.date);
                 var monthNumber = date.getMonth() + 1;
