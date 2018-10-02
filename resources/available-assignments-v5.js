@@ -611,6 +611,7 @@
                 array = response;
             } else {
                 array = response.items;
+                info.totalnOfItems = response.totalNumberOfItems;
                 isOldApiResponse = false;
             }
 
