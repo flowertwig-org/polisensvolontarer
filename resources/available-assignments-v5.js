@@ -277,7 +277,8 @@
             'HideWorkDayTypes': [],
             'HideWeekendTypes': [],
             'NeverShowAreas': [],
-            'AlwaysShowAreas': []
+            'AlwaysShowAreas': [],
+            'NeverShowSpecTypes': []
         };
 
         // 1. Validera och sanitera all input från kakor
@@ -371,6 +372,21 @@
             }
             // Update timestamp for cookie
             setSettingValue("FilterAlwaysShowAreas", filterSettings.AlwaysShowAreas.join(','));
+        }
+
+        var pvNeverShowSpecTypes = getSettingValue("FilterNeverShowSpecTypes");
+        if (pvNeverShowSpecTypes) {
+            var tmp = toValidArray(pvNeverShowSpecTypes.split(','), getTypes());
+            if (tmp.length > 0) {
+                hasFilter = true;
+                filterSettings.NeverShowSpecTypes = tmp;
+            }else {
+                // convert old (AND VALID) filter values
+                filterSettings.NeverShowSpecTypes = convertToIndexes(pvNeverShowSpecTypes.split(','), getTypes());
+                hasFilter = filterSettings.NeverShowSpecTypes.length > 0;
+            }
+            // Update timestamp for cookie
+            setSettingValue("FilterNeverShowSpecTypes", filterSettings.NeverShowSpecTypes.join(','));
         }
 
         if (hasFilter) {
@@ -479,6 +495,18 @@
                         const areaName = areas[index];
                         if (selectedAreaName == areaName) {
                             clone.querySelector('#hide-area-' + index).checked = true;
+                        }
+                    }
+                }
+            }
+
+            if (filterSettings && filterSettings.NeverShowSpecTypes) {
+                for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowSpecTypes.length; selectedIndex++) {
+                    const selectedTypeName = getTypeName(filterSettings.NeverShowSpecTypes[selectedIndex]);
+                    for (let index = 0; index < types.length; index++) {
+                        const typeName = types[index];
+                        if (selectedTypeName == typeName) {
+                            clone.querySelector('#hide-type-spec-' + index).checked = true;
                         }
                     }
                 }
