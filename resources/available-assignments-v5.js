@@ -216,11 +216,11 @@
     }
 
     function getSpecTypes() {
-        var specType = [
+        var specTypes = [
             "EJ går att anmäla instresse till"
         ];
 
-        return specType;
+        return specTypes;
     }
 
     function getTypes() {
@@ -616,7 +616,7 @@
             listContainer = clone.querySelector('#FilterNeverShowAreas');
             addItemsToList(listContainer, convertToNames(filterSettings.NeverShowAreas, getAreas()));
             listContainer = clone.querySelector('#FilterNeverShowSpecTypes');
-            addItemsToList(listContainer, convertToNames(filterSettings.NeverShowSpecTypes, getTypes()));
+            addItemsToList(listContainer, convertToNames(filterSettings.NeverShowSpecTypes, getSpecTypes()));
 
             var form = clone.querySelector('#available-assignments-filter-container');
             form.addEventListener('submit', function (event) {
