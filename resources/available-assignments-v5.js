@@ -597,8 +597,8 @@
                 window.location.assign('/?page=available-assignments');
             }
         }).then(function (response) {
-
             var isOldApiResponse = true;
+
             var info = {
                 totalnOfItems: 0,
                 filterednOfItems: 0,
@@ -610,7 +610,7 @@
                 // Old respone
                 array = response;
             } else {
-                array = response.Items;
+                array = response.items;
                 isOldApiResponse = false;
             }
 
