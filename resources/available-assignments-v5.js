@@ -97,104 +97,6 @@
         return getValueFromArray(index, getAreas());
     }
 
-    function filterItems(items, dayOfWeekNumber) {
-
-        var filterSettings = getFilterSettings();
-        if (!filterSettings) {
-            // User has not specified filter, return all items
-            return items;
-        }
-
-        // filters out items that we are not interested in
-        var indexesToRemove = [];
-        for (let assignmentIndex = 0; assignmentIndex < items.length; assignmentIndex++) {
-            const assignment = items[assignmentIndex];
-
-            var isProtected = false;
-
-            for (let index = 0; index < filterSettings.AlwaysShowTypes.length; index++) {
-                const typeName = getTypeName(filterSettings.AlwaysShowTypes[index]);
-                if (assignment.category == typeName) {
-                    // Assignment are protected
-                    isProtected = true;
-                    break;
-                }
-            }
-
-            for (let index = 0; index < filterSettings.AlwaysShowAreas.length; index++) {
-                const areaName = getAreaName(filterSettings.AlwaysShowAreas[index]);
-                if (assignment.area == areaName) {
-                    // Assignment are protected
-                    isProtected = true;
-                    break;
-                }
-            }
-
-            if (isProtected) {
-                continue;
-            }
-
-            let itemsMarkedAsRemove = false;
-
-            for (let index = 0; index < filterSettings.NeverShowTypes.length; index++) {
-                const typeName = getTypeName(filterSettings.NeverShowTypes[index]);
-                if (assignment.category == typeName) {
-                    indexesToRemove.push(assignmentIndex);
-                    itemsMarkedAsRemove = true;
-                }
-            }
-
-            const isWeekend = dayOfWeekNumber >= 6;
-            if (!isWeekend) {
-                for (let index = 0; index < filterSettings.HideWorkDayTypes.length; index++) {
-                    const typeName = getTypeName(filterSettings.HideWorkDayTypes[index]);
-                    if (assignment.category == typeName) {
-                        indexesToRemove.push(assignmentIndex);
-                        itemsMarkedAsRemove = true;
-                    }
-                }
-            } else {
-                for (let index = 0; index < filterSettings.HideWeekendTypes.length; index++) {
-                    const typeName = getTypeName(filterSettings.HideWeekendTypes[index]);
-                    if (assignment.category == typeName) {
-                        indexesToRemove.push(assignmentIndex);
-                        itemsMarkedAsRemove = true;
-                    }
-                }
-            }
-
-            if (!itemsMarkedAsRemove) {
-                for (let index = 0; index < filterSettings.NeverShowAreas.length; index++) {
-                    const areaName = getAreaName(filterSettings.NeverShowAreas[index]);
-                    if (assignment.area == areaName) {
-                        indexesToRemove.push(assignmentIndex);
-                        itemsMarkedAsRemove = true;
-                    }
-                }
-            }
-
-            if (!itemsMarkedAsRemove) {
-                for (let index = 0; index < filterSettings.NeverShowSpecTypes.length; index++) {
-                    const typeName = getSpecTypeName(filterSettings.NeverShowSpecTypes[index]);
-                    if (assignment.category == typeName) {
-                        indexesToRemove.push(assignmentIndex);
-                        itemsMarkedAsRemove = true;
-                    }
-                }
-            }
-        }
-
-        if (indexesToRemove.length) {
-            indexesToRemove.reverse();
-
-            for (let removeIndex = 0; removeIndex < indexesToRemove.length; removeIndex++) {
-                const indexToRemove = indexesToRemove[removeIndex];
-                items.splice(indexToRemove, 1);
-            }
-        }
-        return items;
-    }
-
     function getSettingValue(key) {
         var arr = document.cookie.split('; ');
         for (let index = 0; index < arr.length; index++) {
@@ -217,7 +119,7 @@
 
     function getSpecTypes() {
         var specTypes = [
-            "EJ går att anmäla instresse till"
+            "EJ går att anmäla intresse till"
         ];
 
         return specTypes;
@@ -593,7 +495,7 @@
                 setSettingValue('FilterNeverShowSpecTypes', hideSpecType.toString());
 
                 updateFilterInterface(false);
-                getItems();
+                getItems(getFilterSettings());
 
                 // Scroll to top (to ensure view)
                 window.scroll(0, 0);
@@ -635,8 +537,37 @@
         container.appendChild(clone);
     }
 
-    function getItems() {
-        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments';
+    function getItems(filterSettings) {
+        var filterQuery = '';
+        if (filterSettings != null) {
+            if (filterSettings.AlwaysShowTypes.length) {
+                filterQuery += 'filterAlwaysShowTypes=' + filterSettings.AlwaysShowTypes.join(',') + "&";
+            }
+            if (filterSettings.NeverShowTypes.length) {
+                filterQuery += 'filterNeverShowTypes=' + filterSettings.NeverShowTypes.join(',') + "&";
+            }
+            if (filterSettings.HideWorkDayTypes.length) {
+                filterQuery += 'filterHideWorkDayTypes=' + filterSettings.HideWorkDayTypes.join(',') + "&";
+            }
+            if (filterSettings.HideWeekendTypes.length) {
+                filterQuery += 'filterHideWeekendTypes=' + filterSettings.HideWeekendTypes.join(',') + "&";
+            }
+            if (filterSettings.NeverShowAreas.length) {
+                filterQuery += 'filterNeverShowAreas=' + filterSettings.NeverShowAreas.join(',') + "&";
+            }
+            if (filterSettings.AlwaysShowAreas.length) {
+                filterQuery += 'filterAlwaysShowAreas=' + filterSettings.AlwaysShowAreas.join(',') + "&";
+            }
+            if (filterSettings.NeverShowSpecTypes.length) {
+                filterQuery += 'filterNeverShowSpecTypes=' + filterSettings.NeverShowSpecTypes.join(',') + "&";
+            }
+        }
+
+        if (filterQuery) {
+            filterQuery = "?" + filterQuery.substring(0, filterQuery.length - 1);
+        }
+
+        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments' + filterQuery;
         var inTestEnvironment = location.origin.indexOf('test-') != -1;
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
@@ -662,6 +593,9 @@
                 dayGroups: []
             };
 
+
+
+
             var array = [];
             if ('length' in response) {
                 // Old respone
@@ -669,6 +603,7 @@
             } else {
                 array = response.items;
                 info.totalnOfItems = response.totalNumberOfItems;
+                info.filterednOfItems = response.filteredNofItems;
                 isOldApiResponse = false;
             }
 
@@ -757,9 +692,6 @@
                 if (dayOfWeekNumber == 0) {
                     dayOfWeekNumber = 7;
                 }
-
-                items = filterItems(items, dayOfWeekNumber);
-                info.filterednOfItems += items.length;
 
                 const weHaveItemsToShowForDay = items.length > 0;
                 if (weHaveItemsToShowForDay) {
@@ -906,5 +838,5 @@
         });
     }
 
-    getItems();
+    getItems(getFilterSettings());
 })();
