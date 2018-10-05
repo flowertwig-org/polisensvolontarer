@@ -587,15 +587,12 @@
         }).then(function (response) {
 
             var info = {
-                totalnOfItems: 0,
-                filterednOfItems: 0,
+                totalnOfItems: response.totalNumberOfItems,
+                filterednOfItems: response.filteredNofItems,
                 dayGroups: []
             };
 
             var array = response.items;
-            info.totalnOfItems = response.totalNumberOfItems;
-            info.filterednOfItems = response.filteredNofItems;
-            isOldApiResponse = false;
 
             for (var index = 0; index < array.length; index++) {
                 var firstItem = array[index][0];
