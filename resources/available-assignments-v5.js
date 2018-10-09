@@ -569,6 +569,7 @@
 
         var startIndex = '';
         if (nextStartIndex) {
+            // continued request, we could not get all results directly so we are complementing it
             if (filterQuery) {
                 startIndex = '&';
             }else {
@@ -576,6 +577,12 @@
             }
 
             startIndex += 'startIndex=' + nextStartIndex;
+        }else {
+            // new request, clear previous results
+            var itemsContainer = document.querySelector("#items-container");
+            itemsContainer.innerHTML = '';
+    
+            updateFilterInterface();
         }
 
         var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments' + filterQuery + startIndex;
@@ -723,9 +730,9 @@
                 var lastMonthName = false;
                 var lastWeekNumber = false;
                 var itemsContainer = document.querySelector("#items-container");
-                itemsContainer.innerHTML = '';
+                //itemsContainer.innerHTML = '';
 
-                updateFilterInterface();
+                //updateFilterInterface();
 
                 var templateMonth = document.querySelector('#template-month');
                 var templateWeek = document.querySelector('#template-week');
