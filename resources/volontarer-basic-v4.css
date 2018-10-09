@@ -260,6 +260,11 @@ textarea {
 .mobile-hide {
     display: none;
 }
+
+.week-header {
+    text-align: center;
+}
+
 @media only screen and (min-width: 700px) {
     display: inherit;
 }    
@@ -277,6 +282,11 @@ textarea {
 
 .day-container {
     word-break: break-all;
+}
+
+.weekday-header {
+    display: block;
+    text-align: center;
 }
 
 .available-assignments-filter-sections,
