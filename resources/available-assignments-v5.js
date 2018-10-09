@@ -537,7 +537,7 @@
         container.appendChild(clone);
     }
 
-    function getItems(filterSettings) {
+    function getItems(filterSettings, nextStartIndex = 0) {
         var filterQuery = '';
         if (filterSettings != null) {
             if (filterSettings.AlwaysShowTypes.length) {
@@ -567,7 +567,18 @@
             filterQuery = "?" + filterQuery.substring(0, filterQuery.length - 1);
         }
 
-        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments' + filterQuery;
+        var startIndex = '';
+        if (nextStartIndex) {
+            if (filterQuery) {
+                startIndex = '&';
+            }else {
+                startIndex = '?';
+            }
+
+            startIndex += 'startIndex=' + nextStartIndex;
+        }
+
+        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments' + filterQuery + startIndex;
         var inTestEnvironment = location.origin.indexOf('test-') != -1;
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
@@ -587,6 +598,7 @@
         }).then(function (response) {
 
             var info = {
+                nextStartIndex: response.nextStartIndex,
                 totalnOfItems: response.totalNumberOfItems,
                 filterednOfItems: response.filteredNofItems,
                 dayGroups: []
@@ -810,6 +822,9 @@
                 }
 
                 itemsContainer.appendChild(cloneWeek);
+                if (info.nextStartIndex) {
+                    getItems(filterSettings, info.nextStartIndex);
+                }
             } else {
                 // TODO: Show warning message to user that it requires template support
             }
