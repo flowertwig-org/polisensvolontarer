@@ -335,6 +335,20 @@
         }
     }
 
+    function showWaitingMessage() {
+        var templateWaiting = document.querySelector('#waiting');
+        var clone = document.importNode(templateWaiting.content, true);
+
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+        container.appendChild(clone);
+    }
+
+    function hideWaitingMessage() {
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+    }
+
     function updateFilterInterface(showChangeFilter) {
 
         var container = document.querySelector('#filter-container');
@@ -584,6 +598,8 @@
     
             updateFilterInterface();
         }
+
+        showWaitingMessage();
 
         var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments' + filterQuery + startIndex;
         var inTestEnvironment = location.origin.indexOf('test-') != -1;
@@ -836,7 +852,7 @@
                 // TODO: Show warning message to user that it requires template support
             }
 
-
+            hideWaitingMessage();
         }).catch(function (ex) {
             console.log(ex);
         });

@@ -53,6 +53,7 @@
 
         <div id="filter-container"></div>
         <div id="items-container"></div>
+        <div id="waiting-container"></div>
 
     </main>
     <footer>
@@ -60,6 +61,10 @@
         <a href="/restricted/aterkoppling/#enhancement">Lämna förbättringsförslag</a><br>
     </footer>
 
+    <template id="waiting">
+        <p>Arbetar med att ta fram tillgängliga uppdrag som matchar din filtrering,<br>vänligen vänta...</p>
+        <div class="spinner">&nbsp;</div>
+    </template>
     <template id="filter-none">
         <form id="available-assignments-filter-container">
             <input id="filter-none-action" type="submit" value="Sätt filtrering" style="width:auto;float:right;margin:0;border:solid 1px;border-radius:5px;" />
