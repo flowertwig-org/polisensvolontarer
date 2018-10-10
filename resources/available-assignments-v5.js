@@ -847,7 +847,12 @@
                     }
                 }
 
-                itemsContainer.appendChild(cloneWeek);
+                var weekHeader = cloneWeek.querySelector(".week-header");
+                var hasInfo = weekHeader.textContent != "MALL";
+
+                if (hasInfo) {
+                    itemsContainer.appendChild(cloneWeek);
+                }
 
                 hideWaitingMessage();
 
