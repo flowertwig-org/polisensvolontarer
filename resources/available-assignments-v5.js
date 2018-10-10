@@ -786,9 +786,9 @@
 
                     var bgcolor = 'lightblue';
                     var padding = '5px 15px';
-                    var lastWeekContainers = document.querySelectorAll('.week-container:last-child');
+                    var lastWeekContainers = document.querySelectorAll('.week-container');
                     if (lastWeekContainers.length) {
-                        switch(lastWeekContainers[0].style.backgroundColor) {
+                        switch(lastWeekContainers[lastWeekContainers.length - 1].style.backgroundColor) {
                             case 'lightblue':
                                 bgcolor = '';
                                 padding = '5px';
