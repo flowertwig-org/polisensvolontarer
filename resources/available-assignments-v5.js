@@ -784,14 +784,20 @@
                         lastMonthName = day.monthName;
                     }
 
-                    var weekContainer = cloneWeek.querySelector(".week-container");
-                    if (weekIndex % 2 == 0) {
-                        weekContainer.style.padding = '5px 15px';
-                        weekContainer.style.backgroundColor = 'lightblue';
-                    } else {
-                        weekContainer.style.padding = '5px';
-                        weekContainer.style.backgroundColor = '';
+                    var bgcolor = 'lightblue';
+                    var padding = '5px 15px';
+                    var lastWeekContainers = document.querySelectorAll('.week-container:last-child');
+                    if (lastWeekContainers.length) {
+                        switch(lastWeekContainers[0].style.backgroundColor) {
+                            case 'lightblue':
+                                bgcolor = '';
+                                padding = '5px';
+                                break;
+                        }
                     }
+                    
+                    weekContainer.style.padding = padding;
+                    weekContainer.style.backgroundColor = bgcolor;
 
                     var weekHeader = cloneWeek.querySelector(".week-header");
                     weekHeader.textContent = "Vecka " + day.weekNumber;
