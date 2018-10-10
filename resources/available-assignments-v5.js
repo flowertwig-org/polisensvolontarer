@@ -796,6 +796,7 @@
                         }
                     }
                     
+                    var weekContainer = cloneWeek.querySelector(".week-container");
                     weekContainer.style.padding = padding;
                     weekContainer.style.backgroundColor = bgcolor;
 
