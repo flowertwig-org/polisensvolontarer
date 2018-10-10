@@ -759,10 +759,13 @@
                 for (let index = 0; index < info.dayGroups.length; index++) {
                     const day = info.dayGroups[index];
 
+                    var weekHeader = cloneWeek.querySelector(".week-header");
+                    var hasInfo = weekHeader.textContent != "MALL";
+
                     if (lastMonthName != day.monthName) {
                         // logic for when we are in same week but just changed month.
                         if (lastWeekNumber == day.weekNumber) {
-                            if (lastWeekNumber) {
+                            if (lastWeekNumber && hasInfo) {
                                 itemsContainer.appendChild(cloneWeek);
                                 cloneWeek = document.importNode(templateWeek.content, true);
                             }
@@ -771,7 +774,7 @@
 
                     }
                     if (lastWeekNumber != day.weekNumber) {
-                        if (lastWeekNumber) {
+                        if (lastWeekNumber && hasInfo) {
                             itemsContainer.appendChild(cloneWeek);
                             cloneWeek = document.importNode(templateWeek.content, true);
                         }
