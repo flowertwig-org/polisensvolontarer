@@ -845,14 +845,15 @@
                 }
 
                 itemsContainer.appendChild(cloneWeek);
+
+                hideWaitingMessage();
+
                 if (info.nextStartIndex) {
                     getItems(filterSettings, info.nextStartIndex);
                 }
             } else {
                 // TODO: Show warning message to user that it requires template support
             }
-
-            hideWaitingMessage();
         }).catch(function (ex) {
             console.log(ex);
         });
