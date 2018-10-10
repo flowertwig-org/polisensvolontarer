@@ -733,16 +733,6 @@
 
             if ('content' in document.createElement('template')) {
 
-                // Information om antal upp 
-                var countInfoElement = document.querySelector('#showed-count-information');
-                var countInfo = '';
-                if (info.totalnOfItems != info.filterednOfItems) {
-                    countInfo = info.filterednOfItems + ' av ' + info.totalnOfItems;
-                }else {
-                    countInfo = info.totalnOfItems;
-                }
-                countInfoElement.textContent = ' (' + countInfo + ')';
-
                 var lastMonthName = false;
                 var lastWeekNumber = false;
                 var itemsContainer = document.querySelector("#items-container");
@@ -853,6 +843,18 @@
                 if (hasInfo) {
                     itemsContainer.appendChild(cloneWeek);
                 }
+
+                // Information om antal upp 
+                var countInfoElement = document.querySelector('#showed-count-information');
+                var countInfo = '';
+                var filterednOfItems = document.querySelectorAll('.assignment-name').length
+                if (info.totalnOfItems != filterednOfItems) {
+                    countInfo = filterednOfItems + ' av ' + info.totalnOfItems;
+                }else {
+                    countInfo = info.totalnOfItems;
+                }
+                countInfoElement.textContent = ' (' + countInfo + ')';
+
 
                 hideWaitingMessage();
 
