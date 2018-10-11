@@ -119,7 +119,8 @@
 
     function getSpecTypes() {
         var specTypes = [
-            "EJ går att anmäla intresse till"
+            "EJ går att anmäla intresse till",
+            "redan uppnått önskat antal volontärer"
         ];
 
         return specTypes;
