@@ -85,100 +85,16 @@
         }
     }
 
+    function getSpecTypeName(index) {
+        return getValueFromArray(index, getSpecTypes());
+    }
+
     function getTypeName(index) {
         return getValueFromArray(index, getTypes());
     }
 
     function getAreaName(index) {
         return getValueFromArray(index, getAreas());
-    }
-
-    function filterItems(items, dayOfWeekNumber) {
-
-        var filterSettings = getFilterSettings();
-        if (!filterSettings) {
-            // User has not specified filter, return all items
-            return items;
-        }
-
-        // filters out items that we are not interested in
-        var indexesToRemove = [];
-        for (let assignmentIndex = 0; assignmentIndex < items.length; assignmentIndex++) {
-            const assignment = items[assignmentIndex];
-
-            var isProtected = false;
-
-            for (let index = 0; index < filterSettings.AlwaysShowTypes.length; index++) {
-                const typeName = getTypeName(filterSettings.AlwaysShowTypes[index]);
-                if (assignment.category == typeName) {
-                    // Assignment are protected
-                    isProtected = true;
-                    break;
-                }
-            }
-
-            for (let index = 0; index < filterSettings.AlwaysShowAreas.length; index++) {
-                const areaName = getAreaName(filterSettings.AlwaysShowAreas[index]);
-                if (assignment.area == areaName) {
-                    // Assignment are protected
-                    isProtected = true;
-                    break;
-                }
-            }
-
-            if (isProtected) {
-                continue;
-            }
-
-            let itemsMarkedAsRemove = false;
-
-            for (let index = 0; index < filterSettings.NeverShowTypes.length; index++) {
-                const typeName = getTypeName(filterSettings.NeverShowTypes[index]);
-                if (assignment.category == typeName) {
-                    indexesToRemove.push(assignmentIndex);
-                    itemsMarkedAsRemove = true;
-                }
-            }
-
-            const isWeekend = dayOfWeekNumber >= 6;
-            if (!isWeekend) {
-                for (let index = 0; index < filterSettings.HideWorkDayTypes.length; index++) {
-                    const typeName = getTypeName(filterSettings.HideWorkDayTypes[index]);
-                    if (assignment.category == typeName) {
-                        indexesToRemove.push(assignmentIndex);
-                        itemsMarkedAsRemove = true;
-                    }
-                }
-            } else {
-                for (let index = 0; index < filterSettings.HideWeekendTypes.length; index++) {
-                    const typeName = getTypeName(filterSettings.HideWeekendTypes[index]);
-                    if (assignment.category == typeName) {
-                        indexesToRemove.push(assignmentIndex);
-                        itemsMarkedAsRemove = true;
-                    }
-                }
-            }
-
-            if (!itemsMarkedAsRemove) {
-                for (let index = 0; index < filterSettings.NeverShowAreas.length; index++) {
-                    const areaName = getAreaName(filterSettings.NeverShowAreas[index]);
-                    if (assignment.area == areaName) {
-                        indexesToRemove.push(assignmentIndex);
-                        itemsMarkedAsRemove = true;
-                    }
-                }
-            }
-        }
-
-        if (indexesToRemove.length) {
-            indexesToRemove.reverse();
-
-            for (let removeIndex = 0; removeIndex < indexesToRemove.length; removeIndex++) {
-                const indexToRemove = indexesToRemove[removeIndex];
-                items.splice(indexToRemove, 1);
-            }
-        }
-        return items;
     }
 
     function getSettingValue(key) {
@@ -199,6 +115,15 @@
     function setSettingValue(key, value) {
         var maxAge = 60*60*24*30;
         document.cookie = key + "=" + value + ';max-age=' + maxAge + ';path=/;secure';
+    }
+
+    function getSpecTypes() {
+        var specTypes = [
+            "EJ går att anmäla intresse till",
+            "redan uppnått önskat antal volontärer"
+        ];
+
+        return specTypes;
     }
 
     function getTypes() {
@@ -277,7 +202,8 @@
             'HideWorkDayTypes': [],
             'HideWeekendTypes': [],
             'NeverShowAreas': [],
-            'AlwaysShowAreas': []
+            'AlwaysShowAreas': [],
+            'NeverShowSpecTypes': []
         };
 
         // 1. Validera och sanitera all input från kakor
@@ -373,6 +299,21 @@
             setSettingValue("FilterAlwaysShowAreas", filterSettings.AlwaysShowAreas.join(','));
         }
 
+        var pvNeverShowSpecTypes = getSettingValue("FilterNeverShowSpecTypes");
+        if (pvNeverShowSpecTypes) {
+            var tmp = toValidArray(pvNeverShowSpecTypes.split(','), getSpecTypes());
+            if (tmp.length > 0) {
+                hasFilter = true;
+                filterSettings.NeverShowSpecTypes = tmp;
+            }else {
+                // convert old (AND VALID) filter values
+                filterSettings.NeverShowSpecTypes = convertToIndexes(pvNeverShowSpecTypes.split(','), getSpecTypes());
+                hasFilter = filterSettings.NeverShowSpecTypes.length > 0;
+            }
+            // Update timestamp for cookie
+            setSettingValue("FilterNeverShowSpecTypes", filterSettings.NeverShowSpecTypes.join(','));
+        }
+
         if (hasFilter) {
             return filterSettings;
         } else {
@@ -395,6 +336,20 @@
         }
     }
 
+    function showWaitingMessage() {
+        var templateWaiting = document.querySelector('#waiting');
+        var clone = document.importNode(templateWaiting.content, true);
+
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+        container.appendChild(clone);
+    }
+
+    function hideWaitingMessage() {
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+    }
+
     function updateFilterInterface(showChangeFilter) {
 
         var container = document.querySelector('#filter-container');
@@ -410,6 +365,7 @@
             clone = document.importNode(templateFilterChange.content, true);
 
             var types = getTypes();
+            var specTypes = getSpecTypes();
             var areas = getAreas();
 
             if (filterSettings && filterSettings.AlwaysShowTypes) {
@@ -484,6 +440,18 @@
                 }
             }
 
+            if (filterSettings && filterSettings.NeverShowSpecTypes) {
+                for (let selectedIndex = 0; selectedIndex < filterSettings.NeverShowSpecTypes.length; selectedIndex++) {
+                    const selectedTypeName = getSpecTypeName(filterSettings.NeverShowSpecTypes[selectedIndex]);
+                    for (let index = 0; index < specTypes.length; index++) {
+                        const typeName = specTypes[index];
+                        if (selectedTypeName == typeName) {
+                            clone.querySelector('#hide-type-spec-' + index).checked = true;
+                        }
+                    }
+                }
+            }
+
             var form = clone.querySelector('#available-assignments-filter-container');
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
@@ -498,6 +466,7 @@
                 var hideWeekendDayType = [];
                 var showArea = [];
                 var hideArea = [];
+                var hideSpecType = [];
 
                 var checkedOptions = document.querySelector('#available-assignments-filter-container').querySelectorAll('[type=checkbox]:checked');
                 for (var i = 0; i < checkedOptions.length; i++) {
@@ -513,6 +482,8 @@
                         //var typeName = types[position];
                         if (option.name.indexOf('show-type') != -1) {
                             showTypes.push(position);
+                        } else if (option.name.indexOf('hide-type-spec') != -1) {
+                            hideSpecType.push(position);
                         } else if (option.name.indexOf('hide-type') != -1) {
                             hideType.push(position);
                         } else if (option.name.indexOf('hide-workday-type') != -1) {
@@ -536,9 +507,10 @@
                 setSettingValue('FilterHideWeekendTypes', hideWeekendDayType.toString());
                 setSettingValue('FilterAlwaysShowAreas', showArea.toString());
                 setSettingValue('FilterNeverShowAreas', hideArea.toString());
+                setSettingValue('FilterNeverShowSpecTypes', hideSpecType.toString());
 
                 updateFilterInterface(false);
-                getItems();
+                getItems(getFilterSettings());
 
                 // Scroll to top (to ensure view)
                 window.scroll(0, 0);
@@ -560,6 +532,8 @@
             addItemsToList(listContainer, convertToNames(filterSettings.AlwaysShowAreas, getAreas()));
             listContainer = clone.querySelector('#FilterNeverShowAreas');
             addItemsToList(listContainer, convertToNames(filterSettings.NeverShowAreas, getAreas()));
+            listContainer = clone.querySelector('#FilterNeverShowSpecTypes');
+            addItemsToList(listContainer, convertToNames(filterSettings.NeverShowSpecTypes, getSpecTypes()));
 
             var form = clone.querySelector('#available-assignments-filter-container');
             form.addEventListener('submit', function (event) {
@@ -578,8 +552,57 @@
         container.appendChild(clone);
     }
 
-    function getItems() {
-        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments';
+    function getItems(filterSettings, nextStartIndex = 0) {
+        var filterQuery = '';
+        if (filterSettings != null) {
+            if (filterSettings.AlwaysShowTypes.length) {
+                filterQuery += 'filterAlwaysShowTypes=' + filterSettings.AlwaysShowTypes.join(',') + "&";
+            }
+            if (filterSettings.NeverShowTypes.length) {
+                filterQuery += 'filterNeverShowTypes=' + filterSettings.NeverShowTypes.join(',') + "&";
+            }
+            if (filterSettings.HideWorkDayTypes.length) {
+                filterQuery += 'filterHideWorkDayTypes=' + filterSettings.HideWorkDayTypes.join(',') + "&";
+            }
+            if (filterSettings.HideWeekendTypes.length) {
+                filterQuery += 'filterHideWeekendTypes=' + filterSettings.HideWeekendTypes.join(',') + "&";
+            }
+            if (filterSettings.NeverShowAreas.length) {
+                filterQuery += 'filterNeverShowAreas=' + filterSettings.NeverShowAreas.join(',') + "&";
+            }
+            if (filterSettings.AlwaysShowAreas.length) {
+                filterQuery += 'filterAlwaysShowAreas=' + filterSettings.AlwaysShowAreas.join(',') + "&";
+            }
+            if (filterSettings.NeverShowSpecTypes.length) {
+                filterQuery += 'filterNeverShowSpecTypes=' + filterSettings.NeverShowSpecTypes.join(',') + "&";
+            }
+        }
+
+        if (filterQuery) {
+            filterQuery = "?" + filterQuery.substring(0, filterQuery.length - 1);
+        }
+
+        var startIndex = '';
+        if (nextStartIndex) {
+            // continued request, we could not get all results directly so we are complementing it
+            if (filterQuery) {
+                startIndex = '&';
+            }else {
+                startIndex = '?';
+            }
+
+            startIndex += 'startIndex=' + nextStartIndex;
+        }else {
+            // new request, clear previous results
+            var itemsContainer = document.querySelector("#items-container");
+            itemsContainer.innerHTML = '';
+    
+            updateFilterInterface();
+        }
+
+        showWaitingMessage();
+
+        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments' + filterQuery + startIndex;
         var inTestEnvironment = location.origin.indexOf('test-') != -1;
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
@@ -596,20 +619,20 @@
             } else {
                 window.location.assign('/?page=available-assignments');
             }
-        }).then(function (array) {
+        }).then(function (response) {
 
             var info = {
-                totalnOfItems: 0,
-                filterednOfItems: 0,
+                nextStartIndex: response.nextStartIndex,
+                totalnOfItems: response.totalNumberOfItems,
+                filterednOfItems: response.filteredNofItems,
                 dayGroups: []
             };
+
+            var array = response.items;
 
             for (var index = 0; index < array.length; index++) {
                 var firstItem = array[index][0];
                 var items = array[index];
-
-                // Let us know the total number of items
-                info.totalnOfItems += items.length;
 
                 var date = new Date(firstItem.date);
                 var monthNumber = date.getMonth() + 1;
@@ -688,9 +711,6 @@
                     dayOfWeekNumber = 7;
                 }
 
-                items = filterItems(items, dayOfWeekNumber);
-                info.filterednOfItems += items.length;
-
                 const weHaveItemsToShowForDay = items.length > 0;
                 if (weHaveItemsToShowForDay) {
                     info.dayGroups.push({
@@ -714,22 +734,12 @@
 
             if ('content' in document.createElement('template')) {
 
-                // Information om antal upp 
-                var countInfoElement = document.querySelector('#showed-count-information');
-                var countInfo = '';
-                if (info.totalnOfItems != info.filterednOfItems) {
-                    countInfo = info.filterednOfItems + ' av ' + info.totalnOfItems;
-                }else {
-                    countInfo = info.totalnOfItems;
-                }
-                countInfoElement.textContent = ' (' + countInfo + ')';
-
                 var lastMonthName = false;
                 var lastWeekNumber = false;
                 var itemsContainer = document.querySelector("#items-container");
-                itemsContainer.innerHTML = '';
+                //itemsContainer.innerHTML = '';
 
-                updateFilterInterface();
+                //updateFilterInterface();
 
                 var templateMonth = document.querySelector('#template-month');
                 var templateWeek = document.querySelector('#template-week');
@@ -740,10 +750,13 @@
                 for (let index = 0; index < info.dayGroups.length; index++) {
                     const day = info.dayGroups[index];
 
+                    var weekHeader = cloneWeek.querySelector(".week-header");
+                    var hasInfo = weekHeader.textContent != "MALL";
+
                     if (lastMonthName != day.monthName) {
                         // logic for when we are in same week but just changed month.
                         if (lastWeekNumber == day.weekNumber) {
-                            if (lastWeekNumber) {
+                            if (lastWeekNumber && hasInfo) {
                                 itemsContainer.appendChild(cloneWeek);
                                 cloneWeek = document.importNode(templateWeek.content, true);
                             }
@@ -752,7 +765,7 @@
 
                     }
                     if (lastWeekNumber != day.weekNumber) {
-                        if (lastWeekNumber) {
+                        if (lastWeekNumber && hasInfo) {
                             itemsContainer.appendChild(cloneWeek);
                             cloneWeek = document.importNode(templateWeek.content, true);
                         }
@@ -772,14 +785,21 @@
                         lastMonthName = day.monthName;
                     }
 
-                    var weekContainer = cloneWeek.querySelector(".week-container");
-                    if (weekIndex % 2 == 0) {
-                        weekContainer.style.padding = '5px 15px';
-                        weekContainer.style.backgroundColor = 'lightblue';
-                    } else {
-                        weekContainer.style.padding = '5px';
-                        weekContainer.style.backgroundColor = '';
+                    var bgcolor = 'lightblue';
+                    var padding = '5px 15px';
+                    var lastWeekContainers = document.querySelectorAll('.week-container');
+                    if (lastWeekContainers.length) {
+                        switch(lastWeekContainers[lastWeekContainers.length - 1].style.backgroundColor) {
+                            case 'lightblue':
+                                bgcolor = '';
+                                padding = '5px';
+                                break;
+                        }
                     }
+                    
+                    var weekContainer = cloneWeek.querySelector(".week-container");
+                    weekContainer.style.padding = padding;
+                    weekContainer.style.backgroundColor = bgcolor;
 
                     var weekHeader = cloneWeek.querySelector(".week-header");
                     weekHeader.textContent = "Vecka " + day.weekNumber;
@@ -825,16 +845,37 @@
                     }
                 }
 
-                itemsContainer.appendChild(cloneWeek);
+                var weekHeader = cloneWeek.querySelector(".week-header");
+                var hasInfo = weekHeader.textContent != "MALL";
+
+                if (hasInfo) {
+                    itemsContainer.appendChild(cloneWeek);
+                }
+
+                // Information om antal upp 
+                var countInfoElement = document.querySelector('#showed-count-information');
+                var countInfo = '';
+                var filterednOfItems = document.querySelectorAll('.assignment-name').length
+                if (info.totalnOfItems != filterednOfItems) {
+                    countInfo = filterednOfItems + ' av ' + info.totalnOfItems;
+                }else {
+                    countInfo = info.totalnOfItems;
+                }
+                countInfoElement.textContent = ' (' + countInfo + ')';
+
+
+                hideWaitingMessage();
+
+                if (info.nextStartIndex) {
+                    getItems(filterSettings, info.nextStartIndex);
+                }
             } else {
                 // TODO: Show warning message to user that it requires template support
             }
-
-
         }).catch(function (ex) {
             console.log(ex);
         });
     }
 
-    getItems();
+    getItems(getFilterSettings());
 })();
