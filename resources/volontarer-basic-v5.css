@@ -232,6 +232,7 @@ main input[type=submit]:hover,
     color: #0970b8;
 }
 main input[type=text],
+main input[type=email],
 main input[type=password],
 textarea {
     border-radius: 5px;
