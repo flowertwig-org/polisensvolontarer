@@ -27,7 +27,7 @@
     }
 
     if (assignmentName && assignmentDate) {
-        document.querySelector('#assignmentOrDate').value = assignmentName + ' / ' + assignmentDate;
+        document.querySelector('#assignmentOrDate').value = assignmentName + ', ' + assignmentDate;
     }else if (assignmentName || assignmentDate) {
         document.querySelector('#assignmentOrDate').value = assignmentName + assignmentDate;
     }
