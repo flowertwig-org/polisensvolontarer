@@ -10,7 +10,11 @@
     for (let index = 0; index < keyValuePairs.length; index++) {
         const pair = keyValuePairs[index].split('=');
         const key = pair[0];
-        const value = pair[1];
+        let value = pair[1];
+
+        if (value.indexOf('%') != -1) {
+            value = decodeURI(value);
+        }
 
         switch (key) {
             case 'name':
