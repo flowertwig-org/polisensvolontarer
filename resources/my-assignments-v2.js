@@ -153,9 +153,7 @@
                     assignmentName.href = "/restricted/uppdragsrapport?name=" + assignment.name + "&date=" + date;
                     var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
                     assignmentWhen.textContent = date;
-                    var assignmentType = templateAssignment.content.querySelector(".assignment-type");
-                    assignmentType.textContent = assignment.category;
-    
+                    
                     var cloneAssignment = document.importNode(templateAssignment.content, true);
                     main.appendChild(cloneAssignment);
 
