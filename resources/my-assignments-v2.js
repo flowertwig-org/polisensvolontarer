@@ -150,10 +150,10 @@
                         date = date.substring(0, timeIndex);
                     }
     
-                    assignmentName.href = "/restricted/uppdragsrapport?name=" + assignment.name + "&date=" + date;
+                    assignmentName.href = "/restricted/uppdragsrapport?name=" + encodeURI(assignment.name) + "&date=" + encodeURI(date);
                     var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
                     assignmentWhen.textContent = date;
-                    
+
                     var cloneAssignment = document.importNode(templateAssignment.content, true);
                     main.appendChild(cloneAssignment);
 
