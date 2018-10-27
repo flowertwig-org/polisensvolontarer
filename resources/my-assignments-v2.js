@@ -128,6 +128,46 @@
         }
 
 
+        // Uppdrag att rapportera
+        var nOfHistoryAssignments = myAssignments.history.length;
+        // Visa bara rapport möjlighet OM vi har några
+        if (nOfHistoryAssignments > 0) {
+            document.querySelector('#my-assignments-reports-count').textContent = nOfHistoryAssignments;
+
+            var main = document.querySelector("#my-assignments-reports-items");
+            if ('content' in document.createElement('template')) {
+                var templateAssignment = document.querySelector('#template-my-reports');
+
+                for (let index = 0; index < nOfHistoryAssignments; index++) {
+                    const assignment = myAssignments.history[index];
+                    
+                    var assignmentName = templateAssignment.content.querySelector(".assignment-name");
+                    assignmentName.textContent = assignment.name;
+
+                    var date = assignment.date;
+                    var timeIndex = date.indexOf('T');
+                    if (timeIndex > 0) {
+                        date = date.substring(0, timeIndex);
+                    }
+    
+                    assignmentName.href = "/restricted/uppdragsrapport?name=" + assignment.name + "&date=" + date;
+                    var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
+                    assignmentWhen.textContent = date;
+                    var assignmentType = templateAssignment.content.querySelector(".assignment-type");
+                    assignmentType.textContent = assignment.category;
+    
+                    var cloneAssignment = document.importNode(templateAssignment.content, true);
+                    main.appendChild(cloneAssignment);
+
+                    document.querySelector('#my-assignments-reports').style.display = 'block';
+                }
+
+            } else {
+                // TODO: Show warning message to user that it requires template support
+            }
+        }
+
+
     }).catch(function (ex) {
         console.log(ex);
     });

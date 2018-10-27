@@ -57,6 +57,11 @@
             <div id="my-assignments-confirms"></div>
         </div>
 
+        <div id="my-assignments-reports" style="display:none">
+            <h2>Uppdrag att rapportera (<span id="my-assignments-reports-count">?</span>)</h2>
+            <div id="my-assignments-reports-items"></div>
+        </div>
+
         <div id="my-assignments-interests" style="display:none">
             <h2>Mina intresseanmälningar (<span id="my-assignments-interests-count">?</span>)</h2>
             <div id="my-assignments-interests-items"></div>
@@ -85,8 +90,21 @@
         </p>
     </template>
 
+    <template id="template-my-reports">
+        <p style="
+        border-bottom: solid 1px #000;
+        padding-bottom: 10px;
+    ">
+            <b>
+                <a href="#" class="assignment-name">WAS - We Are Stockholm!</a>
+            </b>
+            <br />
+            <span style="font-size:small"><span class="assignment-when">2017-08-18</span></span>
+        </p>
+    </template>
+
     <script src="/resources/environment.js" async></script>
-    <script src="/resources/my-assignments.js" async></script>
+    <script src="/resources/my-assignments-v2.js" async></script>
     <script src="/resources/keep-alive.js" async></script>
     <script src="/resources/warnings.js" async></script>
 </body>
