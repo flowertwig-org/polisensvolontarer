@@ -16,16 +16,16 @@
                         warningElement.innerText = 'Du använder ett vanligt använt lösenord och bör därför byta. Just nu kan du bara göra detta på: http://volontar.polisen.se';
                         break;
                     case "2":
-                        warningElement.innerText = 'Kunde inte logga in dig. Kontrollera att du angett rätt användarnamn och lösenord.';
+                        warningElement.innerText = 'Kunde inte logga in dig. Vänligen kontrollera att du angett rätt användarnamn och lösenord.';
                         break;
                     case "3":
-                        warningElement.innerText = 'Du har blivit utloggad pga inaktivitet.';
+                        warningElement.innerText = 'Du behöver logga in för att se denna information.';
                         break;
                     case "4":
                         warningElement.innerText = 'Okänt tekniskt fel inträffade, vänligen försök igen lite senare.';
                         break;
                     case "5":
-                        warningElement.innerText = 'Din webbläsare är inställd att inte tillåta tredjeparts kakor. Vänligen aktivera detta och försök igen.';
+                        warningElement.innerText = 'Din webbläsare är inställd att inte tillåta tredjeparts kakor. För att kunna logga in behöver du aktivera stöd för dessa.';
                         break;
                 }
                 document.querySelector('main').insertAdjacentElement('afterbegin', warningElement);
