@@ -18,7 +18,7 @@
         }
     }
 
-    var form = clone.querySelector('#login-form');
+    var form = document.querySelector('#login-form');
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         submitForm(
