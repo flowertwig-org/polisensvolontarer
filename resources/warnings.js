@@ -19,10 +19,13 @@
                         warningElement.innerText = 'Kunde inte logga in dig. Kontrollera att du angett rätt användarnamn och lösenord.';
                         break;
                     case "3":
-                        warningElement.innerText = 'Du har antingen blivit utloggad pga inaktivitet eller så är din webbläsare inställd att inte tillåta tredjeparts kakor.';
+                        warningElement.innerText = 'Du har blivit utloggad pga inaktivitet.';
                         break;
                     case "4":
                         warningElement.innerText = 'Okänt tekniskt fel inträffade, vänligen försök igen lite senare.';
+                        break;
+                    case "5":
+                        warningElement.innerText = 'Din webbläsare är inställd att inte tillåta tredjeparts kakor. Vänligen aktivera detta och försök igen.';
                         break;
                 }
                 document.querySelector('main').insertAdjacentElement('afterbegin', warningElement);

@@ -55,7 +55,25 @@
             if (response.isSuccess) {
                 // TODO: check if login status still true (To verify cookie support)
 
-                window.location.assign(response.redirectUrl);
+                var result = fetch(serviceUrl, {
+                    method: 'GET',
+                    credentials: 'include',
+                    mode: 'cors'
+                });
+                result.then(function (response2) {
+                    if (response2.ok) {
+                        return response2.json();
+                    } else {
+                        window.location.assign('/?warning=4');
+                    }
+                }).then(function (response3) {
+                    if (response3) {
+                        // Browser supports cookies, continue
+                        window.location.assign(response.redirectUrl);
+                    } else {
+                        window.location.assign('/?warning=5');
+                    }
+                });
             } else {
                 window.location.assign('/?warning=1');
             }

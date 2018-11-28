@@ -20,8 +20,13 @@
             window.location.assign('/');
         }
     }).then(function (myAssignments) {
+        if (!myAssignments.isLoggedIn) {
+            // We are not logged in, cancel here.
+            return myAssignments;
+        }
         if (!myAssignments || !('confirms' in myAssignments)) {
-            window.location.assign('/');
+            // We don't have a vaild object, cancel here
+            //window.location.assign('/');
             return myAssignments;
         }
 
