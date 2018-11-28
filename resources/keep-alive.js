@@ -1,5 +1,7 @@
 ﻿(function () {
     'use strict';
+
+    var callCount = 1;
     
     var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/KeepAlive';
     var inTestEnvironment = location.origin.indexOf('test-') != -1;
@@ -7,8 +9,8 @@
         serviceUrl = serviceUrl.replace("https://", "https://test-");
     }
 
-    function makeKeepAliveCall() {
-        var result = fetch(serviceUrl, {
+    function makeKeepAliveCall(localCallCount) {
+        var result = fetch(serviceUrl + "?callCount=" + localCallCount, {
             method: 'GET',
             credentials: 'include',
             mode: 'cors'
@@ -37,7 +39,7 @@
                         break;
                     case '/restricted/available-assignments/':
                         if (warning.length) {
-                            window.location.assign('/?page=available-assignments?' + warning);
+                            window.location.assign('/?page=available-assignments&' + warning);
                         }else {
                             window.location.assign('/?page=available-assignments');
                         }
@@ -56,8 +58,8 @@
         });
     }
 
-    makeKeepAliveCall();
+    makeKeepAliveCall(callCount++);
     setInterval(function () {
-        makeKeepAliveCall();
+        makeKeepAliveCall(callCount++);
     }, 40000);
 })();
