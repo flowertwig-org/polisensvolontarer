@@ -16,14 +16,14 @@
 
     showForm();
 
-    function setCookie(name,value,days) {
+    function setCookie(name, value, days) {
         var expires = "";
         if (days) {
             var date = new Date();
-            date.setTime(date.getTime() + (days*24*60*60*1000));
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             expires = "; expires=" + date.toUTCString();
         }
-        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
 
     function showWaitingMessage() {
@@ -52,52 +52,56 @@
         container.innerHTML = '';
         container.appendChild(clone);
 
-        // If we where redirected from a page that required login, store info in login form so we can return to page later
-        var keyValuePairs = location.search.substr(1).split('&');
 
-        var assignmentName = '';
-        var assignmentDate = '';
-        var assignmentAreaNameKey = '';
+        var query = location.search.substr(1);
+        if (query) {
+            // If we where redirected from a page that required login, store info in login form so we can return to page later
+            var keyValuePairs = query.split('&');
 
-        for (let index = 0; index < keyValuePairs.length; index++) {
-            const pair = keyValuePairs[index].split('=');
-            const key = pair[0];
-            let value = pair[1];
+            var assignmentName = '';
+            var assignmentDate = '';
+            var assignmentAreaNameKey = '';
 
-            if (value.indexOf('%') != -1) {
-                value = decodeURI(value);
+            for (let index = 0; index < keyValuePairs.length; index++) {
+                const pair = keyValuePairs[index].split('=');
+                const key = pair[0];
+                let value = pair[1];
+
+                if (value.indexOf('%') != -1) {
+                    value = decodeURI(value);
+                }
+
+                switch (key) {
+                    case 'name':
+                        assignmentName = value;
+                        break;
+                    case 'date':
+                        assignmentDate = value
+                        break;
+                    case 'areaKey':
+                        assignmentAreaNameKey = value;
+                        break;
+                }
             }
 
-            switch (key) {
-                case 'name':
-                    assignmentName = value;
-                    break;
-                case 'date':
-                    assignmentDate = value
-                    break;
-                case 'areaKey':
-                    assignmentAreaNameKey = value;
-                    break;
+            if (assignmentName && assignmentDate) {
+                document.querySelector('#assignmentOrDate').value = assignmentName + ', ' + assignmentDate;
+            } else if (assignmentName || assignmentDate) {
+                document.querySelector('#assignmentOrDate').value = assignmentName + assignmentDate;
             }
-        }
+            if (assignmentAreaNameKey) {
+                var assignmentAreaName = atob(assignmentAreaNameKey);
 
-        if (assignmentName && assignmentDate) {
-            document.querySelector('#assignmentOrDate').value = assignmentName + ', ' + assignmentDate;
-        } else if (assignmentName || assignmentDate) {
-            document.querySelector('#assignmentOrDate').value = assignmentName + assignmentDate;
-        }
-        if (assignmentAreaNameKey) {
-            var assignmentAreaName = atob(assignmentAreaNameKey);
-
-            var select = document.querySelector('#areaIndex');
-            var options = document.querySelectorAll('#areaIndex option');
-            for (let index = 0; index < options.length; index++) {
-                const option = options[index];
-                const optionText = option.text;
-                const optionValue = option.value;
-                if (optionText == assignmentAreaName) {
-                    select.value = optionValue;
-                    break;
+                var select = document.querySelector('#areaIndex');
+                var options = document.querySelectorAll('#areaIndex option');
+                for (let index = 0; index < options.length; index++) {
+                    const option = options[index];
+                    const optionText = option.text;
+                    const optionValue = option.value;
+                    if (optionText == assignmentAreaName) {
+                        select.value = optionValue;
+                        break;
+                    }
                 }
             }
         }
@@ -132,7 +136,7 @@
                 var key = btoa(assignmentOrDate);
                 setCookie('report-' + key, '1', 15);
                 showThanksMessage();
-            }else {
+            } else {
                 alert('Kunde inte skicka rapporten');
                 window.location.reload(true);
             }
