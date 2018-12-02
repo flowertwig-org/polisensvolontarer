@@ -10,7 +10,7 @@
             document.querySelector('#feedback1').value,
             document.querySelector('#feedback2').value,
             document.querySelector('#feedback3').value,
-            document.querySelector('#anonymous').value
+            document.querySelector('#anonymous').checked
         );
     });
 
