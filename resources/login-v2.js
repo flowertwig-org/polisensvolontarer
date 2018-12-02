@@ -29,7 +29,7 @@
         );
     });
 
-    ShowForm();
+    showForm();
 
     checkLoginStatus();
 
@@ -66,7 +66,7 @@
         container.appendChild(clone);
     }
 
-    function ShowForm() {
+    function showForm() {
         var templateForm = document.querySelector('#form');
         var clone = document.importNode(templateForm.content, true);
 

@@ -54,6 +54,18 @@
         </p>
 
         <form id="assignment-report-form" action="https://polisens-volontarer-api.azurewebsites.net/api/assignmentreport" method="post" enctype="application/x-www-form-urlencoded">
+        </form>
+
+    </main>
+    <footer>
+    </footer>
+
+    <template id="waiting">
+        <p>Skickar in rapport,<br>vänligen vänta...</p>
+        <div class="spinner">&nbsp;</div>
+    </template>
+    <template id="form">
+        <!--
             <label for="name">Namn:</label>
             <input id="name" name="name" autocomplete="name" type="text">
             <br>
@@ -66,6 +78,7 @@
             <input id="assignmentOrDate" name="assignmentOrDate" type="text">
             <br>
             <br>
+        -->
             <label for="areaIndex">Uppdrags område:</label>
             <select id="areaIndex" name="areaIndex">
                     <option value="-1">Välj område</option>
@@ -107,13 +120,14 @@
             <label for="feedback3">Har du något förbättringsförslag?:</label>
             <textarea id="feedback3" name="feedback3"></textarea>
             <br>
+            <br>
+            <input id="anonymous" name="anonymous" type="checkbox">
+            <label for="anonymous">Skicka in rapporten anonymt</label>        
+            <br>
+            <br>
 
             <input type="submit" value="Skicka in rapport" />
-        </form>
-
-    </main>
-    <footer>
-    </footer>
+    </template>
 
     <script src="/resources/environment.js" async></script>
     <script src="/resources/my-reports.js" async></script>
