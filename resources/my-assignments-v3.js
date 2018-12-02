@@ -1,6 +1,27 @@
 ﻿(function () {
     'use strict';
 
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
     var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/MyAssignments';
     var inTestEnvironment = location.origin.indexOf('test-') != -1;
     if (inTestEnvironment) {
@@ -56,6 +77,10 @@
                     main.appendChild(cloneAssignment);
 
                     document.querySelector('#my-assignments-interests').style.display = 'block';
+
+                    var assignmentKey = btoa(assignment.name + assignment.date);
+
+                    setCookie('assignment-' + assignmentKey, btoa(assignment.area), 14);
                 }
 
             } else {
@@ -154,8 +179,11 @@
                     if (timeIndex > 0) {
                         date = date.substring(0, timeIndex);
                     }
+
+                    var assignmentKey = btoa(assignment.name + date);
+                    var assignmentAreaKey = getCookie('assignment-' + assignmentKey);
     
-                    assignmentName.href = "/restricted/uppdragsrapport?name=" + encodeURI(assignment.name) + "&date=" + encodeURI(date);
+                    assignmentName.href = "/restricted/uppdragsrapport?name=" + encodeURI(assignment.name) + "&date=" + encodeURI(date) + "&areaKey=" + encodeURI(assignmentAreaKey);
                     var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
                     assignmentWhen.textContent = date;
 

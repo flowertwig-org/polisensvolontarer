@@ -38,6 +38,7 @@
 
         var assignmentName = '';
         var assignmentDate = '';
+        var assignmentAreaNameKey = '';
 
         for (let index = 0; index < keyValuePairs.length; index++) {
             const pair = keyValuePairs[index].split('=');
@@ -55,6 +56,9 @@
                 case 'date':
                     assignmentDate = value
                     break;
+                case 'areaKey':
+                    assignmentAreaNameKey = value;
+                    break;
             }
         }
 
@@ -62,6 +66,21 @@
             document.querySelector('#assignmentOrDate').value = assignmentName + ', ' + assignmentDate;
         } else if (assignmentName || assignmentDate) {
             document.querySelector('#assignmentOrDate').value = assignmentName + assignmentDate;
+        }
+        if (assignmentAreaNameKey) {
+            var assignmentAreaName = atob(assignmentAreaNameKey);
+
+            var select = document.querySelector('#areaIndex');
+            var options = document.querySelectorAll('#areaIndex option');
+            for (let index = 0; index < options.length; index++) {
+                const option = options[index];
+                const optionText = option.text;
+                const optionValue = option.value;
+                if (optionText == assignmentAreaName) {
+                    select.value = optionValue;
+                    break;
+                }
+            }
         }
     }
 
