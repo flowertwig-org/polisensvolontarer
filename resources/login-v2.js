@@ -29,7 +29,29 @@
         );
     });
 
+    ShowForm();
+
+    function showWaitingMessage() {
+        var templateWaiting = document.querySelector('#waiting');
+        var clone = document.importNode(templateWaiting.content, true);
+
+        var container = document.querySelector('#login-form');
+        container.innerHTML = '';
+        container.appendChild(clone);
+    }
+
+    function ShowForm() {
+        var templateForm = document.querySelector('#form');
+        var clone = document.importNode(templateForm.content, true);
+
+        var container = document.querySelector('#login-form');
+        container.innerHTML = '';
+        container.appendChild(clone);
+    }
+
     function submitForm(username, password, page, query) {
+        showWaitingMessage();
+
         var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/login';
         var inTestEnvironment = location.origin.indexOf('test-') != -1;
         if (inTestEnvironment) {
@@ -49,6 +71,7 @@
             if (response.ok) {
                 return response.json();
             } else {
+                ShowForm();
                 window.location.assign('/?warning=4');
             }
         }).then(function (response) {
@@ -64,6 +87,7 @@
                     if (response2.ok) {
                         return response2.json();
                     } else {
+                        ShowForm();
                         window.location.assign('/?warning=4');
                     }
                 }).then(function (response3) {
@@ -71,10 +95,12 @@
                         // Browser supports cookies, continue
                         window.location.assign(response.redirectUrl);
                     } else {
+                        ShowForm();
                         window.location.assign('/?warning=5');
                     }
                 });
             } else {
+                ShowForm();
                 window.location.assign('/?warning=1');
             }
         });
