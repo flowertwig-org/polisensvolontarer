@@ -25,7 +25,6 @@
                 break;
         }
         document.querySelector('main').insertAdjacentElement('afterbegin', warningElement);
-        break;
     }
 
     // Listen for the event.
