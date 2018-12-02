@@ -1,37 +1,6 @@
 (function () {
     'use strict';
 
-    // If we where redirected from a page that required login, store info in login form so we can return to page later
-    var keyValuePairs = location.search.substr(1).split('&');
-
-    var assignmentName = '';
-    var assignmentDate = '';
-
-    for (let index = 0; index < keyValuePairs.length; index++) {
-        const pair = keyValuePairs[index].split('=');
-        const key = pair[0];
-        let value = pair[1];
-
-        if (value.indexOf('%') != -1) {
-            value = decodeURI(value);
-        }
-
-        switch (key) {
-            case 'name':
-                assignmentName = value;
-                break;
-            case 'date':
-                assignmentDate = value
-                break;
-        }
-    }
-
-    if (assignmentName && assignmentDate) {
-        document.querySelector('#assignmentOrDate').value = assignmentName + ', ' + assignmentDate;
-    }else if (assignmentName || assignmentDate) {
-        document.querySelector('#assignmentOrDate').value = assignmentName + assignmentDate;
-    }
-
     var form = document.querySelector('#assignment-report-form');
     form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -63,6 +32,37 @@
         var container = document.querySelector('#assignment-report-form');
         container.innerHTML = '';
         container.appendChild(clone);
+
+        // If we where redirected from a page that required login, store info in login form so we can return to page later
+        var keyValuePairs = location.search.substr(1).split('&');
+
+        var assignmentName = '';
+        var assignmentDate = '';
+
+        for (let index = 0; index < keyValuePairs.length; index++) {
+            const pair = keyValuePairs[index].split('=');
+            const key = pair[0];
+            let value = pair[1];
+
+            if (value.indexOf('%') != -1) {
+                value = decodeURI(value);
+            }
+
+            switch (key) {
+                case 'name':
+                    assignmentName = value;
+                    break;
+                case 'date':
+                    assignmentDate = value
+                    break;
+            }
+        }
+
+        if (assignmentName && assignmentDate) {
+            document.querySelector('#assignmentOrDate').value = assignmentName + ', ' + assignmentDate;
+        } else if (assignmentName || assignmentDate) {
+            document.querySelector('#assignmentOrDate').value = assignmentName + assignmentDate;
+        }
     }
 
     function submitForm(assignmentOrDate, areaIndex, feedback1, feedback2, feedback3, anonymous) {
