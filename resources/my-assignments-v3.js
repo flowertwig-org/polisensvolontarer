@@ -77,10 +77,6 @@
                     main.appendChild(cloneAssignment);
 
                     document.querySelector('#my-assignments-interests').style.display = 'block';
-
-                    var assignmentKey = btoa(assignment.name + assignment.date);
-
-                    setCookie('assignment-' + assignmentKey, btoa(assignment.area), 14);
                 }
 
             } else {
@@ -148,6 +144,9 @@
     
                     var cloneAssignment = document.importNode(templateAssignment.content, true);
                     main.appendChild(cloneAssignment);
+
+                    var assignmentKey = btoa(assignment.name + assignment.date);
+                    setCookie('assignment-' + assignmentKey, btoa(assignment.area), 14);
                 }
 
             } else {
@@ -182,8 +181,12 @@
 
                     var assignmentKey = btoa(assignment.name + date);
                     var assignmentAreaKey = getCookie('assignment-' + assignmentKey);
+                    var assignmentAreaKeyQuery = '';
+                    if (assignmentAreaKey) {
+                        assignmentAreaKeyQuery = "&areaKey=" + encodeURI(assignmentAreaKey);
+                    }
     
-                    assignmentName.href = "/restricted/uppdragsrapport?name=" + encodeURI(assignment.name) + "&date=" + encodeURI(date) + "&areaKey=" + encodeURI(assignmentAreaKey);
+                    assignmentName.href = "/restricted/uppdragsrapport?name=" + encodeURI(assignment.name) + "&date=" + encodeURI(date) + assignmentAreaKeyQuery;
                     var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
                     assignmentWhen.textContent = date;
 
