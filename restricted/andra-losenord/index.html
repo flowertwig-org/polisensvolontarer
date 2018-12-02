@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
     <meta charset="utf-8" />
-    <title>Uppdrags information - Polisens Volontärer</title>
+    <title>Ändra lösenord - Polisens Volontärer</title>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
     <link rel="stylesheet" href="/resources/volontarer-basic-v5.css" />
@@ -30,7 +30,7 @@
                 <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
                 <a href="/restricted/">Mina uppdrag</a>
                 <a href="/restricted/uppdragsrapport/">Uppdragsrapport</a>
-                
+
             <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
                 <input type="submit" value="Logga ut" />
             </form>
@@ -48,78 +48,44 @@
     </header>
     <main>
 
+        <h1>Ändra lösenord</h1>
+        <p>
 
+        </p>
+
+        <form id="change-password-form" action="https://polisens-volontarer-api.azurewebsites.net/api/changepassword" method="post" enctype="application/x-www-form-urlencoded">
+        </form>
 
     </main>
     <footer>
-            <a href="/restricted/aterkoppling/#bug">Rapportera fel</a><br>
-            <a href="/restricted/aterkoppling/#enhancement">Lämna förbättringsförslag</a><br>
     </footer>
-    
-    <template id="template-assignment">
-            <h1 class="assignment-name">Uppdragets namn</h1>
 
-            <p>
-                <b>Kategori: </b><br>
-                <span class="assignment-type">Uppdragets kategori</span>
-            </p>
-    
-            <p>
-                <b>Lokalpolisområde: </b><br>
-                <span class="assignment-area">Uppdragets område</span>
-            </p>
-    
-            <p>
-                <b>Uppdragsbeskrivning: </b><br>
-                <span class="assignment-description"></span>
-            </p>
-    
-            <p>
-                <b>Tid: </b><br>
-                <span class="assignment-when">Uppdragets tid</span>
-            </p>
-    
-            <p>
-                <b>Önskat antal volontärer: </b><br>
-                <span class="assignment-requested">X</span>
-            </p>
-    
-            <p>
-                <b>Hittills antal anmälda: </b><br>
-                <span class="assignment-added">Y</span>
-            </p>
-    
-            <p>
-                <b>Tid och plats för utsättning: </b><br>
-                <span class="assignment-when-where">2017-12-22 18:15 | Huddinge lokalpolisstation, Kommunalvägen 27B</span>
-            </p>
-    
-            <p class="assignment-contactinfo">
-            </p>
-    
-            <p>
-                <b>Sista anmälningsdag: </b><br>
-                <span class="assignment-last-request-date"></span>
-            </p>
-
-            <p>
-                <a class="assignment-calendar-google" href="#" target="_blank">
-                    Lägg till i Google Calendar
-                </a>
-            </p>
-            <form class="hide" id="assignment-interest-form" name="assignment-interest-form" action="https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments" method="post" enctype="application/x-www-form-urlencoded">
-                <label for="comment">Meddelande till samordnaren:</label>
-                <textarea id="comment" name="comment"></textarea>
-                <br>
-                <label for="password">Lösenord:</label>
-                <input id="password" name="password" type="password" autocomplete="current-password">
-                <br>
-                <input type="submit" value="Anmäl intresse till uppdrag">
-            </form>
-            
+        <template id="waiting">
+            <p>Ändrar lösenord,<br>vänligen vänta...</p>
+            <div class="spinner">&nbsp;</div>
         </template>
+        <template id="thanks">
+            <p>Lösenordet är nu ändrat</p>
+        </template>
+        <template id="form">
+            <label for="currentPassword">Nuvarande lösenord:</label>
+            <input id="currentPassword" name="currentPassword" type="text">
+            <br>
+            <br>
+            <label for="newPassword">Nytt lösenord:</label>
+            <input id="newPassword" name="newPassword">
+            <br>
+            <br>
+            <label for="newPassword2">Upprepa nytt lösenord:</label>
+            <input id="newPassword2" name="newPassword2">
+            <br>
+            <br>
+
+            <input type="submit" value="Ändra lösenord" />
+    </template>
+
     <script src="/resources/environment.js" async></script>
-    <script src="/resources/assignment.js" async></script>
+    <script src="/resources/change-password.js" async></script>
     <script src="/resources/keep-alive-v2.js" async></script>
     <script src="/resources/warnings-v3.js" async></script>
 </body>

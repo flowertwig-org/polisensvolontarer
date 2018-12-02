@@ -75,6 +75,11 @@
         container.appendChild(clone);
     }
 
+    function showWarning(code) {
+        var event = new CustomEvent('warning', { code: code });
+        document.body.dispatchEvent(event);
+    }
+
     function submitForm(username, password, page, query) {
         showWaitingMessage();
 
@@ -98,7 +103,8 @@
                 return response.json();
             } else {
                 ShowForm();
-                window.location.assign('/?warning=4');
+                showWarning(4);
+                //window.location.assign('/?warning=4');
             }
         }).then(function (response) {
             if (response.isSuccess) {
@@ -113,21 +119,24 @@
                     if (response2.ok) {
                         return response2.json();
                     } else {
-                        ShowForm();
-                        window.location.assign('/?warning=4');
+                        showForm();
+                        showWarning(4);
+                        //window.location.assign('/?warning=4');
                     }
                 }).then(function (response3) {
                     if (response3) {
                         // Browser supports cookies, continue
                         window.location.assign(response.redirectUrl);
                     } else {
-                        ShowForm();
-                        window.location.assign('/?warning=5');
+                        showForm();
+                        showWarning(5);
+                        //window.location.assign('/?warning=5');
                     }
                 });
             } else {
-                ShowForm();
-                window.location.assign('/?warning=2');
+                showForm();
+                showWarning(2);
+                //window.location.assign('/?warning=2');
             }
         });
     }

@@ -107,6 +107,11 @@
         }
     }
 
+    function showWarning(code) {
+        var event = new CustomEvent('warning', { code: code });
+        document.body.dispatchEvent(event);
+    }
+
     function submitForm(assignmentOrDate, areaIndex, feedback1, feedback2, feedback3, anonymous) {
         showWaitingMessage();
 
@@ -129,7 +134,9 @@
             if (response.ok) {
                 return response.json();
             } else {
-                window.location.assign('/?warning=4');
+                showForm();
+                showWarning(4);
+                //window.location.assign('/?warning=4');
             }
         }).then(function (response) {
             if (response) {
@@ -137,8 +144,10 @@
                 setCookie('report-' + key, '1', 15);
                 showThanksMessage();
             } else {
-                alert('Kunde inte skicka rapporten');
-                window.location.reload(true);
+                showForm();
+                showWarning(4);
+                //alert('Kunde inte skicka rapporten');
+                //window.location.reload(true);
             }
         });
     }
