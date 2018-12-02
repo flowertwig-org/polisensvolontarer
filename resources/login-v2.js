@@ -31,6 +31,32 @@
 
     ShowForm();
 
+    checkLoginStatus();
+
+    function checkLoginStatus() {
+        // This function will warmup the API before it is called AND if we are logged in alredy, redirect us directly to page
+        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/login';
+        var inTestEnvironment = location.origin.indexOf('test-') != -1;
+        if (inTestEnvironment) {
+            serviceUrl = serviceUrl.replace("https://", "https://test-");
+        }
+
+        var result = fetch(serviceUrl, {
+            method: 'GET',
+            credentials: 'include',
+            mode: 'cors',
+        });
+        result.then(function (response) {
+            if (response.ok) {
+                return response.json();
+            }
+        }).then(function (response) {
+            if (response) {
+                window.location.assign('/restricted/');
+            }
+        });
+    }
+
     function showWaitingMessage() {
         var templateWaiting = document.querySelector('#waiting');
         var clone = document.importNode(templateWaiting.content, true);
