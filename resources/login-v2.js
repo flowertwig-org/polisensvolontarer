@@ -101,7 +101,7 @@
                 });
             } else {
                 ShowForm();
-                window.location.assign('/?warning=1');
+                window.location.assign('/?warning=2');
             }
         });
     }
