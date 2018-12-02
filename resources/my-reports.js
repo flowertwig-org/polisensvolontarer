@@ -16,6 +16,16 @@
 
     showForm();
 
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
     function showWaitingMessage() {
         var templateWaiting = document.querySelector('#waiting');
         var clone = document.importNode(templateWaiting.content, true);
@@ -109,7 +119,12 @@
                 window.location.assign('/?warning=4');
             }
         }).then(function (response) {
-            if (response.isSuccess) {
+            if (response) {
+                var key = btoa(assignmentOrDate);
+                setCookie('report-' + key, '1', 15);
+            }else {
+                alert('Kunde inte skicka rapporten');
+                window.location.reload(true);
             }
         });
     }

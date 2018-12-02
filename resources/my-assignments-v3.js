@@ -179,7 +179,14 @@
                         date = date.substring(0, timeIndex);
                     }
 
-                    var assignmentKey = btoa(assignment.name + date);
+                    var assignmentKey = btoa(assignment.name + ', ' + date);
+
+                    var reportKey = getCookie('report-' + assignmentKey);
+                    if (reportKey) {
+                        // Användaren har redan rapporterat för detta uppdrag, ignorera denna.
+                        continue;
+                    }
+
                     var assignmentAreaKey = getCookie('assignment-' + assignmentKey);
                     var assignmentAreaKeyQuery = '';
                     if (assignmentAreaKey) {
