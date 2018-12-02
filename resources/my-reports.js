@@ -35,6 +35,15 @@
         container.appendChild(clone);
     }
 
+    function showThanksMessage() {
+        var templateThanks = document.querySelector('#thanks');
+        var clone = document.importNode(templateThanks.content, true);
+
+        var container = document.querySelector('#assignment-report-form');
+        container.innerHTML = '';
+        container.appendChild(clone);
+    }
+
     function showForm() {
         var templateForm = document.querySelector('#form');
         var clone = document.importNode(templateForm.content, true);
@@ -97,7 +106,7 @@
     function submitForm(assignmentOrDate, areaIndex, feedback1, feedback2, feedback3, anonymous) {
         showWaitingMessage();
 
-        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/login';
+        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AssignmentReport';
         var inTestEnvironment = location.origin.indexOf('test-') != -1;
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
@@ -122,6 +131,7 @@
             if (response) {
                 var key = btoa(assignmentOrDate);
                 setCookie('report-' + key, '1', 15);
+                showThanksMessage();
             }else {
                 alert('Kunde inte skicka rapporten');
                 window.location.reload(true);
