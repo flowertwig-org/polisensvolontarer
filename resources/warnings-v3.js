@@ -6,7 +6,7 @@
         warningElement.className = 'warning';
         switch (code) {
             case "1":
-                warningElement.innerText = 'Du använder ett vanligt använt lösenord och bör därför byta. <a href="/restricted/andra-losenord/">Ändra lösenord nu.</a>';
+                warningElement.innerHTML = 'Du använder ett vanligt använt lösenord och bör därför byta. <a href="/restricted/andra-losenord/">Ändra lösenord nu.</a>';
                 break;
             case "2":
                 warningElement.innerText = 'Kunde inte logga in dig. Vänligen kontrollera att du angett rätt användarnamn och lösenord.';
