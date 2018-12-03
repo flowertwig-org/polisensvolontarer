@@ -29,7 +29,7 @@
 
     // Listen for the event.
     document.body.addEventListener('warning', function (e) {
-        showWarning(e.code);
+        showWarning(e.detail);
     }, false);    
 
     var keyValuePairs = location.search.substr(1).split('&');

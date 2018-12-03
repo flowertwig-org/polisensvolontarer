@@ -70,7 +70,7 @@
             if (response.isSuccess) {
                 showThanksMessage();
             } else {
-                var event = new CustomEvent('warning', { code: response.warning });
+                var event = new CustomEvent('warning', { detail: response.warning });
                 document.body.dispatchEvent(event);
             }
         });

@@ -76,7 +76,7 @@
     }
 
     function showWarning(code) {
-        var event = new CustomEvent('warning', { code: code });
+        var event = new CustomEvent('warning', { detail: code });
         document.body.dispatchEvent(event);
     }
 
