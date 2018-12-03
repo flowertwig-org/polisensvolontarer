@@ -6,10 +6,16 @@
         event.preventDefault();
 
         // TODO: Validate new password
+        var newPassword = document.querySelector('#newPassword').value;
+        var newPassword2 = document.querySelector('#newPassword2').value;
+        if (newPassword != newPassword2) {
+            showWarning(7);
+            return;
+        }
 
         submitForm(
             document.querySelector('#currentPassword').value,
-            document.querySelector('#newPassword').value
+            newPassword
         );
     });
 
@@ -42,6 +48,11 @@
         container.appendChild(clone);
     }
 
+    function showWarning(code) {
+        var event = new CustomEvent('warning', { detail: code });
+        document.body.dispatchEvent(event);
+    }
+
     function submitForm(currentPassword, newPassword) {
         showWaitingMessage();
 
@@ -64,14 +75,14 @@
             if (response.ok) {
                 return response.json();
             } else {
-                window.location.assign('/?warning=4');
+                window.location.assign('/andra-losenord/?warning=4');
             }
         }).then(function (response) {
             if (response.isSuccess) {
                 showThanksMessage();
             } else {
-                var event = new CustomEvent('warning', { detail: response.warning });
-                document.body.dispatchEvent(event);
+                showWarning(response.warning);
+                showForm();
             }
         });
     }

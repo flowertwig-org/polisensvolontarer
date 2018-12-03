@@ -23,6 +23,9 @@
             case "6":
                 warningElement.innerText = 'Kunde ej ändra lösenord. Nuvarande lösenordet är felaktigt.';
                 break;
+            case "7":
+                warningElement.innerHTML = 'Kunde ej ändra lösenord. Lösenordet som är angivet i <b>"Nytt lösenordet"</b> överensstämmer ej med det som är angivet i <b>"Upprepa nytt lösenord"</b>.';
+                break;
         }
         document.querySelector('main').insertAdjacentElement('afterbegin', warningElement);
     }
