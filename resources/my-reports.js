@@ -139,7 +139,7 @@
                 //window.location.assign('/?warning=4');
             }
         }).then(function (response) {
-            if (response) {
+            if (response.isSuccess) {
                 var key = btoa(assignmentOrDate);
                 setCookie('report-' + key, '1', 15);
                 showThanksMessage();
