@@ -25,13 +25,24 @@
             document.querySelector('#username').value,
             document.querySelector('#password').value,
             document.querySelector('#page').value,
-            document.querySelector('#query').value
+            document.querySelector('#query').value,
+            false
         );
     });
 
     showForm();
 
     checkLoginStatus();
+
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
 
     function checkLoginStatus() {
         // This function will warmup the API before it is called AND if we are logged in alredy, redirect us directly to page
@@ -80,13 +91,18 @@
         document.body.dispatchEvent(event);
     }
 
-    function submitForm(username, password, page, query) {
+    function submitForm(username, password, page, query, failedCookieCheck) {
         showWaitingMessage();
 
         var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/login';
         var inTestEnvironment = location.origin.indexOf('test-') != -1;
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
+        }
+
+        var failedCookieCheckParam = '';
+        if (failedCookieCheck) {
+            failedCookieCheckParam = "&failedCookieCheck=true";
         }
 
         var result = fetch(serviceUrl, {
@@ -96,7 +112,7 @@
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: "username=" + encodeURI(username) + "&password=" + encodeURI(password) + "&page=" + encodeURI(page) + "&query=" + encodeURI(query)
+            body: "username=" + encodeURI(username) + "&password=" + encodeURI(password) + "&page=" + encodeURI(page) + "&query=" + encodeURI(query) + failedCookieCheckParam
         });
         result.then(function (response) {
             if (response.ok) {
@@ -125,11 +141,20 @@
                     }
                 }).then(function (response3) {
                     if (response3) {
+                        if (response3.cookieFailKey) {
+                            sessionStorage.setItem('cookieFailKey', response3.cookieFailKey);
+                        }
+
                         // Browser supports cookies, continue
                         window.location.assign(response.redirectUrl);
                     } else {
-                        showForm();
-                        showWarning(5);
+                        if (failedCookieCheck) {
+                            showForm();
+                            showWarning(5);
+                        }else{
+                            submitForm(username, password, page, query, true);
+                        }
+                        //TODO: 
                         //window.location.assign('/?warning=5');
                     }
                 });
