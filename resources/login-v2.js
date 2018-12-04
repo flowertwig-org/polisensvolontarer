@@ -124,9 +124,14 @@
             }
         }).then(function (response) {
             if (response.isSuccess) {
-                // TODO: check if login status still true (To verify cookie support)
+                var tmpServiceUrl = serviceUrl;
+                if (response.cookieFailKey) {
+                    sessionStorage.setItem('cookieFailKey', response.cookieFailKey);
+                    serviceUrl += "?cookieFailKey=" + response.cookieFailKey;
+                }
 
-                var result = fetch(serviceUrl, {
+                // check if login status still true (To verify cookie support)
+                var result = fetch(tmpServiceUrl, {
                     method: 'GET',
                     credentials: 'include',
                     mode: 'cors'
@@ -141,10 +146,6 @@
                     }
                 }).then(function (response3) {
                     if (response3) {
-                        if (response3.cookieFailKey) {
-                            sessionStorage.setItem('cookieFailKey', response3.cookieFailKey);
-                        }
-
                         // Browser supports cookies, continue
                         window.location.assign(response.redirectUrl);
                     } else {
