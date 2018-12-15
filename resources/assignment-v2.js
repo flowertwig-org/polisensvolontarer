@@ -7,6 +7,11 @@
         serviceUrl = serviceUrl.replace("https://", "https://test-");
     }
 
+    var cookieFailKey = sessionStorage.getItem('cookieFailKey');
+    if (cookieFailKey) {
+        serviceUrl += "?cookieFailKey=" + cookieFailKey;
+    }
+
     var result = fetch(serviceUrl + location.search, {
         method: 'GET',
         credentials: 'include',
@@ -92,7 +97,12 @@
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
         }
-    
+
+        var cookieFailKey = sessionStorage.getItem('cookieFailKey');
+        if (cookieFailKey) {
+            serviceUrl += "?cookieFailKey=" + cookieFailKey;
+        }
+
         var result = fetch(serviceUrl, {
             method: 'POST',
             credentials: 'include',
