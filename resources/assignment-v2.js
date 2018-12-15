@@ -12,7 +12,7 @@
         serviceUrl += "?cookieFailKey=" + cookieFailKey;
     }
 
-    var result = fetch(serviceUrl + location.search, {
+    var result = fetch(serviceUrl + location.search.replace('?','&'), {
         method: 'GET',
         credentials: 'include',
         mode: 'cors'
@@ -98,11 +98,6 @@
             serviceUrl = serviceUrl.replace("https://", "https://test-");
         }
 
-        var cookieFailKey = sessionStorage.getItem('cookieFailKey');
-        if (cookieFailKey) {
-            serviceUrl += "?cookieFailKey=" + cookieFailKey;
-        }
-
         var result = fetch(serviceUrl, {
             method: 'POST',
             credentials: 'include',
@@ -110,7 +105,7 @@
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: "key=" + assignmentId + "&comment=" + encodeURI(comment) + "&password=" + encodeURI(password)
+            body: "key=" + assignmentId + "&comment=" + encodeURI(comment) + "&password=" + encodeURI(password) + "?cookieFailKey=" + encodeURI(cookieFailKey)
         });
 
         result.then(function (response) {
