@@ -168,7 +168,7 @@
                     var cloneAssignment = document.importNode(templateAssignment.content, true);
                     main.appendChild(cloneAssignment);
 
-                    var assignmentKey = btoa(assignment.name + assignment.date);
+                    var assignmentKey = btoa(assignment.name + ', ' + assignment.date);
                     setCookie('assignment-' + assignmentKey, btoa(assignment.area), 14);
                 }
 
