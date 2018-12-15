@@ -36,7 +36,6 @@
         container.innerHTML = '';
     }
 
-
     var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/MyAssignments';
     var inTestEnvironment = location.origin.indexOf('test-') != -1;
     if (inTestEnvironment) {

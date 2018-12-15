@@ -1,6 +1,20 @@
 ﻿(function () {
     'use strict';
 
+    function showWaitingMessage() {
+        var templateWaiting = document.querySelector('#waiting');
+        var clone = document.importNode(templateWaiting.content, true);
+
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+        container.appendChild(clone);
+    }
+
+    function hideWaitingMessage() {
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+    }
+
     var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/Assignment';
     var inTestEnvironment = location.origin.indexOf('test-') != -1;
     if (inTestEnvironment) {
@@ -13,6 +27,8 @@
     if (cookieFailKey) {
         serviceUrl += "&cookieFailKey=" + cookieFailKey;
     }
+
+    showWaitingMessage();
 
     var result = fetch(serviceUrl, {
         method: 'GET',
@@ -84,9 +100,10 @@
         } else {
             // TODO: Show warning message to user that it requires template support
         }
-
-
+        hideWaitingMessage();
+        
     }).catch(function (ex) {
+        hideWaitingMessage();
         console.log(ex);
     });
 
