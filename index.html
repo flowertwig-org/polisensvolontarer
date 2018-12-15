@@ -5,7 +5,7 @@
     <title>Polisens Volontärer</title>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
-    <link rel="stylesheet" href="/resources/volontarer-basic-v4.css" />
+    <link rel="stylesheet" href="/resources/volontarer-basic-v5.css" />
     <link rel="stylesheet" href="/resources/volontarer-grid.css" />
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -37,22 +37,31 @@
         </p>
 
         <form id="login-form" action="https://polisens-volontarer-api.azurewebsites.net/api/login" method="post" enctype="application/x-www-form-urlencoded">
-            <input type="hidden" id="page" name="page" value="" />
-            <input type="hidden" id="query" name="query" value="" />
-            <label for="username">Användarnamn:</label>
-            <input id="username" name="username" type="text" autocomplete="username" />
-            <br />
-            <label for="password">Lösenord:</label>
-            <input id="password" name="password" type="password" autocomplete="current-password" />
-            <br />
-            <input type="submit" value="Logga in" />
         </form>
 
     </main>
     <footer>
     </footer>
 
+    <template id="waiting">
+        <p>Veriferar dina inloggningsuppgifter,<br>vänligen vänta...</p>
+        <div class="spinner">&nbsp;</div>
+    </template>
+    <template id="form">
+        <input type="hidden" id="page" name="page" value="" />
+        <input type="hidden" id="query" name="query" value="" />
+        <label for="username">Användarnamn:</label>
+        <input id="username" name="username" type="text" autocomplete="username" />
+        <br />
+        <label for="password">Lösenord:</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" />
+        <br />
+        <input type="submit" value="Logga in" />
+    </template>
+
+
     <script src="/resources/environment.js" async></script>
-    <script src="/resources/login.js" async></script>
+    <script src="/resources/login-v3.js" async></script>
+    <script src="/resources/warnings-v3.js" async></script>
 </body>
 </html>

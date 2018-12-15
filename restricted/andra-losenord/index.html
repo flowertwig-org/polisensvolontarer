@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8" />
+    <title>Ändra lösenord - Polisens Volontärer</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
+    <link rel="stylesheet" href="/resources/volontarer-basic-v5.css" />
+    <link rel="stylesheet" href="/resources/volontarer-grid.css" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffffff">
+    <meta name="apple-mobile-web-app-title" content="Polisens Volont&auml;rer">
+    <meta name="application-name" content="Polisens Volont&auml;rer">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff"></head>
+</head>
+<body>
+    <header>
+            <a href="/restricted/" class="logo-text">
+                <img class="logo-v2" src="/favicon-32x32.png" alt="Polisens volontärers logotyp" />
+                Polisens Volontärer
+            </a>
+        <input type="checkbox" id="menu" name="menu" class="toggable" />
+        <menu class="toggle-area">
+                <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
+                <a href="/restricted/">Mina uppdrag</a>
+                <a href="/restricted/uppdragsrapport/">Uppdragsrapport</a>
+
+            <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
+                <input type="submit" value="Logga ut" />
+            </form>
+        </menu>
+        <div class="icons">
+                <label for="menu">
+                        <div class="icon icon-menu-v2">
+                            <div class="icon-menu-v2-inner"></div>
+                            <div class="icon-menu-v2-inner"></div>
+                            <div class="icon-menu-v2-inner"></div>
+                            <div class="icon-focus-ring"></div>
+                        </div>
+                    </label>
+                </div>
+    </header>
+    <main>
+
+        <h1>Ändra lösenord</h1>
+        <p>
+
+        </p>
+
+        <form id="change-password-form" action="https://polisens-volontarer-api.azurewebsites.net/api/changepassword" method="post" enctype="application/x-www-form-urlencoded">
+        </form>
+
+    </main>
+    <footer>
+    </footer>
+
+        <template id="waiting">
+            <p>Ändrar lösenord,<br>vänligen vänta...</p>
+            <div class="spinner">&nbsp;</div>
+        </template>
+        <template id="thanks">
+            <p>Lösenordet är nu ändrat</p>
+        </template>
+        <template id="form">
+            <label for="currentPassword">Nuvarande lösenord:</label>
+            <input id="currentPassword" name="currentPassword" type="password" autocomplete="current-password">
+            <br>
+            <br>
+            <label for="newPassword">Nytt lösenord:</label>
+            <input id="newPassword" name="newPassword" type="password" autocomplete="new-password">
+            <br>
+            <br>
+            <label for="newPassword2">Upprepa nytt lösenord:</label>
+            <input id="newPassword2" name="newPassword2" type="password" autocomplete="new-password">
+            <br>
+            <br>
+
+            <input type="submit" value="Ändra lösenord" />
+    </template>
+
+    <script src="/resources/environment.js" async></script>
+    <script src="/resources/change-password-v2.js" async></script>
+    <script src="/resources/keep-alive-v3.js" async></script>
+    <script src="/resources/warnings-v3.js" async></script>
+</body>
+</html>

@@ -5,7 +5,7 @@
     <title>Inloggad - Polisens Volontärer</title>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
-    <link rel="stylesheet" href="/resources/volontarer-basic-v4.css" />
+    <link rel="stylesheet" href="/resources/volontarer-basic-v5.css" />
     <link rel="stylesheet" href="/resources/volontarer-grid.css" />
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -29,6 +29,7 @@
         <menu class="toggle-area">
             <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
             <a href="/restricted/">Mina uppdrag</a>
+            <a href="/restricted/uppdragsrapport/">Uppdragsrapport</a>
 
             <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
                 <input type="submit" value="Logga ut" />
@@ -51,9 +52,16 @@
             Här kan du hitta uppdrag, ändra inställningar och komma i kontakt med dina samordnare.
         </p>
 
+        <div id="waiting-container"></div>
+
         <div id="my-assignments" style="display:none">
             <h2>Mina uppdrag (<span id="my-assignments-count">?</span>)</h2>
             <div id="my-assignments-confirms"></div>
+        </div>
+
+        <div id="my-assignments-reports" style="display:none">
+            <h2>Uppdrag att rapportera (<span id="my-assignments-reports-count">?</span>)</h2>
+            <div id="my-assignments-reports-items"></div>
         </div>
 
         <div id="my-assignments-interests" style="display:none">
@@ -84,10 +92,27 @@
         </p>
     </template>
 
+    <template id="template-my-reports">
+        <p style="
+        border-bottom: solid 1px #000;
+        padding-bottom: 10px;
+    ">
+            <b>
+                <a href="#" class="assignment-name">WAS - We Are Stockholm!</a>
+            </b>
+            <br />
+            <span style="font-size:small"><span class="assignment-when">2017-08-18</span></span>
+        </p>
+    </template>
+    <template id="waiting">
+        <p>Hämtar mina uppdrag,<br>vänligen vänta...</p>
+        <div class="spinner">&nbsp;</div>
+    </template>
+
     <script src="/resources/environment.js" async></script>
-    <script src="/resources/my-assignments.js" async></script>
-    <script src="/resources/keep-alive.js" async></script>
-    <script src="/resources/warnings.js" async></script>
+    <script src="/resources/my-assignments-v4.js" async></script>
+    <script src="/resources/keep-alive-v3.js" async></script>
+    <script src="/resources/warnings-v3.js" async></script>
 </body>
 
 </html>

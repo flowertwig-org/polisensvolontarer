@@ -1,13 +1,36 @@
 ﻿(function () {
     'use strict';
 
+    function showWaitingMessage() {
+        var templateWaiting = document.querySelector('#waiting');
+        var clone = document.importNode(templateWaiting.content, true);
+
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+        container.appendChild(clone);
+    }
+
+    function hideWaitingMessage() {
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+    }
+
     var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/Assignment';
     var inTestEnvironment = location.origin.indexOf('test-') != -1;
     if (inTestEnvironment) {
         serviceUrl = serviceUrl.replace("https://", "https://test-");
     }
 
-    var result = fetch(serviceUrl + location.search, {
+    serviceUrl += location.search;
+
+    var cookieFailKey = sessionStorage.getItem('cookieFailKey');
+    if (cookieFailKey) {
+        serviceUrl += "&cookieFailKey=" + cookieFailKey;
+    }
+
+    showWaitingMessage();
+
+    var result = fetch(serviceUrl, {
         method: 'GET',
         credentials: 'include',
         mode: 'cors'
@@ -77,9 +100,10 @@
         } else {
             // TODO: Show warning message to user that it requires template support
         }
-
+        hideWaitingMessage();
 
     }).catch(function (ex) {
+        hideWaitingMessage();
         console.log(ex);
     });
 
@@ -92,7 +116,7 @@
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
         }
-    
+
         var result = fetch(serviceUrl, {
             method: 'POST',
             credentials: 'include',
@@ -100,7 +124,7 @@
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: "key=" + assignmentId + "&comment=" + encodeURI(comment) + "&password=" + encodeURI(password)
+            body: "key=" + assignmentId + "&comment=" + encodeURI(comment) + "&password=" + encodeURI(password) + "&cookieFailKey=" + encodeURI(cookieFailKey)
         });
 
         result.then(function (response) {

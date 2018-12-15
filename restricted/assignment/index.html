@@ -5,7 +5,7 @@
     <title>Uppdrags information - Polisens Volontärer</title>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
-    <link rel="stylesheet" href="/resources/volontarer-basic-v4.css" />
+    <link rel="stylesheet" href="/resources/volontarer-basic-v5.css" />
     <link rel="stylesheet" href="/resources/volontarer-grid.css" />
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -29,6 +29,8 @@
         <menu class="toggle-area">
                 <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
                 <a href="/restricted/">Mina uppdrag</a>
+                <a href="/restricted/uppdragsrapport/">Uppdragsrapport</a>
+                
             <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
                 <input type="submit" value="Logga ut" />
             </form>
@@ -46,7 +48,7 @@
     </header>
     <main>
 
-
+        <div id="waiting-container"></div>
 
     </main>
     <footer>
@@ -116,9 +118,14 @@
             </form>
             
         </template>
+        <template id="waiting">
+            <p>Hämtar uppdragsinformation,<br>vänligen vänta...</p>
+            <div class="spinner">&nbsp;</div>
+        </template>
+
     <script src="/resources/environment.js" async></script>
-    <script src="/resources/assignment.js" async></script>
-    <script src="/resources/keep-alive.js" async></script>
-    <script src="/resources/warnings.js" async></script>
+    <script src="/resources/assignment-v2.js" async></script>
+    <script src="/resources/keep-alive-v3.js" async></script>
+    <script src="/resources/warnings-v3.js" async></script>
 </body>
 </html>

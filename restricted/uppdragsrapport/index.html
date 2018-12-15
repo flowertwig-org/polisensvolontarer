@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8" />
+    <title>Uppdragsrapport - Polisens Volontärer</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
+    <link rel="stylesheet" href="/resources/volontarer-basic-v5.css" />
+    <link rel="stylesheet" href="/resources/volontarer-grid.css" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffffff">
+    <meta name="apple-mobile-web-app-title" content="Polisens Volont&auml;rer">
+    <meta name="application-name" content="Polisens Volont&auml;rer">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff"></head>
+</head>
+<body>
+    <header>
+            <a href="/restricted/" class="logo-text">
+                <img class="logo-v2" src="/favicon-32x32.png" alt="Polisens volontärers logotyp" />
+                Polisens Volontärer
+            </a>
+        <input type="checkbox" id="menu" name="menu" class="toggable" />
+        <menu class="toggle-area">
+                <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
+                <a href="/restricted/">Mina uppdrag</a>
+                <a href="/restricted/uppdragsrapport/">Uppdragsrapport</a>
+
+            <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post" enctype="application/x-www-form-urlencoded">
+                <input type="submit" value="Logga ut" />
+            </form>
+        </menu>
+        <div class="icons">
+                <label for="menu">
+                        <div class="icon icon-menu-v2">
+                            <div class="icon-menu-v2-inner"></div>
+                            <div class="icon-menu-v2-inner"></div>
+                            <div class="icon-menu-v2-inner"></div>
+                            <div class="icon-focus-ring"></div>
+                        </div>
+                    </label>
+                </div>
+    </header>
+    <main>
+
+        <h1>Uppdragsrapport</h1>
+        <p>
+            Fyll gärna i en uppdragsrapport efter avslutat pass -  t ex om något speciellt inträffat, hur kontakt med allmänhet fungerat, synpunker och tankar, om något behöver fyllas på i akutväskan mm.
+        </p>
+
+        <form id="assignment-report-form" action="https://polisens-volontarer-api.azurewebsites.net/api/assignmentreport" method="post" enctype="application/x-www-form-urlencoded">
+        </form>
+
+    </main>
+    <footer>
+    </footer>
+
+        <template id="waiting">
+            <p>Skickar in rapport,<br>vänligen vänta...</p>
+            <div class="spinner">&nbsp;</div>
+        </template>
+        <template id="thanks">
+            <h2>Tack!</h2>
+            <p>Vi har nu mottagit din rapport, tack :)</p>
+        </template>
+        <template id="form">
+        <!--
+            <label for="name">Namn:</label>
+            <input id="name" name="name" autocomplete="name" type="text">
+            <br>
+            <br>
+            <label for="email">E-post:</label>
+            <input id="email" name="email" autocomplete="email" type="email">
+            <br>
+            <br>
+        -->
+            <label for="assignmentOrDate">Vilket uppdrag / datum?:</label>
+            <input id="assignmentOrDate" name="assignmentOrDate" type="text">
+            <br>
+            <br>
+            <label for="areaIndex">Uppdrags område:</label>
+            <select id="areaIndex" name="areaIndex">
+                    <option value="-1">Välj område</option>
+                    <option value="0">Norrmalm</option>
+                    <option value="1">Södermalm</option>
+                    <option value="2">Farsta</option>
+                    <option value="3">Globen</option>
+                    <option value="4">Skärholmen</option>
+                    <option value="5">Botkyrka</option>
+                    <option value="6">Huddinge</option>
+                    <option value="7">Haninge-Nynäshamn</option>
+                    <option value="8">Nacka</option>
+                    <option value="9">Södertälje</option>
+                    <option value="10">Järfälla</option>
+                    <option value="11">Sollentuna</option>
+                    <option value="12">Täby</option>
+                    <option value="13">Norrtälje</option>
+                    <option value="14">Solna</option>
+                    <option value="15">Rinkeby</option>
+                    <option value="16">Vällingby</option>
+                    <option value="17">Operativa enheten</option>
+                    <option value="18">Po Syd</option>
+                    <option value="19">Gotland</option>
+                    <!-- <option label="Nattknappen"></option> -->
+                    <option value="20">Gränspolisenheten</option>
+                    <option value="20">Arlanda</option>
+                    <option value="21">Övrig</option>
+            </select>
+            <br>
+            <br>
+            <label for="feedback1">Vad tyckte du om volontäruppdraget?</label>
+            <textarea id="feedback1" name="feedback1"></textarea>
+            <br>
+            <br>
+            <label for="feedback2">Hur var samarbetet i gruppen?</label>
+            <textarea id="feedback2" name="feedback2"></textarea>
+            <br>
+            <br>
+            <label for="feedback3">Har du något förbättringsförslag?:</label>
+            <textarea id="feedback3" name="feedback3"></textarea>
+            <br>
+            <br>
+            <input id="anonymous" name="anonymous" type="checkbox">
+            <label for="anonymous">Skicka in rapporten anonymt</label>        
+            <br>
+            <br>
+
+            <input type="submit" value="Skicka in rapport" />
+    </template>
+
+    <script src="/resources/environment.js" async></script>
+    <script src="/resources/my-reports.js" async></script>
+    <script src="/resources/keep-alive-v3.js" async></script>
+    <script src="/resources/warnings-v3.js" async></script>
+</body>
+</html>
