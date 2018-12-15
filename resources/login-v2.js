@@ -86,6 +86,12 @@
                 case 'key':
                     document.querySelector('#query').value = '?' + keyValuePairs[index];
                     break;
+                case 'logout':
+                    try {
+                        sessionStorage.removeItem('cookieFailKey');
+                    } catch {
+                    }
+                    break;
             }
         }
     }
