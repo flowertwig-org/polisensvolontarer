@@ -1,27 +1,6 @@
 ﻿(function () {
     'use strict';
 
-    // If we where redirected from a page that required login, store info in login form so we can return to page later
-    var keyValuePairs = location.search.substr(1).split('&');
-    for (let index = 0; index < keyValuePairs.length; index++) {
-        const pair = keyValuePairs[index].split('=');
-        const key = pair[0];
-        const value = pair[1];
-        
-        if (!value) {
-            continue;
-        }
-
-        switch (key) {
-            case 'page':
-                document.querySelector('#page').value = value;
-                break;
-            case 'key':
-                document.querySelector('#query').value = '?' + keyValuePairs[index];
-                break;
-        }
-    }
-
     var form = document.querySelector('#login-form');
     form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -88,6 +67,27 @@
         var container = document.querySelector('#login-form');
         container.innerHTML = '';
         container.appendChild(clone);
+
+        // If we where redirected from a page that required login, store info in login form so we can return to page later
+        var keyValuePairs = location.search.substr(1).split('&');
+        for (let index = 0; index < keyValuePairs.length; index++) {
+            const pair = keyValuePairs[index].split('=');
+            const key = pair[0];
+            const value = pair[1];
+
+            if (!value) {
+                continue;
+            }
+
+            switch (key) {
+                case 'page':
+                    document.querySelector('#page').value = value;
+                    break;
+                case 'key':
+                    document.querySelector('#query').value = '?' + keyValuePairs[index];
+                    break;
+            }
+        }
     }
 
     function showWarning(code) {
@@ -156,7 +156,7 @@
                         if (failedCookieCheck) {
                             showForm();
                             showWarning(5);
-                        }else{
+                        } else {
                             submitForm(username, password, page, query, true);
                         }
                         //TODO: 
