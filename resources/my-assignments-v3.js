@@ -28,6 +28,11 @@
         serviceUrl = serviceUrl.replace("https://", "https://test-");
     }
 
+    var cookieFailKey = sessionStorage.getItem('cookieFailKey');
+    if (cookieFailKey) {
+        serviceUrl += "?cookieFailKey=" + cookieFailKey;
+    }
+
     var result = fetch(serviceUrl, {
         method: 'GET',
         credentials: 'include',
