@@ -62,6 +62,8 @@
             serviceUrl = serviceUrl.replace("https://", "https://test-");
         }
 
+        var cookieFailKey = sessionStorage.getItem('cookieFailKey');
+
         var result = fetch(serviceUrl, {
             method: 'POST',
             credentials: 'include',
@@ -69,7 +71,7 @@
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: "currentPassword=" + encodeURI(currentPassword) + "&newPassword=" + encodeURI(newPassword)
+            body: "currentPassword=" + encodeURI(currentPassword) + "&newPassword=" + encodeURI(newPassword) + "&cookieFailKey=" + encodeURI(cookieFailKey)
         });
         result.then(function (response) {
             if (response.ok) {
