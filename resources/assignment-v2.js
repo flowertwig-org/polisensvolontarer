@@ -7,12 +7,14 @@
         serviceUrl = serviceUrl.replace("https://", "https://test-");
     }
 
+    serviceUrl += location.search;
+
     var cookieFailKey = sessionStorage.getItem('cookieFailKey');
     if (cookieFailKey) {
-        serviceUrl += "?cookieFailKey=" + cookieFailKey;
+        serviceUrl += "&cookieFailKey=" + cookieFailKey;
     }
 
-    var result = fetch(serviceUrl + location.search.replace('?','&'), {
+    var result = fetch(serviceUrl, {
         method: 'GET',
         credentials: 'include',
         mode: 'cors'
