@@ -7,6 +7,10 @@
         const pair = keyValuePairs[index].split('=');
         const key = pair[0];
         const value = pair[1];
+        
+        if (!value) {
+            continue;
+        }
 
         switch (key) {
             case 'page':
