@@ -1,16 +1,19 @@
 ﻿(function () {
     'use strict';
 
-    var callCount = 1;
-    
     var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/KeepAlive';
     var inTestEnvironment = location.origin.indexOf('test-') != -1;
     if (inTestEnvironment) {
         serviceUrl = serviceUrl.replace("https://", "https://test-");
     }
 
+    var cookieFailKey = sessionStorage.getItem('cookieFailKey');
+    if (cookieFailKey) {
+        serviceUrl += "?cookieFailKey=" + cookieFailKey;
+    }
+
     function makeKeepAliveCall(localCallCount) {
-        var result = fetch(serviceUrl + "?callCount=" + localCallCount, {
+        var result = fetch(serviceUrl, {
             method: 'GET',
             credentials: 'include',
             mode: 'cors'
@@ -58,8 +61,8 @@
         });
     }
 
-    makeKeepAliveCall(callCount++);
+    makeKeepAliveCall();
     setInterval(function () {
-        makeKeepAliveCall(callCount++);
+        makeKeepAliveCall();
     }, 40000);
 })();
