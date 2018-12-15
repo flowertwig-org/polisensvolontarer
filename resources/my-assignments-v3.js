@@ -22,6 +22,21 @@
         return null;
     }
 
+    function showWaitingMessage() {
+        var templateWaiting = document.querySelector('#waiting');
+        var clone = document.importNode(templateWaiting.content, true);
+
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+        container.appendChild(clone);
+    }
+
+    function hideWaitingMessage() {
+        var container = document.querySelector('#waiting-container');
+        container.innerHTML = '';
+    }
+
+
     var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/MyAssignments';
     var inTestEnvironment = location.origin.indexOf('test-') != -1;
     if (inTestEnvironment) {
@@ -32,6 +47,8 @@
     if (cookieFailKey) {
         serviceUrl += "?cookieFailKey=" + cookieFailKey;
     }
+
+    showWaitingMessage();
 
     var result = fetch(serviceUrl, {
         method: 'GET',
@@ -48,11 +65,13 @@
     }).then(function (myAssignments) {
         if (!myAssignments.isLoggedIn) {
             // We are not logged in, cancel here.
+            hideWaitingMessage();
             return myAssignments;
         }
         if (!myAssignments || !('confirms' in myAssignments)) {
             // We don't have a vaild object, cancel here
             //window.location.assign('/');
+            hideWaitingMessage();
             return myAssignments;
         }
 
@@ -213,8 +232,9 @@
             }
         }
 
-
+        hideWaitingMessage();
     }).catch(function (ex) {
+        hideWaitingMessage();
         console.log(ex);
     });
 })();

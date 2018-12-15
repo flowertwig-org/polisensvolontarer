@@ -52,6 +52,8 @@
             Här kan du hitta uppdrag, ändra inställningar och komma i kontakt med dina samordnare.
         </p>
 
+        <div id="waiting-container"></div>
+
         <div id="my-assignments" style="display:none">
             <h2>Mina uppdrag (<span id="my-assignments-count">?</span>)</h2>
             <div id="my-assignments-confirms"></div>
@@ -101,6 +103,10 @@
             <br />
             <span style="font-size:small"><span class="assignment-when">2017-08-18</span></span>
         </p>
+    </template>
+    <template id="waiting">
+        <p>Hämtar mina uppdrag,<br>vänligen vänta...</p>
+        <div class="spinner">&nbsp;</div>
     </template>
 
     <script src="/resources/environment.js" async></script>
