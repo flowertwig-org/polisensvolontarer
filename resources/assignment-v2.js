@@ -101,7 +101,7 @@
             // TODO: Show warning message to user that it requires template support
         }
         hideWaitingMessage();
-        
+
     }).catch(function (ex) {
         hideWaitingMessage();
         console.log(ex);
@@ -124,7 +124,7 @@
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: "key=" + assignmentId + "&comment=" + encodeURI(comment) + "&password=" + encodeURI(password) + "?cookieFailKey=" + encodeURI(cookieFailKey)
+            body: "key=" + assignmentId + "&comment=" + encodeURI(comment) + "&password=" + encodeURI(password) + "&cookieFailKey=" + encodeURI(cookieFailKey)
         });
 
         result.then(function (response) {
