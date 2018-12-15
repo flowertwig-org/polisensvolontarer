@@ -131,7 +131,7 @@
                 var tmpServiceUrl = serviceUrl;
                 if (response.cookieFailKey) {
                     sessionStorage.setItem('cookieFailKey', response.cookieFailKey);
-                    serviceUrl += "?cookieFailKey=" + response.cookieFailKey;
+                    tmpServiceUrl += "?cookieFailKey=" + response.cookieFailKey;
                 }
 
                 // check if login status still true (To verify cookie support)
