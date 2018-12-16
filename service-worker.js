@@ -18,6 +18,7 @@
       // Images
       '/favicon-32x32.png',
       // Javascript
+      '/resources/warnings-v4.js',
       // Styles
       '/resources/volontarer-normalize.css',
       '/resources/volontarer-grid.css',
