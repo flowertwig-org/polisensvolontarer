@@ -531,10 +531,14 @@
             if (filterSettingsCount > maxFilterSettingsCount) {
                 // show filter settings that we use
                 clone = document.importNode(templateFilterActive.content, true);
+
+                // textContent
+                clone.querySelector('.filter-active-count').textContent = filterSettingsCount;
+
                 var form = clone.querySelector('#available-assignments-filter-container');
                 form.addEventListener('submit', function (event) {
                     event.preventDefault();
-                    updateFilterInterface(false);
+                    updateFilterInterface(true);
                 });
             } else {
                 // show filter settings that we use
