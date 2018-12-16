@@ -1,7 +1,7 @@
-(function () {
-    'use strict';
+//(function () {
+//    'use strict';
 
-    var self = this;
+//    var self = this;
 
     var CACHE_NAME = 'volontar-cache-v1';
     var urlsToCache = [
@@ -47,4 +47,4 @@
       });    
     
 
-})();
+//})();
