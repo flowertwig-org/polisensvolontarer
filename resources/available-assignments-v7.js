@@ -32,7 +32,7 @@
     }
 
     function toValidArray(arrayOfIndexes, arrayOfNames) {
-        var arr =  [];
+        var arr = [];
         for (let index = 0; index < arrayOfIndexes.length; index++) {
             const indexData = arrayOfIndexes[index];
             var parsedIndex = parseInt(indexData);
@@ -47,7 +47,7 @@
     }
 
     function convertToNames(arrayOfIndexes, arrayOfNames) {
-        var arr =  [];
+        var arr = [];
         for (let index = 0; index < arrayOfIndexes.length; index++) {
             const indexData = arrayOfIndexes[index];
             var name = getValueFromArray(indexData, arrayOfNames);
@@ -59,7 +59,7 @@
     }
 
     function convertToIndexes(arrayOfNames, arrayOfIndexes) {
-        var arr =  [];
+        var arr = [];
         for (let index = 0; index < arrayOfNames.length; index++) {
             const name = arrayOfNames[index];
             for (let typeIndex = 0; typeIndex < arrayOfIndexes.length; typeIndex++) {
@@ -76,10 +76,10 @@
         var parsedIndex = parseInt(index);
         if (isNaN(parsedIndex)) {
             return "";
-        }else {
+        } else {
             if (arrayToGetValueFrom.length > parsedIndex) {
                 return arrayToGetValueFrom[parsedIndex];
-            }else {
+            } else {
                 return "";
             }
         }
@@ -113,7 +113,7 @@
     }
 
     function setSettingValue(key, value) {
-        var maxAge = 60*60*24*30;
+        var maxAge = 60 * 60 * 24 * 30;
         document.cookie = key + "=" + value + ';max-age=' + maxAge + ';path=/;secure';
     }
 
@@ -215,7 +215,7 @@
             if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.AlwaysShowTypes = tmp;
-            }else {
+            } else {
                 // convert old (AND VALID) filter values
                 filterSettings.AlwaysShowTypes = convertToIndexes(pvAlwaysShowTypes.split(','), getTypes());
                 hasFilter = filterSettings.AlwaysShowTypes.length > 0;
@@ -230,7 +230,7 @@
             if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.NeverShowTypes = tmp;
-            }else {
+            } else {
                 // convert old (AND VALID) filter values
                 filterSettings.NeverShowTypes = convertToIndexes(pvNeverShowTypes.split(','), getTypes());
                 hasFilter = filterSettings.NeverShowTypes.length > 0;
@@ -245,7 +245,7 @@
             if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.HideWorkDayTypes = tmp;
-            }else {
+            } else {
                 // convert old (AND VALID) filter values
                 filterSettings.HideWorkDayTypes = convertToIndexes(pvWorkDayTypes.split(','), getTypes());
                 hasFilter = filterSettings.HideWorkDayTypes.length > 0;
@@ -260,7 +260,7 @@
             if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.HideWeekendTypes = tmp;
-            }else {
+            } else {
                 // convert old (AND VALID) filter values
                 filterSettings.HideWeekendTypes = convertToIndexes(pvWeekendTypes.split(','), getTypes());
                 hasFilter = filterSettings.HideWeekendTypes.length > 0;
@@ -275,7 +275,7 @@
             if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.NeverShowAreas = tmp;
-            }else {
+            } else {
                 // convert old (AND VALID) filter values
                 filterSettings.NeverShowAreas = convertToIndexes(pvNeverShowAreas.split(','), getAreas());
                 hasFilter = filterSettings.NeverShowAreas.length > 0;
@@ -290,7 +290,7 @@
             if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.AlwaysShowAreas = tmp;
-            }else {
+            } else {
                 // convert old (AND VALID) filter values
                 filterSettings.AlwaysShowAreas = convertToIndexes(pvAlwaysShowAreas.split(','), getAreas());
                 hasFilter = filterSettings.AlwaysShowAreas.length > 0;
@@ -305,7 +305,7 @@
             if (tmp.length > 0) {
                 hasFilter = true;
                 filterSettings.NeverShowSpecTypes = tmp;
-            }else {
+            } else {
                 // convert old (AND VALID) filter values
                 filterSettings.NeverShowSpecTypes = convertToIndexes(pvNeverShowSpecTypes.split(','), getSpecTypes());
                 hasFilter = filterSettings.NeverShowSpecTypes.length > 0;
@@ -357,6 +357,7 @@
         var templateFilterNone = document.querySelector('#filter-none');
         var templateFilterChange = document.querySelector('#filter-change-options');
         var templateFilterView = document.querySelector('#filter-view-options');
+        var templateFilterActive = document.querySelector('#filter-active');
 
         var filterSettings = getFilterSettings();
 
@@ -517,29 +518,49 @@
             });
         }
         else if (filterSettings) {
-            // show filter settings that we use
-            clone = document.importNode(templateFilterView.content, true);
 
-            var listContainer = clone.querySelector('#FilterAlwaysShowTypes');
-            addItemsToList(listContainer, convertToNames(filterSettings.AlwaysShowTypes, getTypes()));
-            listContainer = clone.querySelector('#FilterNeverShowTypes');
-            addItemsToList(listContainer, convertToNames(filterSettings.NeverShowTypes, getTypes()));
-            listContainer = clone.querySelector('#FilterHideWorkDayTypes');
-            addItemsToList(listContainer, convertToNames(filterSettings.HideWorkDayTypes, getTypes()));
-            listContainer = clone.querySelector('#FilterHideWeekendTypes');
-            addItemsToList(listContainer, convertToNames(filterSettings.HideWeekendTypes, getTypes()));
-            listContainer = clone.querySelector('#FilterAlwaysShowAreas');
-            addItemsToList(listContainer, convertToNames(filterSettings.AlwaysShowAreas, getAreas()));
-            listContainer = clone.querySelector('#FilterNeverShowAreas');
-            addItemsToList(listContainer, convertToNames(filterSettings.NeverShowAreas, getAreas()));
-            listContainer = clone.querySelector('#FilterNeverShowSpecTypes');
-            addItemsToList(listContainer, convertToNames(filterSettings.NeverShowSpecTypes, getSpecTypes()));
+            var filterSettingsCount = filterSettings.AlwaysShowTypes.length;
+            filterSettingsCount += filterSettings.NeverShowTypes;
+            filterSettingsCount += filterSettings.HideWorkDayTypes;
+            filterSettingsCount += filterSettings.HideWeekendTypes;
+            filterSettingsCount += filterSettings.AlwaysShowAreas;
+            filterSettingsCount += filterSettings.NeverShowAreas;
+            filterSettingsCount += filterSettings.NeverShowSpecTypes;
 
-            var form = clone.querySelector('#available-assignments-filter-container');
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
-                updateFilterInterface(true);
-            });
+            var maxFilterSettingsCount = 5;
+            if (filterSettingsCount > maxFilterSettingsCount) {
+                // show filter settings that we use
+                clone = document.importNode(templateFilterActive.content, true);
+                var form = clone.querySelector('#available-assignments-filter-container');
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    updateFilterInterface(false);
+                });
+            } else {
+                // show filter settings that we use
+                clone = document.importNode(templateFilterView.content, true);
+
+                var listContainer = clone.querySelector('#FilterAlwaysShowTypes');
+                addItemsToList(listContainer, convertToNames(filterSettings.AlwaysShowTypes, getTypes()));
+                listContainer = clone.querySelector('#FilterNeverShowTypes');
+                addItemsToList(listContainer, convertToNames(filterSettings.NeverShowTypes, getTypes()));
+                listContainer = clone.querySelector('#FilterHideWorkDayTypes');
+                addItemsToList(listContainer, convertToNames(filterSettings.HideWorkDayTypes, getTypes()));
+                listContainer = clone.querySelector('#FilterHideWeekendTypes');
+                addItemsToList(listContainer, convertToNames(filterSettings.HideWeekendTypes, getTypes()));
+                listContainer = clone.querySelector('#FilterAlwaysShowAreas');
+                addItemsToList(listContainer, convertToNames(filterSettings.AlwaysShowAreas, getAreas()));
+                listContainer = clone.querySelector('#FilterNeverShowAreas');
+                addItemsToList(listContainer, convertToNames(filterSettings.NeverShowAreas, getAreas()));
+                listContainer = clone.querySelector('#FilterNeverShowSpecTypes');
+                addItemsToList(listContainer, convertToNames(filterSettings.NeverShowSpecTypes, getSpecTypes()));
+
+                var form = clone.querySelector('#available-assignments-filter-container');
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    updateFilterInterface(true);
+                });
+            }
         } else {
             clone = document.importNode(templateFilterNone.content, true);
             var form = clone.querySelector('#available-assignments-filter-container');
@@ -587,16 +608,16 @@
             // continued request, we could not get all results directly so we are complementing it
             if (filterQuery) {
                 startIndex = '&';
-            }else {
+            } else {
                 startIndex = '?';
             }
 
             startIndex += 'startIndex=' + nextStartIndex;
-        }else {
+        } else {
             // new request, clear previous results
             var itemsContainer = document.querySelector("#items-container");
             itemsContainer.innerHTML = '';
-    
+
             updateFilterInterface();
         }
 
@@ -607,13 +628,13 @@
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
         }
-        
+
         var cookieFailKey = sessionStorage.getItem('cookieFailKey');
         if (cookieFailKey) {
             serviceUrl += "?cookieFailKey=" + cookieFailKey;
         }
-    
-        
+
+
         var result = fetch(serviceUrl, {
             method: 'GET',
             credentials: 'include',
@@ -795,14 +816,14 @@
                     var padding = '5px 15px';
                     var lastWeekContainers = document.querySelectorAll('.week-container');
                     if (lastWeekContainers.length) {
-                        switch(lastWeekContainers[lastWeekContainers.length - 1].style.backgroundColor) {
+                        switch (lastWeekContainers[lastWeekContainers.length - 1].style.backgroundColor) {
                             case 'lightblue':
                                 bgcolor = '';
                                 padding = '5px';
                                 break;
                         }
                     }
-                    
+
                     var weekContainer = cloneWeek.querySelector(".week-container");
                     weekContainer.style.padding = padding;
                     weekContainer.style.backgroundColor = bgcolor;
@@ -864,7 +885,7 @@
                 var filterednOfItems = document.querySelectorAll('.assignment-name').length
                 if (info.totalnOfItems != filterednOfItems) {
                     countInfo = filterednOfItems + ' av ' + info.totalnOfItems;
-                }else {
+                } else {
                     countInfo = info.totalnOfItems;
                 }
                 countInfoElement.textContent = ' (' + countInfo + ')';

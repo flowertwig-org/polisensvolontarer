@@ -73,6 +73,14 @@
             <label>Du har för närvarande inga aktiva filtreringar</label>
         </form>
     </template>
+    <template id="filter-active">
+        <form id="available-assignments-filter-container">
+            <input id="filter-active-show" type="submit" value="Visa filtrering" style="width:auto;float:right;margin:0;border:solid 1px;border-radius:5px;" />
+            <label>Du har för närvarande aktiva filtreringar</label>
+            <input id="filter-active-edit" type="submit" value="Ändra filtrering" style="width:auto;float:right;margin:0;border:solid 1px;border-radius:5px;" />
+            <label>Du har för närvarande aktiva filtreringar</label>
+        </form>
+    </template>
     <template id="filter-change-options">
         <form id="available-assignments-filter-container">
                 <b>Du har för närvarande följande aktiva filtreringar:</b>
@@ -426,7 +434,7 @@
         </div>
     </template>
     <script src="/resources/environment.js" async></script>
-    <script src="/resources/available-assignments-v6.js" async></script>
+    <script src="/resources/available-assignments-v7.js" async></script>
     <script src="/resources/keep-alive-v3.js" async></script>
     <script src="/resources/warnings-v3.js" async></script>
 </body>
