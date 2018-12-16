@@ -1,9 +1,15 @@
 (function () {
     'use strict';
 
+    function removeWarning(code) {
+        document.querySelectorAll('.warning-' + code).forEach(function (element) {
+            element.remove();
+        });
+    }
+
     function showWarning(code) {
         var warningElement = document.createElement('div');
-        warningElement.className = 'warning';
+        warningElement.className = 'warning warning-' + code;
         switch (code) {
             case "1":
                 warningElement.innerHTML = 'Du använder ett vanligt använt lösenord och bör därför byta. <a href="/restricted/andra-losenord/">Ändra lösenord nu.</a>';
@@ -26,15 +32,26 @@
             case "7":
                 warningElement.innerHTML = 'Kunde ej ändra lösenord. Lösenordet som är angivet i <b>"Nytt lösenordet"</b> överensstämmer ej med det som är angivet i <b>"Upprepa nytt lösenord"</b>.';
                 break;
+            case "8":
+                warningElement.innerHTML = 'Uppkoppling till Internet ej längre tillgänglig. Information du ser kan vara inaktuell. <a href="/restricted/offline/">Du kan läsa mer om inaktuell information här</a>';
+                break;
         }
         document.querySelector('main').insertAdjacentElement('afterbegin', warningElement);
     }
+
+    window.addEventListener('offline', function (e) {
+        showWarning(8)
+    });
+
+    window.addEventListener('online', function (e) {
+        removeWarning(8)
+    });
 
     // Listen for the event.
     document.body.addEventListener('warning', function (e) {
         // Calling showWarning with int fix (we require string)
         showWarning("" + e.detail);
-    }, false);    
+    }, false);
 
     var keyValuePairs = location.search.substr(1).split('&');
     for (let index = 0; index < keyValuePairs.length; index++) {

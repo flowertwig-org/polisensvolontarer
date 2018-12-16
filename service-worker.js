@@ -9,6 +9,7 @@
       '/',
       '/kakor/',
       '/restricted/',
+      '/restricted/offline/',
       '/restricted/andra-losenord/',
       '/restricted/assignment/',
       '/restricted/aterkoppling/',
