@@ -621,19 +621,26 @@
             updateFilterInterface();
         }
 
+
+        var cookieFailKeyQuery = '';
+        var cookieFailKey = sessionStorage.getItem('cookieFailKey');
+        if (cookieFailKey) {
+            if (filterQuery || startIndex) {
+                cookieFailKeyQuery = '&';
+            }else {
+                cookieFailKeyQuery = '?';
+            }
+            cookieFailKeyQuery += "cookieFailKey=" + cookieFailKey;
+        }
+
+
         showWaitingMessage();
 
-        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments' + filterQuery + startIndex;
+        var serviceUrl = 'https://polisens-volontarer-api.azurewebsites.net/api/AvailableAssignments' + filterQuery + startIndex + cookieFailKeyQuery;
         var inTestEnvironment = location.origin.indexOf('test-') != -1;
         if (inTestEnvironment) {
             serviceUrl = serviceUrl.replace("https://", "https://test-");
         }
-
-        var cookieFailKey = sessionStorage.getItem('cookieFailKey');
-        if (cookieFailKey) {
-            serviceUrl += "?cookieFailKey=" + cookieFailKey;
-        }
-
 
         var result = fetch(serviceUrl, {
             method: 'GET',
