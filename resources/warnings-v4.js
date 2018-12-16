@@ -2,12 +2,16 @@
     'use strict';
 
     function removeWarning(code) {
+        // Calling removeWarning with int fix (we require string)
+        code = '' + code;
         document.querySelectorAll('.warning-' + code).forEach(function (element) {
             element.remove();
         });
     }
 
     function showWarning(code) {
+        // Calling showWarning with int fix (we require string)
+        code = '' + code;
         var warningElement = document.createElement('div');
         warningElement.className = 'warning warning-' + code;
         switch (code) {
@@ -40,17 +44,16 @@
     }
 
     window.addEventListener('offline', function (e) {
-        showWarning(8)
+        showWarning(8);
     });
 
     window.addEventListener('online', function (e) {
-        removeWarning(8)
+        removeWarning(8);
     });
 
     // Listen for the event.
     document.body.addEventListener('warning', function (e) {
-        // Calling showWarning with int fix (we require string)
-        showWarning("" + e.detail);
+        showWarning(e.detail);
     }, false);
 
     var keyValuePairs = location.search.substr(1).split('&');
