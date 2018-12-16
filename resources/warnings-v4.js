@@ -34,10 +34,10 @@
                 warningElement.innerText = 'Kunde ej ändra lösenord. Nuvarande lösenordet är felaktigt.';
                 break;
             case "7":
-                warningElement.innerHTML = 'Kunde ej ändra lösenord. Lösenordet som är angivet i <b>"Nytt lösenordet"</b> överensstämmer ej med det som är angivet i <b>"Upprepa nytt lösenord"</b>.';
+                warningElement.innerHTML = '<b>Kunde ej ändra lösenord.</b><br>Lösenordet som är angivet i <b>"Nytt lösenordet"</b> överensstämmer ej med det som är angivet i <b>"Upprepa nytt lösenord"</b>.';
                 break;
             case "8":
-                warningElement.innerHTML = 'Uppkoppling till Internet ej längre tillgänglig. Information du ser kan vara inaktuell. <a href="/restricted/offline/">Du kan läsa mer om inaktuell information här</a>';
+                warningElement.innerHTML = '<b>Du har inte längre kontakt med Internet.</b><br>Information du ser kan vara inaktuell. <a href="/restricted/offline/">Du kan läsa mer om inaktuell information här</a>';
                 break;
         }
         document.querySelector('main').insertAdjacentElement('afterbegin', warningElement);
