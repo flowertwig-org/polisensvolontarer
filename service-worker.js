@@ -12,7 +12,7 @@
       '/restricted/andra-losenord',
       '/restricted/assignment',
       '/restricted/aterkoppling',
-      '/restricted/available-assignments',
+      '/restricted/available-assignments/',
       '/restricted/uppdragsrapport',
       // Javascript
       // Styles
