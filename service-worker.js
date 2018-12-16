@@ -7,13 +7,15 @@
     var urlsToCache = [
       // Pages
       '/',
-      '/kakor',
-      '/restricted',
-      '/restricted/andra-losenord',
-      '/restricted/assignment',
-      '/restricted/aterkoppling',
+      '/kakor/',
+      '/restricted/',
+      '/restricted/andra-losenord/',
+      '/restricted/assignment/',
+      '/restricted/aterkoppling/',
       '/restricted/available-assignments/',
-      '/restricted/uppdragsrapport',
+      '/restricted/uppdragsrapport/',
+      // Images
+      '/favicon-32x32.png',
       // Javascript
       // Styles
       '/resources/volontarer-normalize.css',
