@@ -520,12 +520,12 @@
         else if (filterSettings) {
 
             var filterSettingsCount = filterSettings.AlwaysShowTypes.length;
-            filterSettingsCount += filterSettings.NeverShowTypes;
-            filterSettingsCount += filterSettings.HideWorkDayTypes;
-            filterSettingsCount += filterSettings.HideWeekendTypes;
-            filterSettingsCount += filterSettings.AlwaysShowAreas;
-            filterSettingsCount += filterSettings.NeverShowAreas;
-            filterSettingsCount += filterSettings.NeverShowSpecTypes;
+            filterSettingsCount += filterSettings.NeverShowTypes.length;
+            filterSettingsCount += filterSettings.HideWorkDayTypes.length;
+            filterSettingsCount += filterSettings.HideWeekendTypes.length;
+            filterSettingsCount += filterSettings.AlwaysShowAreas.length;
+            filterSettingsCount += filterSettings.NeverShowAreas.length;
+            filterSettingsCount += filterSettings.NeverShowSpecTypes.length;
 
             var maxFilterSettingsCount = 5;
             if (filterSettingsCount > maxFilterSettingsCount) {
