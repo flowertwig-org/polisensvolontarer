@@ -51,6 +51,10 @@
         removeWarning(8);
     });
 
+    if (!navigator.onLine) {
+        showWarning(8);
+    }
+
     // Listen for the event.
     document.body.addEventListener('warning', function (e) {
         showWarning(e.detail);
