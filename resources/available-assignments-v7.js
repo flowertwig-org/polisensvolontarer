@@ -533,7 +533,7 @@
                 clone = document.importNode(templateFilterActive.content, true);
 
                 // textContent
-                clone.querySelector('.filter-active-count').textContent = filterSettingsCount;
+                clone.querySelector('#filter-active-count').textContent = filterSettingsCount;
 
                 var form = clone.querySelector('#available-assignments-filter-container');
                 form.addEventListener('submit', function (event) {
