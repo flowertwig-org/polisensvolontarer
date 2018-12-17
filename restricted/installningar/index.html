@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Inställningar - Polisens Volontärer</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/resources/volontarer-normalize.css" />
+    <link rel="stylesheet" href="/resources/volontarer-basic-v5.css" />
+    <link rel="stylesheet" href="/resources/volontarer-grid.css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffffff">
+    <meta name="apple-mobile-web-app-title" content="Polisens Volont&auml;rer">
+    <meta name="application-name" content="Polisens Volont&auml;rer">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+</head>
+</head>
+
+<body>
+    <header>
+        <a href="/restricted/" class="logo-text">
+            <img class="logo-v2" src="/favicon-32x32.png" alt="Polisens volontärers logotyp" />
+            Polisens Volontärer
+        </a>
+        <input type="checkbox" id="menu" name="menu" class="toggable" />
+        <menu class="toggle-area">
+            <a href="/restricted/available-assignments/">Tillgängliga uppdrag</a>
+            <a href="/restricted/">Mina uppdrag</a>
+            <a href="/restricted/uppdragsrapport/">Uppdragsrapport</a>
+
+            <form id="logout-form" action="https://polisens-volontarer-api.azurewebsites.net/api/logout" method="post"
+                enctype="application/x-www-form-urlencoded">
+                <input type="submit" value="Logga ut" />
+            </form>
+        </menu>
+        <div class="icons">
+            <label for="menu">
+                <div class="icon icon-menu-v2">
+                    <div class="icon-menu-v2-inner"></div>
+                    <div class="icon-menu-v2-inner"></div>
+                    <div class="icon-menu-v2-inner"></div>
+                    <div class="icon-focus-ring"></div>
+                </div>
+            </label>
+        </div>
+    </header>
+    <main>
+
+        <h1>Inställningar</h1>
+        <p>
+            TODO: Skriv vad man kan göra här.
+        </p>
+        <h2>Kontakt uppgifter</h2>
+        <p>
+            E-post: epost@minadress.nu <a href="#">Ändra &gt;</a>
+        </p>
+        <h2>Inloggnings uppgifter</h2>
+        <p>
+            Användarnamn: användarnamn <a href="#">Ändra &gt;</a><br>
+            Lösenord: ************ <a href="#">Ändra &gt;</a><br>
+        </p>
+        <h2>Experimentella funktioner</h2>
+        <p>
+            Funktion(er) som för tillfället testas av en testgrupp och kan vara mycket buggiga.<br>
+            Nedan funktioner används på egen risk.<br>
+
+                <input id="serviceworker" name="serviceworker" type="checkbox">
+                <label for="serviceworker">Aktivera Service Worker</label>        
+            </p>
+        <h2>App notiser/aviseringar</h2>
+        <p>
+            TODO: Skriv vad detta betyder.
+            <br>
+            <input id="notis01" name="notis01" type="checkbox">
+            <label for="notis01">Notifiera mig vid ändringar av uppdrag jag är anmäld till</label>
+            <br>
+            <input id="notis02" name="notis02" type="checkbox">
+            <label for="notis02">Notifiera mig när nya uppdrag av följande typ blir tillgängliga på portalen</label>
+            <br>
+            <input id="notis03" name="notis03" type="checkbox">
+            <label for="notis03">Notifiera mig när nya uppdrag i följande områden blir tillgängliga på portalen</label>
+        </p>
+    </main>
+    <footer>
+    </footer>
+
+    <script src="/resources/environment.js" async></script>
+    <script src="/resources/keep-alive-v3.js" async></script>
+    <script src="/resources/warnings-v4.js" async></script>
+    <script src="/resources/service-worker-installer.js" async></script>
+</body>
+
+</html>
