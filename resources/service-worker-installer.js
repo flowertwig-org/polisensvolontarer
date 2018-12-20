@@ -10,6 +10,10 @@ if ('serviceWorker' in navigator) {
         // registration failed :(
         console.log('ServiceWorker registration failed: ', err);
       });
+
+      navigator.serviceWorker.onmessage  = function(messageevent) {
+        console.log('message', messageevent);
+       }
     });
   }
 })();

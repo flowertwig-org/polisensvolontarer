@@ -33,6 +33,10 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
+    self.postMessage(new MessageEvent("test", {
+        data: 'fetch'
+    }));
+    
     event.respondWith(
         caches.match(event.request)
             .then(function (response) {
