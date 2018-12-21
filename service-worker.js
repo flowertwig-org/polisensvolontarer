@@ -5,6 +5,7 @@ var urlsToCache = [
     '/',
     '/kakor/',
     '/restricted/',
+    '/restricted/installningar/',
     '/restricted/offline/',
     '/restricted/andra-losenord/',
     '/restricted/assignment/',
