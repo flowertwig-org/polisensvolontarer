@@ -9,7 +9,7 @@
       cbServiceWorker.disabled = false;
       // Remember setting
       if (localStorage.getItem('settings-serviceworker')) {
-        cbServiceWorker.checked = false;
+        cbServiceWorker.checked = true;
       }
 
       cbServiceWorker.addEventListener('change', function (event) {
