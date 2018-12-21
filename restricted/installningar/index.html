@@ -56,9 +56,8 @@
         <p>
             TODO: Skriv vad man kan göra här.
         </p>
+        <!--
         <h2>Kontaktuppgifter</h2>
-        <p>
-        </p>
         <form class="available-assignments-filter-sections">
             <span>E-post: epost@minadress.nu</span>
             <input type="submit" style="width: auto;
@@ -67,21 +66,32 @@
             margin-right: 0;"
                 value="Ändra e-post">
         </form>
-        <p></p>
+        -->
         <h2>Inloggningsuppgifter</h2>
         <p>
         </p>
         <form class="available-assignments-filter-sections">
+            <!--
             <span>Användarnamn: anvnam</span> <input type="submit" style="width: auto;
             margin: 0;
             margin-left: auto;
             margin-right: 0;"
                 value="Ändra användarnamn">
+                -->
             <span>Lösenord: ************</span>
-            <input type="submit" style="width: auto;
-             margin: 0;
-             margin-left: auto;
-             margin-right: 0;"
+            <a href="/restricted/andra-losenord/" style="width: auto;
+            margin: 0;
+            margin-left: auto;
+            margin-right: 0;
+            display: block;
+            color: #fff;
+            background-color: transparent;
+            border: solid 1px;
+            border-radius: 5px;
+            line-height: 1.625rem;
+            font-size: 0.7rem;
+            text-decoration: none;
+            padding: 1px 7px 2px;"
                 value="Ändra lösenord">
         </form>
         <p></p>
@@ -93,6 +103,7 @@
         <form>
             <input id="serviceworker" name="serviceworker" type="checkbox" disabled>
             <label for="serviceworker">Aktivera Service Worker</label>
+            <br>
             <input id="savelogin" name="savelogin" type="checkbox" disabled>
             <label for="savelogin">Spara inloggning</label>
         </form>
