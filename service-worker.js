@@ -16,7 +16,7 @@ var urlsToCache = [
     '/favicon-32x32.png',
     // Javascript
     '/resources/assignment-v2.js',
-    '/resources/available-assignments-v7.js',
+    '/resources/available-assignments-v8.js',
     '/resources/change-password-v2.js',
     '/resources/environment.js',
     '/resources/keep-alive-v3.js',
@@ -26,7 +26,7 @@ var urlsToCache = [
     '/resources/service-worker-installer.js',
     '/resources/warnings-v4.js',
     // Styles
-    '/resources/volontarer-basic-v5.css',
+    '/resources/volontarer-basic-v6.css',
     '/resources/volontarer-grid.css',
     '/resources/volontarer-normalize.css'
 ];
@@ -55,7 +55,6 @@ self.addEventListener('fetch', function (event) {
                     return response;
                 }
                 return fetch(event.request);
-            }
-            )
+            })
     );
 });    
