@@ -60,7 +60,7 @@
         <p>
         </p>
         <form class="available-assignments-filter-sections">
-            <span>E-post: epost@minadress.nu</span> 
+            <span>E-post: epost@minadress.nu</span>
             <input type="submit" style="width: auto;
             margin: 0;
             margin-left: auto;
@@ -78,7 +78,7 @@
             margin-right: 0;"
                 value="Ändra användarnamn">
             <span>Lösenord: ************</span>
-             <input type="submit" style="width: auto;
+            <input type="submit" style="width: auto;
              margin: 0;
              margin-left: auto;
              margin-right: 0;"
@@ -91,23 +91,27 @@
             Funktionerna nedan används på egen risk.<br>
         </p>
         <form>
-            <input id="serviceworker" name="serviceworker" type="checkbox">
+            <input id="serviceworker" name="serviceworker" type="checkbox" disabled>
             <label for="serviceworker">Aktivera Service Worker</label>
+            <input id="savelogin" name="savelogin" type="checkbox" disabled>
+            <label for="savelogin">Spara inloggning</label>
         </form>
         <p></p>
         <h2>App-notiser / aviseringar</h2>
         <p>
-            TODO: Skriv vad detta betyder.
+            Låt din enhet hålla koll på uppdragen åt dig, få notiser när något händer.
+            <br>
+            För att använda denna funktionalitet behöver du aktivera "Service Worker" ovan.
             <br>
         </p>
         <form>
-            <input id="notis01" name="notis01" type="checkbox">
+            <input id="notis01" name="notis01" type="checkbox" disabled>
             <label for="notis01">Notifiera mig vid ändringar av uppdrag jag är anmäld till</label>
             <br>
-            <input id="notis02" name="notis02" type="checkbox">
+            <input id="notis02" name="notis02" type="checkbox" disabled>
             <label for="notis02">Notifiera mig när nya uppdrag av följande typ blir tillgängliga på portalen</label>
             <br>
-            <input id="notis03" name="notis03" type="checkbox">
+            <input id="notis03" name="notis03" type="checkbox" disabled>
             <label for="notis03">Notifiera mig när nya uppdrag i följande områden blir tillgängliga på portalen</label>
         </form>
         <p></p>
