@@ -27,6 +27,13 @@
             cbServiceWorker.disabled = false;
           });
         } else {
+          // uninstall serviceworker
+          navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            for (let registration of registrations) {
+              registration.unregister()
+            }
+            cbServiceWorker.disabled = false;
+          });
 
         }
       });
