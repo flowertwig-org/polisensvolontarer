@@ -8,7 +8,7 @@
     if (cbServiceWorker) {
       cbServiceWorker.disabled = false;
       // Remember setting
-      if (sessionStorage.getItem('settings-serviceworker')) {
+      if (localStorage.getItem('settings-serviceworker')) {
         cbServiceWorker.checked = false;
       }
 
@@ -18,12 +18,12 @@
           navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
             // Registration was successful
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            sessionStorage.setItem('settings-serviceworker', '1');
+            localStorage.setItem('settings-serviceworker', '1');
             cbServiceWorker.disabled = false;
           }, function (err) {
             // registration failed :(
             console.log('ServiceWorker registration failed: ', err);
-            sessionStorage.removeItem('settings-serviceworker');
+            localStorage.removeItem('settings-serviceworker');
             cbServiceWorker.disabled = false;
           });
         } else {
