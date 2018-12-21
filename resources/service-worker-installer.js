@@ -32,6 +32,7 @@
             for (let registration of registrations) {
               registration.unregister()
             }
+            localStorage.removeItem('settings-serviceworker');
             cbServiceWorker.disabled = false;
           });
 
