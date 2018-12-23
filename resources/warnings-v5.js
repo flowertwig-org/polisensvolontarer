@@ -39,6 +39,9 @@
             case "8":
                 warningElement.innerHTML = '<b>Du har inte längre kontakt med Internet.</b><br>Information du ser kan vara inaktuell. <a href="/restricted/offline/">Du kan läsa mer om inaktuell information här</a>';
                 break;
+            case "9":
+                warningElement.innerHTML = '<b>Din webbläsare uppfyller inte alla tekniska krav.</b><br>Din webbläsare har ej stöd för all funktionalitet som krävs för att denna webbplats skall fungera. Detta inkluderar en/flera av nedan:<ul><li><a href="https://caniuse.com/#search=sessionStorage">sessionStorage</a></li><li><a href="https://caniuse.com/#search=localStorage">localStorage</a></li><li><a href="https://caniuse.com/#search=template">template</a></li><li><a href="https://caniuse.com/#feat=fetch">fetch</a></li></ul>';
+                break;
         }
         document.querySelector('main').insertAdjacentElement('afterbegin', warningElement);
     }
@@ -54,6 +57,14 @@
     if (!navigator.onLine) {
         showWarning(8);
     }
+
+    if (!('sessionStorage' in window)
+    || !('localStorage' in window)
+    || !('importNode' in document)
+    || !('fetch' in window)) {
+        showWarning(9);
+    }
+
 
     // Listen for the event.
     document.body.addEventListener('warning', function (e) {

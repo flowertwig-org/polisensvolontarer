@@ -24,7 +24,7 @@ var urlsToCache = [
     '/resources/my-assignments-v4.js',
     '/resources/my-reports.js',
     '/resources/service-worker-installer.js',
-    '/resources/warnings-v4.js',
+    '/resources/warnings-v5.js',
     // Styles
     '/resources/volontarer-basic-v6.css',
     '/resources/volontarer-grid.css',
