@@ -37,23 +37,52 @@ self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_APP_NAME)
             .then(function (cache) {
-                console.log('Opened cache');
+                //console.log('Opened cache');
                 return cache.addAll(urlsToCache);
             })
     );
 });
 
 self.addEventListener('fetch', function (event) {
-    console.log('fetch', event);
+    //console.log('fetch', event);
     // self.postMessage(new MessageEvent("test", {
     //     data: 'fetch'
     // }));
     event.respondWith(async function () {
 
         const url = new URL(event.request.url);
-        //url.search = '';
 
-        console.log('fetch url', url);
+        //console.log('fetch url', url);
+
+        var isLogout = url.pathname == '/api/logout';
+        var isCachableResource = url.pathname != '/api/login'
+            && url.pathname != '/api/assignmentreport'
+            && url.pathname != '/api/changepassword'
+            && url.pathname != '/api/logout';
+
+        if (isLogout) {
+            // clear cache when logout
+            event.waitUntil(
+                caches.keys().then(function (cacheNames) {
+                    return Promise.all(
+                        cacheNames.map(function (cacheName) {
+                            var expectedCacheNames = Object.values(CACHE_APP_NAME);
+
+                            if (!expectedCacheNames.includes(cacheName)) {
+                                console.log('Deleting out of date cache:', cacheName);
+
+                                return caches.delete(cacheName);
+                            }
+                        })
+                    );
+                })
+            );
+        }
+
+        // ignore cache for this resource
+        if (!isCachableResource) {
+            return fetch(url);
+        }
 
         // Create promises for both the network response,
         // and a copy of the response that can be used in the cache.
@@ -69,23 +98,7 @@ self.addEventListener('fetch', function (event) {
             console.log('fetch added to cache', url);
         }());
 
+        // Prefer the cached response, falling back to the fetch response.
         return (await caches.match(url)) || fetchResponseP;
-        // Prefer the fetch response, falling back to the cached response.
-        //console.log('cache app match', caches.open(CACHE_APP_NAME).match(url));
-        //console.log('cache service match', caches.open(CACHE_SERVICE_NAME).match(url));
-
-        //return fetchResponseP || (await caches.match(url));
-        //return fetchResponseP || (await caches.match(url));
     }());
-
-    // event.respondWith(
-    //     caches.match(event.request)
-    //         .then(function (response) {
-    //             // Cache hit - return response
-    //             if (response) {
-    //                 return response;
-    //             }
-    //             return fetch(event.request);
-    //         })
-    // );
 });    
