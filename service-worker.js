@@ -44,6 +44,7 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
+    console.log('fetch', event);
     // self.postMessage(new MessageEvent("test", {
     //     data: 'fetch'
     // }));
@@ -51,6 +52,8 @@ self.addEventListener('fetch', function (event) {
 
         const url = new URL(event.request.url);
         //url.search = '';
+
+        console.log('fetch url', url);
 
         // Create promises for both the network response,
         // and a copy of the response that can be used in the cache.
@@ -60,13 +63,19 @@ self.addEventListener('fetch', function (event) {
         // event.waitUntil() ensures that the service worker is kept alive
         // long enough to complete the cache update.
         event.waitUntil(async function () {
+            console.log('fetch add to cache', url);
             const cache = await caches.open(CACHE_SERVICE_NAME);
             await cache.put(url, await fetchResponseCloneP);
+            console.log('fetch added to cache', url);
         }());
 
         //return (await caches.match(url)) || fetchResponseP;
         // Prefer the fetch response, falling back to the cached response.
-        return fetchResponseP || (await caches.match(url));
+        console.log('cache app match', caches.open(CACHE_APP_NAME).match(url));
+        console.log('cache service match', caches.open(CACHE_SERVICE_NAME).match(url));
+
+        return (await caches.open(CACHE_APP_NAME).match(url)) || fetchResponseP || (await caches.open(CACHE_SERVICE_NAME).match(url));
+        //return fetchResponseP || (await caches.match(url));
     }());
 
     // event.respondWith(
