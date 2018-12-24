@@ -40,7 +40,7 @@
                 warningElement.innerHTML = '<b>Du har inte längre kontakt med Internet.</b><br>Information du ser kan vara inaktuell. <a href="/restricted/offline/">Du kan läsa mer om inaktuell information här</a>';
                 break;
             case "9":
-                warningElement.innerHTML = '<b>Din webbläsare uppfyller inte alla tekniska krav.</b><br>Din webbläsare har ej stöd för all funktionalitet som krävs för att denna webbplats skall fungera. Detta inkluderar en/flera av nedan:<ul><li><a href="https://caniuse.com/#search=sessionStorage">sessionStorage</a></li><li><a href="https://caniuse.com/#search=localStorage">localStorage</a></li><li><a href="https://caniuse.com/#search=template">template</a></li><li><a href="https://caniuse.com/#feat=fetch">fetch</a></li></ul>';
+                warningElement.innerHTML = '<b>Din webbläsare uppfyller inte alla tekniska krav.</b><br>Din webbläsare har ej stöd för all funktionalitet som krävs för att denna webbplats skall fungera.<br>Försök igen med en annan webbläsare eller enhet.<br>Funktionalitet som saknas inkluderar en/flera av nedan:<ul><li><a href="https://caniuse.com/#search=sessionStorage">sessionStorage</a> - Används för att hålla dig inloggad</li><li><a href="https://caniuse.com/#search=localStorage">localStorage</a> - Används för att spara dina filtreringar och andra inställningar</li><li><a href="https://caniuse.com/#search=template">template</a> - Används för att uppdatera sidan med ny information</li><li><a href="https://caniuse.com/#feat=fetch">fetch</a> - Används för att hämta all information. Tex om uppdrag, inloggningar mm.</li></ul>';
                 break;
         }
         document.querySelector('main').insertAdjacentElement('afterbegin', warningElement);
