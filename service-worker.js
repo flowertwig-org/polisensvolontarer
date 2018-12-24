@@ -55,7 +55,8 @@ self.addEventListener('fetch', function (event) {
         //console.log('fetch url', url);
 
         var isLogout = url.pathname == '/api/logout';
-        var isCachableResource = url.pathname != '/api/login'
+        var isCachableResource = event.request.method.toLowerCase() == 'get'
+            &&  url.pathname != '/api/login'
             && url.pathname != '/api/assignmentreport'
             && url.pathname != '/api/changepassword'
             && url.pathname != '/api/logout';
@@ -81,7 +82,7 @@ self.addEventListener('fetch', function (event) {
 
         // ignore cache for this resource
         if (!isCachableResource) {
-            return fetch(url);
+            return fetch(event.request);
         }
 
         // Create promises for both the network response,
