@@ -71,10 +71,10 @@ self.addEventListener('fetch', function (event) {
 
         //return (await caches.match(url)) || fetchResponseP;
         // Prefer the fetch response, falling back to the cached response.
-        console.log('cache app match', caches.open(CACHE_APP_NAME).match(url));
-        console.log('cache service match', caches.open(CACHE_SERVICE_NAME).match(url));
+        //console.log('cache app match', caches.open(CACHE_APP_NAME).match(url));
+        //console.log('cache service match', caches.open(CACHE_SERVICE_NAME).match(url));
 
-        return (await caches.open(CACHE_APP_NAME).match(url)) || fetchResponseP || (await caches.open(CACHE_SERVICE_NAME).match(url));
+        return fetchResponseP || (await caches.match(url));
         //return fetchResponseP || (await caches.match(url));
     }());
 
