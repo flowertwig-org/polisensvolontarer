@@ -47,25 +47,27 @@ self.addEventListener('fetch', function (event) {
     // self.postMessage(new MessageEvent("test", {
     //     data: 'fetch'
     // }));
+    event.respondWith(async function () {
 
-    const url = new URL(event.request.url);
-    //url.search = '';
+        const url = new URL(event.request.url);
+        //url.search = '';
 
-      // Create promises for both the network response,
-      // and a copy of the response that can be used in the cache.
-      const fetchResponseP = fetch(url);
-      const fetchResponseCloneP = fetchResponseP.then(r => r.clone());
+        // Create promises for both the network response,
+        // and a copy of the response that can be used in the cache.
+        const fetchResponseP = fetch(url);
+        const fetchResponseCloneP = fetchResponseP.then(r => r.clone());
 
-      // event.waitUntil() ensures that the service worker is kept alive
-      // long enough to complete the cache update.
-      event.waitUntil(async function() {
-        const cache = await caches.open(CACHE_SERVICE_NAME);
-        await cache.put(url, await fetchResponseCloneP);
-      }());
+        // event.waitUntil() ensures that the service worker is kept alive
+        // long enough to complete the cache update.
+        event.waitUntil(async function () {
+            const cache = await caches.open(CACHE_SERVICE_NAME);
+            await cache.put(url, await fetchResponseCloneP);
+        }());
 
-      //return (await caches.match(url)) || fetchResponseP;
-      // Prefer the fetch response, falling back to the cached response.
-      return fetchResponseP || (await caches.match(url));
+        //return (await caches.match(url)) || fetchResponseP;
+        // Prefer the fetch response, falling back to the cached response.
+        return fetchResponseP || (await caches.match(url));
+    }());
 
     // event.respondWith(
     //     caches.match(event.request)
