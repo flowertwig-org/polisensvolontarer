@@ -859,7 +859,7 @@
                                     dayHeader.textContent = day.dayOfMonth + "/" + day.monthNumber;
 
                                     assignmentName.textContent = assignment.name;
-                                    assignmentName.href = "/restricted/assignment?key=" + assignment.id;
+                                    assignmentName.href = "/restricted/assignment/?key=" + assignment.id;
                                     assignmentWhen.textContent = '';
                                     assignmentArea.textContent = assignment.area;
                                     assignmentType.textContent = assignment.category;
@@ -916,4 +916,15 @@
     }
 
     getItems(getFilterSettings());
+
+    window.addEventListener('offline', function (e) {
+    });
+
+    window.addEventListener('online', function (e) {
+
+    });
+
+    if (!navigator.onLine) {
+
+    }
 })();

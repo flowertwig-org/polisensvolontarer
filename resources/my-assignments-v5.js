@@ -90,7 +90,7 @@
                     var assignmentName = templateAssignment.content.querySelector(".assignment-name");
                     assignmentName.textContent = assignment.name;
     
-                    assignmentName.href = "/restricted/assignment?key=" + assignment.id;
+                    assignmentName.href = "/restricted/assignment/?key=" + assignment.id;
                     var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
                     assignmentWhen.textContent = assignment.date;
                     var assignmentType = templateAssignment.content.querySelector(".assignment-type");
@@ -125,7 +125,7 @@
                     var assignmentName = templateAssignment.content.querySelector(".assignment-name");
                     assignmentName.textContent = assignment.name;
     
-                    assignmentName.href = "/restricted/assignment?key=" + assignment.id;
+                    assignmentName.href = "/restricted/assignment/?key=" + assignment.id;
                     var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
                     assignmentWhen.textContent = assignment.date;
                     var assignmentType = templateAssignment.content.querySelector(".assignment-type");
@@ -159,7 +159,7 @@
                     var assignmentName = templateAssignment.content.querySelector(".assignment-name");
                     assignmentName.textContent = assignment.name;
     
-                    assignmentName.href = "/restricted/assignment?key=" + assignment.id;
+                    assignmentName.href = "/restricted/assignment/?key=" + assignment.id;
                     var assignmentWhen = templateAssignment.content.querySelector(".assignment-when");
                     assignmentWhen.textContent = assignment.date;
                     var assignmentType = templateAssignment.content.querySelector(".assignment-type");
